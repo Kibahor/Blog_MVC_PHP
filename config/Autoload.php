@@ -2,9 +2,9 @@
 
 class Autoload
 {
-        private static $_instance = null;
+    private static $_instance = null;
 
-        public static function charger()
+    public static function charger()
     {
         if(null !== self::$_instance) {
             throw new RuntimeException(sprintf('%s is already started', __CLASS__));
@@ -18,7 +18,7 @@ class Autoload
         }
     }
 
-        public static function shutDown()
+    public static function shutDown()
     {
         if(null !== self::$_instance) {
 
@@ -30,20 +30,20 @@ class Autoload
         }
     }
 
-        private static function _autoload($class)
+    private static function _autoload($class)
     {
         global $rep;
         $filename = $class.'.php';
         $dir =array('modeles/','./','config/','controleur/');
         foreach ($dir as $d){
-        $file=$rep.$d.$filename; 
-        //echo $file;
-        if (file_exists($file))
-        {
-            include $file;
+            $file=$rep.$d.$filename;
+            //echo $file;
+            if (file_exists($file))
+            {
+                include $file;
+            }
         }
-        }
-    
+
     }
 }
 

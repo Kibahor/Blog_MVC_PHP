@@ -3,7 +3,7 @@
 class Controleur
 {
 
-    function __construct()
+    function __construct ()
     {
         global $rep, $vues; // nécessaire pour utiliser variables globales
         session_start();
