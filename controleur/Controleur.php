@@ -5,7 +5,7 @@ class Controleur
 
     function __construct()
     {
-        global $rep, $vues, $base, $login, $mdp; // nécessaire pour utiliser variables globales
+        global $rep, $vues; // nécessaire pour utiliser variables globales
         session_start();
         $dVueEreur = array();
 
@@ -39,11 +39,11 @@ class Controleur
 
     function init()
     {
-        global $rep, $vues, $base, $login, $mdp;
+        global $rep, $vues;
 
         $model = new Posts();
         $model->get_data();
-
+        
         require($rep . $vues['vuephp1']);
     }
 }

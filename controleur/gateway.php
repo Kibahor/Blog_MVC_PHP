@@ -18,11 +18,11 @@ class Gateway
         $this->con->executeQuery($sql);
         
         foreach($this->con->getResults() as $post ){
-            //$tabResult[]= new Posts();
-            echo $post['firstName'];
+            $tabResult[]= new Posts($post['postsId'],$post['title']);
+            //echo $post['postsId'];
         }
 
-        return $tabResult[]=NULL;
+        return $tabResult;
     }
 }
 

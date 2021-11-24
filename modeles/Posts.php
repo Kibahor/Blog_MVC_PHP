@@ -5,8 +5,8 @@ class Posts
     public $con;
 
 
-    private $id;
-    private $title;
+    public $id;
+    public $title;
     private $content;
     private $img;
     private $created;
@@ -14,33 +14,41 @@ class Posts
     private $idUser;
 
 
-    function __construct(/*$id, $title, $content, $img, $created, $idCategory, $idUser*/)
+    function __construct()
+    {
+        $a = func_get_args();
+        $i = func_num_args();
+        if (method_exists($this, $f = '__construct' .$i))
+            call_user_func_array(array($this, $f), $a);
+    }
+
+    function __construct2($id, $title)
+    {
+        //echo $id;
+        $this->id = $id;
+        $this->title = $title;
+        /*
+        $this->content = $content;
+        $this->img = $img;
+        $this->created = $created;
+        $this->idCategory = $idCategory;
+        $this->idUser = $idUser;
+        */
+    }
+
+    public function connectBDD()
     {
         global $base, $login, $mdp;
         $this->con = new Gateway(new Connection($base, $login, $mdp));
-
-        /*$this->$id = $id;
-        $this->$title = $title;
-        $this->$content = $content;
-        $this->$img = $img;
-        $this->$created = $created;
-        $this->$idCategory = $idCategory;
-        $this->$idUser = $idUser;*/
     }
-
 
     public function get_data()
     {
+        $this->connectBDD();
         $cat = 'date';
         $order = 'ASC';
-        $s = $this->con->getPosts($cat, $order);
-        print_r($s);
-        echo $s[1];
-        return $s;
-    }
-
-    public function __toString()
-    {
-        return $this->con;
+        return $this->con->getPosts($cat, $order);
     }
 }
+
+?>
