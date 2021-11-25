@@ -1,5 +1,5 @@
 <?php
-class Gateway
+class PostsGateway
 {
     private $con;
 
@@ -10,7 +10,7 @@ class Gateway
 
     public function getPosts($cat, $order):array
     {
-        $sql = "SELECT posts.id AS postsId, title, DATE_FORMAT(created, '%d/%m/%Y') AS date, category, firstName, lastName
+        $sql = "SELECT posts.id AS postsId,created, title, DATE_FORMAT(created, '%d/%m/%Y') AS date, category, firstName, lastName
                 FROM posts
                 LEFT JOIN categories c on posts.idCategory = c.id
                 LEFT JOIN users u on posts.idUser = u.id
@@ -19,7 +19,7 @@ class Gateway
         
         foreach($this->con->getResults() as $post ){
             // Si plus de données a insérer dans le Posts redefinir le 2eme constructeur
-            $tabResult[]= new Posts($post['postsId'],$post['title']);
+            $tabResult[]= new Posts($post['postsId'],$post['title'],$post['date']);
         }
 
         return $tabResult;

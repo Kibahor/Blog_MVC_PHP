@@ -3,14 +3,15 @@
 class Posts
 {
     public $con;
-
+    public $gate;
 
     public $id;
     public $title;
+    public $date;
     /*
     private $content;
     private $img;
-    private $created;
+
     private $idCategory;
     private $idUser;
     */
@@ -24,14 +25,14 @@ class Posts
     }
 
     //Constructeur pour insérer les données en retour de la requete sql !! modifier le nom
-    function __construct2($id, $title)
+    function __construct3($id, $title, $date)
     {
         $this->id = $id;
         $this->title = $title;
+        $this->date = $date;
         /*
         $this->content = $content;
         $this->img = $img;
-        $this->created = $created;
         $this->idCategory = $idCategory;
         $this->idUser = $idUser;
         */
@@ -40,7 +41,8 @@ class Posts
     public function connectBDD()
     {
         global $base, $login, $mdp;
-        $this->con = new Gateway(new Connection($base, $login, $mdp));
+        $this->con = new Connection($base, $login, $mdp);
+        $this->gate = new PostsGateway($this->con);
     }
 
     public function get_data()
@@ -48,7 +50,7 @@ class Posts
         $this->connectBDD();
         $cat = 'date';
         $order = 'ASC';
-        return $this->con->getPosts($cat, $order);
+        return $this->gate->getPosts($cat, $order);
     }
 }
 

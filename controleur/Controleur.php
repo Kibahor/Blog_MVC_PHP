@@ -17,23 +17,21 @@ class Controleur
 
         try {
             $action = isset($_GET['action']);
-
             switch ($action) {
-
                 case NULL:              //1 er appel
                     $this->init();
                     break;
 
                 default:    //erreur
-                    $dVueEreur[] =    "Erreur d'appel php";
-                    require($rep . $vues['vuephp1']);
+                    $dVueEreur[]="Erreur d'appel php";
+                    require($rep . $vues['posts']);
                     break;
             }
         } catch (PDOException $e) {
-            $dVueEreur[] =    $e;
+            $dVueEreur[] = $e;
             require($rep . $vues['erreur']);
         } catch (Exception $e2) {
-            $dVueEreur[] =    "Erreur inattendue!!! ";
+            $dVueEreur[] = "Erreur inattendue!!! ";
             require($rep . $vues['erreur']);
         }
 
@@ -46,6 +44,6 @@ class Controleur
         $model = new Posts();
         $valeur = $model->get_data();
 
-        require($this->rep . $this->vues['vuephp1']);
+        require($this->rep . $this->vues['posts']);
     }
 }
