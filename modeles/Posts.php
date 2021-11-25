@@ -7,12 +7,13 @@ class Posts
 
     public $id;
     public $title;
+    /*
     private $content;
     private $img;
     private $created;
     private $idCategory;
     private $idUser;
-
+    */
 
     function __construct()
     {
@@ -22,9 +23,9 @@ class Posts
             call_user_func_array(array($this, $f), $a);
     }
 
+    //Constructeur pour insérer les données en retour de la requete sql !! modifier le nom
     function __construct2($id, $title)
     {
-        //echo $id;
         $this->id = $id;
         $this->title = $title;
         /*

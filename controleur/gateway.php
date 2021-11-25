@@ -8,7 +8,7 @@ class Gateway
     }
 
 
-    public function getPosts($cat, $order)//:array
+    public function getPosts($cat, $order):array
     {
         $sql = "SELECT posts.id AS postsId, title, DATE_FORMAT(created, '%d/%m/%Y') AS date, category, firstName, lastName
                 FROM posts
@@ -18,8 +18,8 @@ class Gateway
         $this->con->executeQuery($sql);
         
         foreach($this->con->getResults() as $post ){
+            // Si plus de données a insérer dans le Posts redefinir le 2eme constructeur
             $tabResult[]= new Posts($post['postsId'],$post['title']);
-            //echo $post['postsId'];
         }
 
         return $tabResult;

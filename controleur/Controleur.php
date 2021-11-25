@@ -2,13 +2,18 @@
 
 class Controleur
 {
+    private $rep;
+    private $vues;
 
-    function __construct ()
+    function __construct()
     {
         global $rep, $vues; // nécessaire pour utiliser variables globales
-        session_start();
-        $dVueEreur = array();
+        $this->rep = $rep;
+        $this->vues = $vues;
 
+        session_start();
+
+        $dVueEreur = array();
 
         try {
             $action = isset($_GET['action']);
@@ -25,7 +30,6 @@ class Controleur
                     break;
             }
         } catch (PDOException $e) {
-            //si erreur BD, pas le cas ici
             $dVueEreur[] =    $e;
             require($rep . $vues['erreur']);
         } catch (Exception $e2) {
@@ -39,11 +43,9 @@ class Controleur
 
     function init()
     {
-        global $rep, $vues;
-
         $model = new Posts();
-        $model->get_data();
-        
-        require($rep . $vues['vuephp1']);
+        $valeur = $model->get_data();
+
+        require($this->rep . $this->vues['vuephp1']);
     }
 }
