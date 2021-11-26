@@ -1,6 +1,6 @@
 <?php
 
-class Posts
+class Posts //FAIRE DES GETTEUR ET SETTEUR
 {
     public $con;
     public $gate;
@@ -8,8 +8,9 @@ class Posts
     public $id;
     public $title;
     public $date;
+    public $content;
     /*
-    private $content;
+
     private $img;
 
     private $idCategory;
@@ -25,13 +26,13 @@ class Posts
     }
 
     //Constructeur pour insérer les données en retour de la requete sql !! modifier le nom
-    function __construct3($id, $title, $date)
+    function __construct4($id, $title, $date,$content)
     {
         $this->id = $id;
         $this->title = $title;
         $this->date = $date;
-        /*
         $this->content = $content;
+        /*
         $this->img = $img;
         $this->idCategory = $idCategory;
         $this->idUser = $idUser;

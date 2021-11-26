@@ -3,7 +3,7 @@
 $rep=__DIR__.'/../';
 
 //BD
-$base="mysql:dbname=dblublouin1;host=iut.berlin.local";
+$base="mysql:dbname=dblublouin1;host=berlin.iut.local";
 $login="lublouin1";
 $mdp="achanger";
 
