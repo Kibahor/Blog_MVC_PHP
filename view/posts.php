@@ -12,12 +12,8 @@
             <!-- Post preview-->
             <div class="post-preview">
                 <h2 class="post-title" ><?php echo $title ?></h2>
-                <p>
-                    <?php echo $content //Convertion bbcode html avec un parser + n'afficher que les 10 premières lignes?>
-                </p>
-                <p class="post-meta">
-                    Poster par $USER le <?php echo $date ?>
-                </p>
+                <p><?php echo $content //Convertion bbcode html avec un parser + n'afficher que les 10 premières lignes?></p>
+                <p class="post-meta">Poster par $USER le <?php echo $date ?></p>
             </div>
             <!-- Divider-->
             <hr class="my-4" />
