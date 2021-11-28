@@ -29,6 +29,7 @@ class Controleur
             }
         } catch (PDOException $e) {
             $dVueEreur[] = $e;
+            echo $e;
             require($rep . $vues['erreur']);
         } catch (Exception $e2) {
             $dVueEreur[] = "Erreur inattendue!!! ";
@@ -41,15 +42,17 @@ class Controleur
 
     function init()
     {
-        $model = new Posts();
-        $valeur = $model->get_data();
+        $model = new Article();
+        $valeur = $model->get_articles(NULL);
+
+
         require($this->rep . $this->vues['head']);
         require($this->rep . $this->vues['nav']);
-        if(true){
+        if(false){
             require($this->rep . $this->vues['header']);
             require($this->rep . $this->vues['posts']);
         }else{
-            $p=$valeur[1];
+            $p=$valeur[0];
             require($this->rep . $this->vues['oneArticle']);
         }
         require($this->rep . $this->vues['footer']);
