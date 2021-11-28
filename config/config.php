@@ -3,12 +3,20 @@
 $rep=__DIR__.'/../';
 
 //BD
-$base="mysql:dbname=dblublouin1;host=berlin.iut.local";
-$login="lublouin1";
-$mdp="achanger";
+$base="mysql:dbname=blog;host=localhost";
+$login="root";
+$mdp="root";
 
 $vues['erreur']='view/erreur.php';
 $vues['posts']='view/posts.php';
+$vues['head']='view/head.html';
+$vues['nav']='view/nav.html';
+$vues['header']='view/header.html';
+$vues['footer']='view/footer.html';
+
+$vues['oneArticle']='view/oneArticle.php';
+$vues['login']='view/login.html';
+
 
 
 ?>

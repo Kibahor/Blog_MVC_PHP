@@ -43,7 +43,16 @@ class Controleur
     {
         $model = new Posts();
         $valeur = $model->get_data();
+        require($this->rep . $this->vues['head']);
+        require($this->rep . $this->vues['nav']);
+        if(true){
+            require($this->rep . $this->vues['header']);
+            require($this->rep . $this->vues['posts']);
+        }else{
+            $p=$valeur[1];
+            require($this->rep . $this->vues['oneArticle']);
+        }
+        require($this->rep . $this->vues['footer']);
 
-        require($this->rep . $this->vues['posts']);
     }
 }
