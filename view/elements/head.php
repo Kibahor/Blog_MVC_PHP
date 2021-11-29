@@ -6,7 +6,7 @@
     <meta name="description" content="Un blog fait en php utilisant le MVC" />
     <meta name="author" content="Lukas Blouin | Matthéo Broquet" />
     <title>Blog PHP</title>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="view/Elements/res/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="view/Elements/res//css/styles.css" rel="stylesheet" />
 </head>

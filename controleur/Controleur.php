@@ -45,7 +45,7 @@ class Controleur
         $model = new Article();
         $valeur = $model->get_articles(NULL);
 
-
+        /*
         require($this->rep . $this->vues['head']);
         require($this->rep . $this->vues['nav']);
         if(false){
@@ -56,6 +56,6 @@ class Controleur
             require($this->rep . $this->vues['oneArticle']);
         }
         require($this->rep . $this->vues['footer']);
-
+        */
     }
 }

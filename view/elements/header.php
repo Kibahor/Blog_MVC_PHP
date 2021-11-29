@@ -1,6 +1,6 @@
 
 <body>
-<header class="masthead" style="background-image: url('view/assets/img/home-bg.jpg')">
+<header class="masthead" style="background-image: url('view/Elements/res/img/home-bg.jpg')">
     <div class="container position-relative">
         <div class="row justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
