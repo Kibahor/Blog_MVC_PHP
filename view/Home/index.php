@@ -1,5 +1,5 @@
-<!-- Header -->
-<?php require(..\Elements\head.php);?>
+<!-- Head -->
+<?php require($this->rep . $this->vues['head']); ?>
 
 <!-- Page Header-->
 <header class="masthead" style="background-image: url('view/assets/img/home-bg.jpg')">
@@ -22,7 +22,7 @@
 </header>
 
 <!-- Navbar -->
-<?php require(..\Elements\head.php);?>
+
 
 <!-- Main Content-->
 <body>
@@ -53,4 +53,4 @@
 </body>
 
 <!-- Footer -->
-<?php require(..\Elements\footer.php);?>
+<?php require($this->rep . $this->vues['footer']); ?>

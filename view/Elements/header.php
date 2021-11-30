@@ -1,4 +1,3 @@
-
 <body>
 <header class="masthead" style="background-image: url('view/Elements/res/img/home-bg.jpg')">
     <div class="container position-relative">

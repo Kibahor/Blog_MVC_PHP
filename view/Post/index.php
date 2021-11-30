@@ -2,7 +2,7 @@
 $date= $p->date;
 $title=$p->title;
 $content=$p->content;
-require(..\Elements\head.php);
+require($this->rep . $this->vues['head']);
 ?>
 <!-- Header -->
 <header class="masthead" style="background-image: url('view/assets/img/home-bg.jpg')">
@@ -93,4 +93,4 @@ require(..\Elements\head.php);
         </div>
     </section>
 </body>
-<?php require(..\Elements\footer.php);?>
+<?php require($this->rep . $this->vues['head']); ?>
