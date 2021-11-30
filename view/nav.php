@@ -4,6 +4,6 @@
             <a class="navbar-brand" href="#">Remonter vers le haut</a>
         </div>
         <div class="navbar-right">
-            <a class="btn btn-primary" href="view/login.html">Login</a>        </div>
+            <a class="btn btn-primary" href="view/login.php">Login</a>        </div>
     </div>
 </nav>
