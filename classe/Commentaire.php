@@ -2,34 +2,11 @@
 
 class Commentaire
 {
-    public $con;
-    public $gate;
-
     public $id;
     public $pseudo;
     public $content;
     public $date;
     public $idArticle;
-
-    /**
-     * @return mixed
-     */
-    public function getCon(){return $this->con;}
-
-    /**
-     * @param mixed $con
-     */
-    public function setCon($con){$this->con = $con;}
-
-    /**
-     * @return mixed
-     */
-    public function getGate(){return $this->gate;}
-
-    /**
-     * @param mixed $gate
-     */
-    public function setGate($gate){$this->gate = $gate;}
 
     /**
      * @return mixed

@@ -2,9 +2,6 @@
 
 class Admin
 {
-    public $con;
-    public $gate;
-
     public $id;
     public $firstName;
     public $lastName;
@@ -12,25 +9,6 @@ class Admin
     public $login;
     public $pass;
 
-    /**
-     * @return mixed
-     */
-    public function getCon(){return $this->con;}
-
-    /**
-     * @param mixed $con
-     */
-    public function setCon($con){$this->con = $con;}
-
-    /**
-     * @return mixed
-     */
-    public function getGate(){return $this->gate;}
-
-    /**
-     * @param mixed $gate
-     */
-    public function setGate($gate){$this->gate = $gate;}
 
     /**
      * @return mixed
