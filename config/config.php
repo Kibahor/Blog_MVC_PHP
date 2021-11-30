@@ -8,18 +8,14 @@ $login="lublouin1";
 $mdp="achanger";
 
 //Elements
-$vues['head']='view/Elements/head.php';
-$vues['nav']='view/Elements/nav.php';
-$vues['footer']='view/Elements/footer.php';
+$vues['head']='view/head.php';
+$vues['nav']='view/nav.php';
+$vues['footer']='view/footer.php';
 
-//Home
-$vues['home']='view/Home/index.php';
 
-//Login
-$vues['login']='view/Login/index.html';
-
-//Post
-$vues['posts']='view/Post/index.php';
+$vues['home']='view/home.php';
+$vues['login']='view/login.html';
+$vues['posts']='view/post.php';
 
 $vues['erreur']='view/erreur.php';
 
