@@ -5,9 +5,9 @@ $rep=__DIR__.'/../';
 //BD
 $base="mysql:dbname=blog;host=localhost";
 $login="root";
-$mdp="root";
+$mdp="";
 
-//$vues['erreur']='view/erreur.php';
+$vues['erreur']='view/erreur.php';
 $vues['posts']='view/posts.php';
 $vues['head']='view/head.html';
 $vues['nav']='view/nav.html';

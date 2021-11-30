@@ -42,9 +42,9 @@ class Controleur
 
     function init()
     {
-        $model = new Article();
+        $model = new ArticleModel();
         $valeur = $model->get_articles(NULL);
-
+        var_dump($valeur);
         /*
         require($this->rep . $this->vues['head']);
         require($this->rep . $this->vues['nav']);

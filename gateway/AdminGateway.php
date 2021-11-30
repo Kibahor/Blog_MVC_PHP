@@ -1,18 +1,12 @@
 <?php
-class AdminGateway
+class AdminGateway extends Connection
 {
-    private $con;
-
-    public function __construct(Connection $con)
-    {
-        $this->con = $con;
-    }
 
     public function add($firstName, $lastName, $mail, $login, $pass)
     {
         $sql = 'INSERT INTO users (firstName, lastName, mail, login, pass)
                 VALUES (:firstName, :lastName, :mail, :login, :pass)';
-        $this->con->executeQuery($sql, array(
+        $this->executeQuery($sql, array(
             ':firstName' => array($firstName, PDO::PARAM_STR),
             ':lastName' => array($lastName, PDO::PARAM_STR),
             ':mail' => array($mail, PDO::PARAM_STR),
@@ -34,7 +28,7 @@ class AdminGateway
                 login = :login,
                 pass = :pass
                 WHERE id = :id';
-        $this->con->executeQuery($sql, array(
+        $this->executeQuery($sql, array(
             ':firstName' => array($firstName, PDO::PARAM_STR),
             ':lastName' => array($lastName, PDO::PARAM_STR),
             ':mail' => array($mail, PDO::PARAM_STR),
@@ -51,7 +45,7 @@ class AdminGateway
     {
         $sql = 'DELETE FROM users
                 WHERE id = :id';
-        $this->con->executeQuery($sql, array(
+        $this->executeQuery($sql, array(
             ':id' => array($id, PDO::PARAM_INT)
         ));
         /*
@@ -64,9 +58,9 @@ class AdminGateway
         $sql = 'SELECT *
                 FROM users
                 ORDER BY id ASC';
-        $this->con->executeQuery($sql);
+        $this->executeQuery($sql);
 
-        foreach ($this->con->getResults() as $post) {
+        foreach ($this->getResults() as $post) {
             // Si plus de données a insérer dans le article redefinir le 2eme constructeur
             $tabResult[] = new Admin($post['id'], $post['firstName'], $post['lastName'], $post['mail'], NULL, NULL);
         }
@@ -82,16 +76,11 @@ class AdminGateway
         $sql = 'SELECT *
                 FROM users
                 WHERE id = :id';
-        $this->con->executeQuery($sql, array(
+        $this->executeQuery($sql, array(
             ':id' => array($id, PDO::PARAM_INT)
         ));
 
-        foreach ($this->con->getResults() as $post) {
-            // Si plus de données a insérer dans le article redefinir le 2eme constructeur
-            $tabResult[] = new Admin($post['id'], $post['firstName'], $post['lastName'], $post['mail'], NULL, NULL);
-        }
-
-        return $tabResult;
+        return $this->getResults();
     }
 
 
@@ -100,12 +89,11 @@ class AdminGateway
         $sql = 'SELECT id
                 FROM users
                 WHERE login = :login';
-        $this->con->executeQuery($sql, array(
+        $this->executeQuery($sql, array(
             ':login' => array($login, PDO::PARAM_INT)
         ));
 
-
-        return $this->con->getResults();
+        return $this->getResults();
     }
 
     public function getPassword($login)
@@ -113,11 +101,11 @@ class AdminGateway
         $sql = 'SELECT pass
                 FROM users
                 WHERE login = :login';
-        $this->con->executeQuery($sql, array(
+        $this->executeQuery($sql, array(
             ':login' => array($login, PDO::PARAM_STR)
         ));
 
-        return $this->con->getResults();
+        return $this->getResults();
         /*
          *      Récupération du Password lié au login pour la connexion
          */
