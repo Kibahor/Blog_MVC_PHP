@@ -4,14 +4,14 @@ class AdminGateway extends Connection
 
     public function add($firstName, $lastName, $mail, $login, $pass)
     {
-        $sql = 'INSERT INTO users (firstName, lastName, mail, login, pass)
+        $sql = 'INSERT INTO admin (firstName, lastName, mail, login, pass)
                 VALUES (:firstName, :lastName, :mail, :login, :pass)';
         $this->executeQuery($sql, array(
             ':firstName' => array($firstName, PDO::PARAM_STR),
             ':lastName' => array($lastName, PDO::PARAM_STR),
             ':mail' => array($mail, PDO::PARAM_STR),
             ':login' => array($login, PDO::PARAM_STR),
-            ':pass' => array($pass, password_hash($pass, PASSWORD_DEFAULT), PDO::PARAM_INT)
+            ':pass' => array($pass, PDO::PARAM_STR)
         ));
 
         /*
@@ -21,7 +21,7 @@ class AdminGateway extends Connection
 
     public function update($id, $firstName, $lastName, $mail, $login, $pass)
     {
-        $sql = 'UPDATE users
+        $sql = 'UPDATE admin
                 SET firstName = :firstName,
                 lastName = :lastName,
                 mail = :mail,
@@ -43,7 +43,7 @@ class AdminGateway extends Connection
 
     public function delete($id)
     {
-        $sql = 'DELETE FROM users
+        $sql = 'DELETE FROM admin
                 WHERE id = :id';
         $this->executeQuery($sql, array(
             ':id' => array($id, PDO::PARAM_INT)
@@ -56,7 +56,7 @@ class AdminGateway extends Connection
     public function get()
     {
         $sql = 'SELECT *
-                FROM users
+                FROM admin
                 ORDER BY id ASC';
         $this->executeQuery($sql);
 
@@ -74,7 +74,7 @@ class AdminGateway extends Connection
     public function getOne($id)
     {
         $sql = 'SELECT *
-                FROM users
+                FROM admin
                 WHERE id = :id';
         $this->executeQuery($sql, array(
             ':id' => array($id, PDO::PARAM_INT)
@@ -87,7 +87,7 @@ class AdminGateway extends Connection
     public function getId($login)
     {
         $sql = 'SELECT id
-                FROM users
+                FROM admin
                 WHERE login = :login';
         $this->executeQuery($sql, array(
             ':login' => array($login, PDO::PARAM_INT)
@@ -99,7 +99,7 @@ class AdminGateway extends Connection
     public function getPassword($login)
     {
         $sql = 'SELECT pass
-                FROM users
+                FROM admin
                 WHERE login = :login';
         $this->executeQuery($sql, array(
             ':login' => array($login, PDO::PARAM_STR)
