@@ -10,6 +10,7 @@ class ArticleGateway extends Connection
                 ORDER BY {$cat} {$order}";
         $this->executeQuery($sql);
 
+        $tabResult=[];
         foreach ($this->getResults() as $post) {
             $tabResult[] = new Article($post['articleId'], $post['title'], $post['date'], $post['content'], $post['idAdmin']);
         }
@@ -17,24 +18,25 @@ class ArticleGateway extends Connection
     }
 
     //ajouter un Article
-    public function addArticle($title, $content, $idAdmin)
+    public function addArticle($title, $content, $idAdmin) //TODO Return bool en cas de success
     {
-        $sql = 'INSERT INTO article (title, content, created, idAdmin)
+        $sql = 'INSERT INTO article (title, content, created, idAdmin) :bool
                 VALUES (:title, :content, NOW(), :idAdmin)';
-        $this->executeQuery($sql, array(
+        return $this->executeQuery($sql, array(
             ':title' => array($title, PDO::PARAM_STR),
             ':content' => array($content, PDO::PARAM_STR),
             ':idAdmin' => array($idAdmin, PDO::PARAM_STR)
         ));
+
     }
 
-    public function modifArticle($id, $title, $content)
+    public function modifArticle($id, $title, $content) :bool
     {
         $sql = 'UPDATE posts
                 SET title = :title,
                 content = :content
                 WHERE id = :id';
-        $this->executeQuery($sql, array(
+        return $this->executeQuery($sql, array(
             ':title' => array($title, PDO::PARAM_STR),
             ':content' => array($content, PDO::PARAM_STR),
             ':id' => array($id, PDO::PARAM_INT)
@@ -42,23 +44,23 @@ class ArticleGateway extends Connection
     }
 
     //Fonction pour obtenir les 5 premier Articles
-    public function getPage($start, $stop)
+    public function getPage($start, $stop) :array
     {
         $sql = "SELECT id,title, content, DATE_FORMAT(created, '%D %b %Y') AS date, idAdmin
                 FROM article
                 ORDER BY date DESC LIMIT {$start},{$stop}";
         $this->executeQuery($sql);
 
+        $tabResult=[];
         foreach ($this->getResults() as $post) {
             $tabResult[] = new Article($post['id'], $post['title'], $post['content'], $post['date'], $post['idAdmin']);
             
         }
-
         return $tabResult;
     }
 
 
-    public function getSearch($search, $cat, $order)
+    public function getSearch($search, $cat, $order) : array
     {
         $sql = "SELECT article.id AS articleId, title,content, DATE_FORMAT(created, '%D %b %Y') AS date, idAdmin
                 FROM article
@@ -70,13 +72,14 @@ class ArticleGateway extends Connection
             ':search' => array($search, PDO::PARAM_STR)
         ));
 
+        $tabResult=[];
         foreach ($this->getResults() as $post) {
             $tabResult[] = new Article($post['articleId'], $post['title'], $post['date']);
         }
         return $tabResult;
     }
 
-    public function getOne($id)
+    public function getOne($id) :array
     {
         $sql = "SELECT article.id AS articleId, title, content, DATE_FORMAT(created, '%D %b %Y') AS date, idAdmin
                 FROM article
@@ -87,6 +90,7 @@ class ArticleGateway extends Connection
             ':id' => array($id, PDO::PARAM_INT)
         ));
 
+        $tabResult=[];
         foreach ($this->getResults() as $post) {
             $tabResult[] = new Article($post['articleId'], $post['title'], $post['date']);
         }

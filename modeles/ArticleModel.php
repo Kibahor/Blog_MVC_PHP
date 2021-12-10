@@ -41,6 +41,11 @@ class ArticleModel
         return $this->gate->Count();
     }
 
+    public function searchArticle($key)
+    {
+        return $this->gate->getSearch($key, "date", "ASC");
+    }
+
     public function getArticleId($id)
     {
         return $this->gate->getOne($id);

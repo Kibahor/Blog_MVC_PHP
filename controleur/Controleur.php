@@ -4,12 +4,15 @@ class Controleur
 {
     private $rep;
     private $vues;
+    private $article_model;
 
     public function __construct()
     {
         global $rep, $vues; // nécessaire pour utiliser variables globales
         $this->rep = $rep;
         $this->vues = $vues;
+
+        $this->article_model= new ArticleModel();
 
         session_start();
 
@@ -55,10 +58,10 @@ class Controleur
         require($this->rep . $this->vues['home']);
     }
 
-    public function searchNews(string $key)
+    public function searchNews(string $key) :array
     {
-
-        getSearch($search, $cat, $order);
+        $key=Validation::cleanString($key);
+        return $this->article_model::searchArticle($key);
     }
 
     function init()

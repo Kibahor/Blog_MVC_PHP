@@ -36,7 +36,9 @@ class Autoload
         $filename = $class.'.php';
         $dir =array('modeles/','./','config/','controleur/','classe/','gateway/');
         foreach ($dir as $d){
+
             $file=$rep.$d.$filename;
+            //echo $file."<br>";
             if (file_exists($file))
             {
                 include $file;
