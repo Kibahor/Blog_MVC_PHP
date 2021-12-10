@@ -26,10 +26,19 @@ class ArticleModel
         $this->gate->modifArticle($title, $content, $idUser);
     }
 
+    /**
+     * @throws Exception
+     */
     public function getPageArticle($start)
     {
-        $stop = $start + 5;
-        return $this->gate->getPage($start, $stop);
+        $start = ($start-1) * 5 ;
+        $nb = 5;
+
+        return $this->gate->getPage($start,$nb);
+    }
+    public function count()
+    {
+        return $this->gate->Count();
     }
 
     public function getArticleId($id)

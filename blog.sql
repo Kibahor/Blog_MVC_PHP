@@ -21,7 +21,7 @@ SET time_zone = "+00:00";
 -- Base de données : `blog`
 --
 
--- --------------------------------------------------------
+-- --------------------------------------------------------rror or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '-5' at line 3 in /var/www/html/projet-php-blog/config/Connect
 
 --
 -- Structure de la table `admin`

@@ -93,4 +93,13 @@ class ArticleGateway extends Connection
 
         return $tabResult;
     }
+    public function Count()
+    {
+        $sql = "SELECT COUNT(*) FROM article;";
+
+        $this->executeQuery($sql);
+
+
+        return $this->getResults() ;
+    }
 }

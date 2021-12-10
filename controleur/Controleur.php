@@ -32,7 +32,7 @@ class Controleur
             echo $e;
             require($rep . $vues['erreur']);
         } catch (Exception $e2) {
-            $dVueEreur[] = "Erreur inattendue!!! ";
+            $dVueEreur[] = $e2;
             require($rep . $vues['erreur']);
         }
 
@@ -42,7 +42,16 @@ class Controleur
     public function getNews()
     {
         $model = new ArticleModel();
-        $valeur = $model->getPageArticle(0);
+
+        $page=isset($_GET['page']);
+        if(!$page)
+            $page=1;
+        $val =$model->Count();
+
+        if($val[0][0] < $page)
+            throw new Exception("Cette page n'existe pas ");
+
+        $valeur = $model->getPageArticle($page);
         require($this->rep . $this->vues['home']);
     }
 
@@ -54,9 +63,9 @@ class Controleur
 
     function init()
     {
-        //$this::getNews();
+        $this::getNews();
         //var_dump($valeur);
-        require($this->rep . $this->vues['one_article']);
+        //require($this->rep . $this->vues['one_article']);
     }
 
 
