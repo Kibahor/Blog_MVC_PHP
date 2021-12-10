@@ -45,12 +45,13 @@ class Controleur
     public function getNews()
     {
         $model = new ArticleModel();
-
-        $page=isset($_GET['page']);
-        if(!$page)
+        $page=0;
+        if(isset($_GET['page'])) {
+            $page = Validation::cleanINT($_GET['page']);
+        }else{
             $page=1;
+        }
         $val =$model->Count();
-
         if($val[0][0] < $page)
             throw new Exception("Cette page n'existe pas ");
 
