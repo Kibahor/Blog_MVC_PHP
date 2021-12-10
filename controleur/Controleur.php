@@ -5,7 +5,7 @@ class Controleur
     private $rep;
     private $vues;
 
-    function __construct()
+    public function __construct()
     {
         global $rep, $vues; // nécessaire pour utiliser variables globales
         $this->rep = $rep;
@@ -39,24 +39,26 @@ class Controleur
         exit(0);
     }
 
+    public function getNews()
+    {
+        $model = new ArticleModel();
+        $valeur = $model->getPageArticle(0);
+        require($this->rep . $this->vues['home']);
+    }
+
+    public function searchNews(string $key)
+    {
+
+        getSearch($search, $cat, $order);
+    }
 
     function init()
     {
-        $model = new ArticleModel();
-        $valeur = $model->get_articles(NULL);
-        require($this->rep . $this->vues['home']);
+        //$this::getNews();
         //var_dump($valeur);
-        /*
-        require($this->rep . $this->vues['head']);
-        require($this->rep . $this->vues['nav']);
-        if(false){
-            require($this->rep . $this->vues['header']);
-            require($this->rep . $this->vues['posts']);
-        }else{
-            $p=$valeur[0];
-            require($this->rep . $this->vues['oneArticle']);
-        }
-        require($this->rep . $this->vues['footer']);
-        */
+        require($this->rep . $this->vues['one_article']);
     }
+
+
+
 }
