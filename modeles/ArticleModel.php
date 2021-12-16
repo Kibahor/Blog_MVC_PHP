@@ -9,7 +9,7 @@ class ArticleModel
         $this->gate = new ArticleGateway();
     }
 
-    public function get_articles($order)
+    public function get_articles($order): array
     {
         $cat = 'date';
         $order = 'ASC';
@@ -29,24 +29,24 @@ class ArticleModel
     /**
      * @throws Exception
      */
-    public function getPageArticle($start)
+    public function getPageArticle($start): array
     {
         $start = ($start-1) * 5 ;
         $nb = 5;
 
         return $this->gate->getPage($start,$nb);
     }
-    public function count()
+    public function count(): array
     {
         return $this->gate->Count();
     }
 
-    public function searchArticle($key)
+    public function searchArticle($key): array
     {
         return $this->gate->getSearch($key, "date", "ASC");
     }
 
-    public function getArticleId($id)
+    public function getArticleId($id): array
     {
         return $this->gate->getOne($id);
     }

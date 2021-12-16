@@ -14,20 +14,29 @@ class Controleur
 
         $this->article_model= new ArticleModel();
 
-        session_start();
+        //session_start();
 
         $dVueEreur = array();
 
         try {
-            $action = isset($_GET['action']);
+            $action=NULL;
+            if(isset($_GET['action'])) {
+                $action = $_GET['action'];
+            }
             switch ($action) {
                 case NULL:              //1 er appel
                     $this->init();
                     break;
-
-                default:    //erreur
+                case "query":
+                    if(isset($_GET['query'])){
+                        $this->searchNews($_GET['query']);
+                    }else{
+                        $this::getNews();
+                    }
+                    break;
+                default:    //erreur //Page 404
                     $dVueEreur[]="Erreur d'appel php";
-                    require($rep . $vues['posts']);
+                    require($rep . $vues['erreur']);
                     break;
             }
         } catch (PDOException $e) {
