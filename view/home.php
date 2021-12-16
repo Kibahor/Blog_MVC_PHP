@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="row gx-4 gx-lg-5 justify-content-center pt-5">
-            <form class="form-inline col-md-10 col-lg-8 col-xl-7"  action="index.php" method="get">
+            <form class="form-inline col-md-10 col-lg-8 col-xl-7" action="index.php?action=search&" method="POST">
                 <input class="form-control mr-2" type="text" name="query" placeholder="Search" aria-label="Search"/>
             </form>
             <!--

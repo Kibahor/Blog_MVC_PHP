@@ -26,9 +26,6 @@ class ArticleModel
         $this->gate->modifArticle($title, $content, $idUser);
     }
 
-    /**
-     * @throws Exception
-     */
     public function getPageArticle($start): array
     {
         $start = ($start-1) * 5 ;

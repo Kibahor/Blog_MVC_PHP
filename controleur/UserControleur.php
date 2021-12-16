@@ -27,9 +27,10 @@ class UserControleur
                 case NULL:              //1 er appel
                     $this->init();
                     break;
-                case "query":
-                    if(isset($_GET['query'])){
-                        $this->searchNews($_GET['query']);
+                case "search":
+                    if(isset($_POST['query'])){
+                        echo $_POST['query'];
+                        var_dump($this::searchNews($_POST['query']));
                     }else{
                         $this::getNews();
                     }
@@ -53,25 +54,24 @@ class UserControleur
 
     public function getNews()
     {
-        $model = new ArticleModel();
         $page=0;
         if(isset($_GET['page'])) {
             $page = Validation::cleanINT($_GET['page']);
         }else{
             $page=1;
         }
-        $val =$model->Count();
+        $val =$this->article_model->Count();
         if($val[0][0] < $page)
             throw new Exception("Cette page n'existe pas ");
 
-        $valeur = $model->getPageArticle($page);
+        $valeur = $this->article_model->getPageArticle($page);
         require($this->rep . $this->vues['home']);
     }
 
-    public function searchNews(string $key) :array
+    public function searchNews(string $key) : array
     {
         $key=Validation::cleanString($key);
-        return $this->article_model::searchArticle($key);
+        return $this->article_model->searchArticle($key);
     }
 
     function init()
