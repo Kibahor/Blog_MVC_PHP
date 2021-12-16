@@ -2,5 +2,8 @@
 
 class AdminController
 {
+    public function __construct()
+    {
 
+    }
 }
