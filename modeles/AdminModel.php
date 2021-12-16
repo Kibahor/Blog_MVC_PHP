@@ -38,4 +38,17 @@ class AdminModel
     {
         return $this->gate->getPassword($login);
     }
+
+    /**todo
+     *  aucune securité, a rectifier
+     */
+    public function isadmin() : bool
+    {
+            if(isset($_SESSION['role']) && $_SESSION['role']== "admin")
+                return true;
+            else{
+                return false;
+                echo "SORRY";
+            }
+    }
 }
