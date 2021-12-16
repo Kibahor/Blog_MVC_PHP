@@ -32,7 +32,7 @@ class UserControleur
                         echo $_POST['query'];
                         var_dump($this::searchNews($_POST['query']));
                     }else{
-                        $this::getNews();
+                        $this::getHomeNews();
                     }
                     break;
                 default:    //erreur //Page 404
@@ -52,7 +52,7 @@ class UserControleur
         exit(0);
     }
 
-    public function getNews()
+    public function getHomeNews()
     {
         $page=0;
         if(isset($_GET['page'])) {
@@ -65,6 +65,7 @@ class UserControleur
             throw new Exception("Cette page n'existe pas ");
 
         $valeur = $this->article_model->getPageArticle($page);
+        $valeur = $this->article_model->cutArticle($valeur);
         require($this->rep . $this->vues['home']);
     }
 
@@ -76,7 +77,7 @@ class UserControleur
 
     function init()
     {
-        $this::getNews();
+        $this::getHomeNews();
         //var_dump($valeur);
         //require($this->rep . $this->vues['one_article']);
     }
