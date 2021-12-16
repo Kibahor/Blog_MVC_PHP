@@ -1,28 +1,40 @@
 <?php
 
-$actionAdmin=array('supprimer','creer');
+class FrontControlleur
+{
+    private $rep;
+    private $vues;
 
-try {
-    $model = new AdminModel();
-    $admin=$model->isadmin();
+    public function __construct()
+    {
+        global $rep, $vues; // nécessaire pour utiliser variables globales
+        $this->rep = $rep;
+        $this->vues = $vues;
 
-    if(isset($_GET['action']))
-        $action=$_GET['action'];
-    else
-        $action=null;
+        $actionAdmin = array('supprimer', 'creer', 'deconnexion');
+        try {
+            $model = new AdminModel();
+            $admin = $model->isadmin();
 
-    if(in_array($action,$actionAdmin)){
-        if($admin == false) {
-            require('login.php');
+            if (isset($_GET['action']))
+                $action = $_GET['action'];
+            else
+                $action = null;
+
+            if (in_array($action, $actionAdmin)) {
+                if ($admin == false) {
+                    require($rep . $vues['login']);
+                } else {
+                    new AdminController();
+                }
+            } else {
+                new UserControleur();
+            }
+
+        } catch
+        (PDOException $e) {
+            require($rep . $vues['erreur']);
+
         }
-        else {
-            new AdminController();
-        }
-    }else{
-        new UserControleur();
     }
-
-}catch (PDOException $e){
-    require ('404.php');
-
 }
