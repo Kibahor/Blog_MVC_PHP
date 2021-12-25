@@ -29,56 +29,88 @@
 
 <!-- Main Content-->
 <body>
-    <div class="container px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-md-20 col-lg-16 col-xl-14">
-                <?php
+<?php
+if(isset($val)){
+    $nbArticle = $val[0][0];
+    echo '<p>Nombre article en BD :' .$nbArticle.'</p>';
+}
+?>
 
-                foreach($valeur as $p){
-                    $date= $p->date;
-                    $title=$p->title;
-                    $content=$p->content;
-                ?>
-                <!-- Post preview-->
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-20 col-lg-16 col-xl-14">
+            <?php
+
+            foreach($valeur as $p){
+                $id= $p->id;
+                $date= $p->date;
+                $title=$p->title;
+                $content=$p->content;
+                $idAdmin=$p->idAdmin;       // si on veut l'admin qui a crée l'article, il faut utiliser la gateway, a partir de cette id, ou modifier carrement le modele a voir si nécessaire
+
+                echo '
                 <div class="post-preview">
-                    <h2 class="post-title" ><?php echo $title ?></h2>
-                    <p><?php echo $content //Convertion bbcode html avec un parser?></p>
-                    <p class="post-meta">Poster par $USER le <?php echo $date ?></p>
+                    <h2 class="post-title" ><a href="index.php?action=get&id='.$id.'">' .$title. '</a></h2>
+                    <p>' .$content. '</p>                                    
+                    <p class="post-meta">Posté le ' .$date. '</p>
                 </div>
                 <!-- Divider-->
-                <hr class="my-4" />
-                <?php
-                 }
-                ?>
-            </div>
+                <hr class="my-4" />';
+
+            }                      //Convertion bbcode html avec un parser
+            ?>
         </div>
     </div>
-    <center>
+</div>
+<center>
     <form>
         <?php
-        $maxPage = ceil(($val[0][0])/5);
-        if($maxPage != 1) {
-        echo '
+        /** todo
+         *      verifier si la condition juste en dessous est correcte dans une vue sinon modifier
+         */
+        if(!isset($_GET['action'])=='get'){
+            $maxPage = ceil(($val[0][0])/5);
+            if($maxPage != 1) {
+                echo '
     <a href="index.php?page=1">
         <input type="button" value="First">
     </a>';
 
-        for ( $i=2; $i < $maxPage; $i++){
-            echo '
+                for ( $i=2; $i < $maxPage; $i++){
+                    echo '
     <a href="index.php?page='. $i .'">
         <input type="button" value="'. $i .'">
     </a>';
-        }
+                }
 
 
-        echo '
+                echo '
     <a href="index.php?page=' . $maxPage . '">
         <input type="button" value="Last">
     </a>';
-    }
+            }
+        }else{
+            foreach($comm as $p){
+                $id= $p->id;
+                $pseudo= $p->pseudo;
+                $content=$p->content;
+                $date=$p->date;
+                $idArticle=$p->idArticle;       // si on veut l'admin qui a crée l'article, il faut utiliser la gateway, a partir de cette id, ou modifier carrement le modele a voir si nécessaire
+
+                echo '
+                <div class="post-preview">
+                    <h2 class="post-title" >Ceci est un commentaire de : ' .$pseudo. '</h2>
+                    <p>' .$content. '</p>                                    
+                    <p class="post-meta">Posté le ' .$date. '</p>
+                </div>
+                <!-- Divider-->
+                <hr class="my-4" />';
+
+            }
+        }
         ?>
     </form>
-    </center>
+</center>
 </body>
 
 <!-- Footer -->

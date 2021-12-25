@@ -81,7 +81,7 @@ class ArticleGateway extends Connection
 
     public function getOne($id) :array
     {
-        $sql = "SELECT article.id AS articleId, title, content, DATE_FORMAT(created, '%D %b %Y') AS date, idAdmin
+        $sql = "SELECT article.id AS id, title, content, DATE_FORMAT(created, '%D %b %Y') AS date, idAdmin
                 FROM article
                 LEFT JOIN admin u on article.idAdmin = u.id
                 WHERE article.id like :id";
@@ -92,7 +92,7 @@ class ArticleGateway extends Connection
 
         $tabResult=[];
         foreach ($this->getResults() as $post) {
-            $tabResult[] = new Article($post['articleId'], $post['title'], $post['date']);
+            $tabResult[] = new Article($post['id'], $post['title'], $post['content'], $post['date'], $post['idAdmin']);
         }
 
         return $tabResult;

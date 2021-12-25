@@ -13,6 +13,7 @@ class UserControleur
         $this->vues = $vues;
 
         $this->article_model= new ArticleModel();
+        $this->commentaires_model=new CommentaireModel();
 
         //session_start();
 
@@ -34,6 +35,9 @@ class UserControleur
                     }else{
                         $this::getHomeNews();
                     }
+                    break;
+                case "get":
+                    $this->getArticle();
                     break;
                 default:    //erreur //Page 404
                     $dVueEreur[]="Erreur d'appel php";
@@ -82,6 +86,18 @@ class UserControleur
         //require($this->rep . $this->vues['one_article']);
     }
 
+    function getArticle()
+    {
+
+        if(isset($_GET['id']) && Validation::validateINT($_GET['id'])) {            // le validateInt fonctionne bien mais le probleme est que c est une repetition de fonction avec le cleanInt
+            $cleanIntID=$_GET['id'];                                                            //ajouter un cleanInt
+            $valeur=$this->article_model->getArticleId($cleanIntID);
+            $comm=$this->commentaires_model->getCommentaireId($cleanIntID);                                                 //il faut les commentaires
+            require($this->rep . $this->vues['home']);
+        }else{
+
+        }
+    }
 
 
 }

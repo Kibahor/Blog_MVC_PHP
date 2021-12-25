@@ -44,14 +44,14 @@ class CommentaireGateway extends Connection
     {
         $sql = 'SELECT *
                 FROM commentaires
-                WHERE id = :id';
+                WHERE idArticle = :id';
         $this->executeQuery($sql, array(
             ':id' => array($id, PDO::PARAM_INT)
         ));
 
+        $tabResult=[];
         foreach ($this->getResults() as $post) {
-            // Si plus de données a insérer dans le article redefinir le 2eme constructeur
-            $tabResult[] = new Commentaire($post['id'], $post['pseudo'], $post['content'], $post['date'], $post['idArticle']);
+            $tabResult[] = new Commentaire($post['id'], $post['pseudo'], $post['content'], $post['created'], $post['idArticle']);
         }
 
         return $tabResult;

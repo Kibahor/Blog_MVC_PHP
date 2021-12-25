@@ -75,7 +75,7 @@ class ArticleModel
     {
         $tab2=array();
         foreach($tab as $article){
-            $article->content=$this::substrwords($article->content,30);
+            $article->content=$this::substrwords($article->content,300);
             array_push($tab2,$article);
         }
         return $tab2;

@@ -67,7 +67,7 @@ class Article
     }
 
     //Constructeur pour insérer les données en retour de la requete sql !! modifier le nom
-    function __construct5($id, $title, $date, $content, $idAdmin)
+    function __construct5($id, $title, $content,$date,  $idAdmin)
     {
         $this->id = $id;
         $this->title = $title;

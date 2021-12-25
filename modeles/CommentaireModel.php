@@ -6,7 +6,7 @@ class CommentaireModel
 
     public function __construct()
     {
-        $this->gate = new ArticleGateway();
+        $this->gate = new CommentaireGateway();
     }
 
     public function get_data()
