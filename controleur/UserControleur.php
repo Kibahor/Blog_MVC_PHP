@@ -42,7 +42,6 @@ class UserControleur
             }
         } catch (PDOException $e) {
             $dVueEreur[] = $e;
-            echo $e;
             require($rep . $vues['erreur']);
         } catch (Exception $e2) {
             $dVueEreur[] = $e2;
@@ -55,14 +54,15 @@ class UserControleur
     public function getHomeNews()
     {
         $page=0;
-        if(isset($_GET['page'])) {
-            $page = Validation::cleanINT($_GET['page']);
+        if(isset($_GET['page']) && Validation::validateINT($_GET['page'])) {            // le validateInt fonctionne bien mais le probleme est que c est une repetition de fonction avec le cleanInt
+            $page = Validation::cleanINT($_GET['page']);   // ce cleanInt est cassé il ne retourne pas du tout la bonne valeur
         }else{
             $page=1;
         }
         $val =$this->article_model->Count();
-        if($val[0][0] < $page)
-            throw new Exception("Cette page n'existe pas ");
+
+        if($val[0][0] <= ($page-1)*5)
+            throw new Exception("Cette page n'existe pas, ( il n y as pas assez d'article pour cette page ) ");
 
         $valeur = $this->article_model->getPageArticle($page);
         $valeur = $this->article_model->cutArticle($valeur);
