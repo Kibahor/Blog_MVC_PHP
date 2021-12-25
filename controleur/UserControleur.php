@@ -64,13 +64,15 @@ class UserControleur
             $page=1;
         }
         $val =$this->article_model->Count();
+        $val=$val[0][0];
 
-        if($val[0][0] <= ($page-1)*5)
+        if($val <= ($page-1)*5)
             throw new Exception("Cette page n'existe pas, ( il n y as pas assez d'article pour cette page ) ");
 
         $valeur = $this->article_model->getPageArticle($page);
         $valeur = $this->article_model->cutArticle($valeur);
         require($this->rep . $this->vues['home']);
+        require($this->rep . $this->vues['buttonPage']);        //soit on require ici, soit dans la vue, il faudrait faire un switch en fonction de l'action ou ajouter une condition en fonction d'une variable
     }
 
     public function searchNews(string $key) : array
@@ -82,20 +84,18 @@ class UserControleur
     function init()
     {
         $this::getHomeNews();
-        //var_dump($valeur);
-        //require($this->rep . $this->vues['one_article']);
     }
 
     function getArticle()
     {
 
         if(isset($_GET['id']) && Validation::validateINT($_GET['id'])) {            // le validateInt fonctionne bien mais le probleme est que c est une repetition de fonction avec le cleanInt
-            $cleanIntID=$_GET['id'];                                                            //ajouter un cleanInt
-            $valeur=$this->article_model->getArticleId($cleanIntID);
-            $comm=$this->commentaires_model->getCommentaireId($cleanIntID);                                                 //il faut les commentaires
-            require($this->rep . $this->vues['home']);
-        }else{
+            $cleanIntID=$_GET['id'];                                                //ajouter un cleanInt
 
+            $valeur=$this->article_model->getArticleId($cleanIntID);
+            $comm=$this->commentaires_model->getCommentaireId($cleanIntID);
+            require($this->rep . $this->vues['home']);
+            require($this->rep . $this->vues['commentaire']);           //soit on require ici, soit dans la vue, il faudrait faire un switch en fonction de l'action ou ajouter une condition en fonction d'une variable
         }
     }
 
