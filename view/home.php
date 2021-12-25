@@ -67,6 +67,7 @@ if(isset($val)){
         <?php
         /** todo
          *      verifier si la condition juste en dessous est correcte dans une vue sinon modifier
+         *      peut etre séparer ces conditions dans de différentes vues, comme ca on peut les require si nécessaire en fonction de l'action
          */
         if(!isset($_GET['action'])=='get'){
             $maxPage = ceil(($val[0][0])/5);
