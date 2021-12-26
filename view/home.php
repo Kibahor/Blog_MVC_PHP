@@ -32,7 +32,9 @@
 <?php
 if(isset($val)){
     $nbArticle = $val;
+    $nbCommentaire=$valCom;
     echo '<p>Nombre article en BD :' .$nbArticle.'</p>';
+    echo '<p>Nombre de commentaire par cookie : ' .$nbCommentaire.'</p>';
 }
 ?>
 

@@ -22,5 +22,42 @@ class Validation {
         return $nb;
     }
 
+    public static function commentaire_form(string &$pseudo,string &$content, array &$dVueError){
+
+        if(!isset($pseudo) || empty($pseudo)){
+            $dVueError[] = "Identifiant vide";
+            $pseudo="";
+        }
+
+        if(!isset($content) || empty($content)){
+            $dVueError[] = "Contenue vide";
+            $content="";
+        }
+
+        if($pseudo!=self::cleanString($pseudo) || $content!=self::cleanString($content)){
+            $dVueError[] = "erreur sur la nature du commentaire";
+            $pseudo="";
+            $content="";
+        }
+    }
+
+
+
+    public static function getUrl(){
+        if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+        {
+            $url = "https";
+        }
+        else
+        {
+            $url = "http";
+        }
+
+        $url .= "://";
+        $url .= $_SERVER['HTTP_HOST'];
+        $url .= $_SERVER['REQUEST_URI'];
+
+        return $url;
+    }
 }
 ?>

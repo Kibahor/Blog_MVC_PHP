@@ -5,11 +5,11 @@ class CommentaireGateway extends Connection
     public function add($pseudo, $content, $idArticle)
     {
         $sql = 'INSERT INTO commentaires (pseudo, content, created, idArticle)
-                VALUES (:pseudo, :content, NOW(), :idAdmin)';
+                VALUES (:pseudo, :content, NOW(), :idArticle)';
         $this->executeQuery($sql, array(
             ':pseudo' => array($pseudo, PDO::PARAM_STR),
             ':content' => array($content, PDO::PARAM_STR),
-            ':idArticle' => array($idArticle, PDO::PARAM_STR)
+            ':idArticle' => array($idArticle, PDO::PARAM_INT)
         ));
     }
 

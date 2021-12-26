@@ -16,10 +16,12 @@ $vues['footer']='view/footer.php';
 $vues['home']='view/home.php';
 $vues['buttonPage']='view/buttonPage.php';
 $vues['commentaire']='view/commentaire.php';
+$vues['newCommentaire']='view/newCommentaire.php';
 $vues['login']='view/login.php';
 $vues['posts']='view/post.php';
 $vues['one_article']='view/oneArticle.php';
 
 $vues['erreur']='view/erreur.php';
+$vues['vueErreur']='view/vueErreur.php';
 
 ?>

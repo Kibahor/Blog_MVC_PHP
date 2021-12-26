@@ -17,3 +17,11 @@ foreach($comm as $p){
                 <hr class="my-4" />';
 
 }
+
+
+
+
+
+echo '<h2 class="fw-bold mb-2 text-uppercase"><a href="?action=addC&id='.$cleanIntID.'">AJouter votre commentaire</a></h2>';
+
+?>

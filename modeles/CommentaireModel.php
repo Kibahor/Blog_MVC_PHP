@@ -28,4 +28,8 @@ class CommentaireModel
     public function getCommentaireId($id){
         return $this->gate->getId($id);
     }
+
+    public function addCommentaire($pseudo,$content,$idArticle){
+        return $this->gate->add($pseudo,$content,$idArticle);
+    }
 }

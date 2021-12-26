@@ -7,6 +7,7 @@ class FrontControlleur
 
     public function __construct()
     {
+        session_start();
         global $rep, $vues; // nécessaire pour utiliser variables globales
         $this->rep = $rep;
         $this->vues = $vues;
@@ -16,10 +17,10 @@ class FrontControlleur
             $model = new AdminModel();
             $admin = $model->isadmin();
 
-            if (isset($_GET['action']))
-                $action = $_GET['action'];
+            if (isset($_REQUEST['action']) && !empty($_REQUEST['action']))
+                $action = $_REQUEST['action'];
             else
-                $action = null;
+                $action = NULL;
 
             if (in_array($action, $actionAdmin)) {
                 if ($admin == false) {
@@ -28,7 +29,7 @@ class FrontControlleur
                     new AdminController();
                 }
             } else {
-                new UserControleur();
+                new UserControleur($action);
             }
 
         } catch
