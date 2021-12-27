@@ -42,24 +42,27 @@ if(isset($val)){
     <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-md-20 col-lg-16 col-xl-14">
             <?php
+            if(empty($valeur)){
+                foreach($valeur as $p){
+                    $id= $p->id;
+                    $date= $p->date;
+                    $title=$p->title;
+                    $content=$p->content;
+                    $idAdmin=$p->idAdmin;       // si on veut l'admin qui a crée l'article, il faut utiliser la gateway, a partir de cette id, ou modifier carrement le modele a voir si nécessaire
 
-            foreach($valeur as $p){
-                $id= $p->id;
-                $date= $p->date;
-                $title=$p->title;
-                $content=$p->content;
-                $idAdmin=$p->idAdmin;       // si on veut l'admin qui a crée l'article, il faut utiliser la gateway, a partir de cette id, ou modifier carrement le modele a voir si nécessaire
-
-                echo '
-                <div class="post-preview">
-                    <h2 class="post-title" ><a href="index.php?action=get&id='.$id.'">' .$title. '</a></h2>
-                    <p>' .$content. '</p>                                    
-                    <p class="post-meta">Posté le ' .$date. '</p>
-                </div>
-                <!-- Divider-->
-                <hr class="my-4" />';
-
-            }                      //Convertion bbcode html avec un parser
+                    echo '
+                        <div class="post-preview">
+                            <h2 class="post-title" ><a href="index.php?action=get&id='.$id.'">' .$title. '</a></h2>
+                            <p>' .$content. '</p>                                    
+                            <p class="post-meta">Posté le ' .$date. '</p>
+                        </div>
+                        <!-- Divider-->
+                        <hr class="my-4" /> 
+                    ';
+                }                      //Convertion bbcode html avec un parser
+            }else{
+                echo "<p>Il n'y a pas d'article !</p>";
+            }
             ?>
         </div>
     </div>

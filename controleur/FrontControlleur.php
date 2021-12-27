@@ -26,16 +26,13 @@ class FrontControlleur
                 if ($admin == false) {
                     require($rep . $vues['login']);
                 } else {
-                    new AdminController();
+                    new AdminController($action);
                 }
             } else {
                 new UserControleur($action);
             }
-
-        } catch
-        (PDOException $e) {
+        } catch (PDOException $e) {
             require($rep . $vues['erreur']);
-
         }
     }
 }

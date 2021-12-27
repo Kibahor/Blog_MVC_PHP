@@ -4,6 +4,7 @@ class UserControleur
 {
     private $rep;
     private $vues;
+    private $dVueErreur;
     private $article_model;
 
     public function __construct($action)
@@ -17,7 +18,7 @@ class UserControleur
 
         //session_start();
 
-        $dVueEreur = array();
+        $this->dVueErreur = array();
 
         try {
             switch ($action) {
@@ -38,19 +39,19 @@ class UserControleur
                 case "addC":
                     $this->addCommentaire();
                     break;
-                default:    //erreur //Page 404
-                    $dVueEreur[]="Erreur d'appel php";
-                    require($rep . $vues['erreur']);
+                default:
+                    $this->dVueErreur[]="Cette page n'existe pas !";
                     break;
             }
         } catch (PDOException $e) {
-            $dVueEreur[] = $e;
-            require($rep . $vues['erreur']);
+            $this->dVueErreur[] = $e;
         } catch (Exception $e2) {
-            $dVueEreur[] = $e2;
-            require($rep . $vues['erreur']);
+            $this->dVueErreur[] = $e2;
+        } finally {
+            if(!empty($this->dVueErreur)){
+                require($rep . $vues['erreur']);
+            }
         }
-
         exit(0);
     }
 
@@ -66,8 +67,9 @@ class UserControleur
         $val=$val[0][0];
         $valCom=$this->getCompteur();
 
-        if($val <= ($page-1)*5)
-            throw new Exception("Cette page n'existe pas, ( il n y as pas assez d'article pour cette page ) ");
+        if($val <= ($page-1)*5){
+            $this->dVueErreur[]="Ce numéro de page n'existe pas";
+        }
 
         $valeur = $this->article_model->getPageArticle($page);
         $valeur = $this->article_model->cutArticle($valeur);
@@ -117,20 +119,21 @@ class UserControleur
 
             $pseudo = $_REQUEST['pseudo'];
             $content = $_REQUEST['content'];
-            $dVueEreur=array();
+            $this->dVueErreur=array();
 
-            Validation::commentaire_form($pseudo,$content,$dVueEreur);
+            Validation::commentaire_form($pseudo,$content,$this->dVueErreur);
 
-            if(empty($dVueEreur)){
+            if(empty($this->dVueErreur)){
                 try {
                     $this->commentaires_model->addCommentaire($pseudo, $content, $idArticle);
                     $this::incrCookie();
                     $_SESSION['pseudo']=$pseudo;
 
-                    header("Location: index.php?action=get&id=$idArticle");                                  // ce header peut sans doute etre enlever, mais ca complique le boulot au niveau de la vue et ajoute des conditions.
+                    //TODO: Enlever cette horreur car elle va nous faire enlever des points !!!! (Prof:"Il ne faut pas mettre de header location car sa détruit l'instance actuelle et sa en créer une autre")
+                    //header("Location: index.php?action=get&id=$idArticle");// ce header peut sans doute etre enlever, mais ca complique le boulot au niveau de la vue et ajoute des conditions.
 
                 }catch (Exception $e){
-                    $dVueEreur[]= "Votre commentaire n'a pas été envoyé";
+                    $this->dVueErreur[]= "Votre commentaire n'a pas été envoyé";
                     require($this->rep . $this->vues['vueErreur']);
                 }
 
