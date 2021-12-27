@@ -57,8 +57,8 @@ class UserControlleur
     {
         $nb_article_page=5;
         $page=0;
-        if(isset($_GET['page']) && Validation::validateINT($_GET['page'])) {            // le validateInt fonctionne bien mais le probleme est que c est une repetition de fonction avec le cleanInt
-            $page = Validation::cleanINT($_GET['page']);   // ce cleanInt est cassé il ne retourne pas du tout la bonne valeur
+        if(isset($_GET['page'])) {
+            $page = Validation::cleanINT($_GET['page']);
         }else{
             $page=1;
         }
@@ -74,7 +74,7 @@ class UserControlleur
         $valeur = $this->article_model->cutArticle($valeur);
         require($this->rep . $this->vues['home']);
 
-        //Affiche les boutons de page si le nombre d'article par page est dépasser
+        //Affiche les boutons de page si le nombre d'articles par page est dépassé
         if($val > $nb_article_page){
             require($this->rep . $this->vues['buttonPage']);
         }
@@ -88,13 +88,13 @@ class UserControlleur
 
     function getArticle()
     {
-
-        if(isset($_GET['id']) && Validation::validateINT($_GET['id'])) {            // le validateInt fonctionne bien mais le probleme est que c est une repetition de fonction avec le cleanInt
-            $cleanIntID=$_GET['id'];                                                //ajouter un cleanInt
+        if(isset($_GET['id'])) {
+            $cleanIntID=Validation::cleanINT($_GET['id']);
 
             $valeur=$this->article_model->getArticleId($cleanIntID);
             $comm=$this->commentaires_model->getCommentaireId($cleanIntID);
 
+            //Il faut utiliser la vue qui été prévu pour à la base : oneArticle.php
             require($this->rep . $this->vues['home']);
             require($this->rep . $this->vues['commentaire']);           //soit on require ici, soit dans la vue, il faudrait faire un switch en fonction de l'action ou ajouter une condition en fonction d'une variable
 
@@ -105,7 +105,7 @@ class UserControlleur
 
     function addCommentaire()
     {
-        $idArticle = $_REQUEST['id'];                                             //ajouter un cleanInt
+        $idArticle =Validation::cleanINT($_REQUEST['id']);
 
         if (isset($_SESSION['pseudo']) && !empty($_SESSION['pseudo']))
             $pseudo = $_SESSION['pseudo'];
@@ -127,7 +127,7 @@ class UserControlleur
                     $this::incrCookie();
                     $_SESSION['pseudo'] = $pseudo;
 
-                    //TODO: Enlever cette horreur car elle va nous faire enlever des points !!!! (Prof:"Il ne faut pas mettre de header location car sa détruit l'instance actuelle et sa en créer une autre") => En Gros sa casse tout !!
+                    //TODO: Enlever cette horreur car elle va nous faire enlever des points !!!! Le Prof a dit:"Il ne faut pas mettre de header location car sa détruit l'instance actuelle et sa en créer une autre" => En Gros sa casse tout !!
                     header("Location: index.php?action=get&id=$idArticle");// ce header peut sans doute etre enlever, mais ca complique le boulot au niveau de la vue et ajoute des conditions.
                 } catch (Exception $e) {
                     FrontControlleur::$dVueErreur[] = "Votre commentaire n'a pas été envoyé";
