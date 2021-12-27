@@ -1,25 +1,26 @@
 <div class="justify-content-center">
 <?php
-if(isset($val)){
+if(isset($val) && isset($page)){
     $maxPage = ceil(($val/5));
     if($maxPage != 1) {
-        echo '
-    <a href="index.php?page=1">
-        <input type="button" value="First">
-    </a>';
+        //First Button
+        echo '<a class="btn btn-dark" href="index.php?page=1">First</a>';
 
-        for ( $i=2; $i < $maxPage; $i++){
-            echo '
-    <a href="index.php?page='. $i .'">
-        <input type="button" value="'. $i .'">
-    </a>';
-        }
+        //Previous
+        $pagePrec=$page-1;
+        if($pagePrec<1 || $pagePrec>$maxPage){$pagePrec=$page;}
+        echo '<a class="btn btn-dark" href="index.php?page='.$pagePrec.'">Previous</a>';
 
+        //Page actuel
+        echo '<span class="btn btn-light">'.$page.'/'.$maxPage.'</span>';
 
-        echo '
-    <a href="index.php?page=' . $maxPage . '">
-        <input type="button" value="Last">
-    </a>';
+        //Next
+        $pageNext=$page+1;
+        if($pageNext<1 || $pageNext>$maxPage){$pageNext=$page;}
+        echo '<a class="btn btn-dark" href="index.php?page='.$pageNext.'">Next</a>';
+
+        //Last Button
+        echo '<a class="btn btn-dark" href="index.php?page='.$maxPage.'">Last</a>';
     }
 }
 ?>

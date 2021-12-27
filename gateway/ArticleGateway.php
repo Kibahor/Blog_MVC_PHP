@@ -62,10 +62,11 @@ class ArticleGateway extends Connection
 
     public function getSearch($search, $cat, $order) : array
     {
+        //$search='*'.$search.'*'; //Le REGEX de MYSQL ne marche pas très bien malheureusement ... Il faudrait utiliser PostGres
         $sql = "SELECT article.id AS articleId, title,content, DATE_FORMAT(created, '%D %b %Y') AS date, idAdmin
                 FROM article
                 LEFT JOIN admin u on article.idAdmin = u.id
-                WHERE title like :search
+                WHERE title RLIKE :search
                 ORDER BY {$cat} {$order}";
 
         $this->executeQuery($sql, array(

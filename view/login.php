@@ -10,10 +10,10 @@
                             <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
                             <p class="text-white-50 mb-5">Please enter your login and password!</p>
                             <div class="form-outline form-white mb-4">
-                                <input type="email" id="typeEmailX" class="form-control form-control-lg" placeholder="Email"/>
+                                <input type="email" id="email" class="form-control form-control-lg" placeholder="Email"/>
                             </div>
                             <div class="form-outline form-white mb-4">
-                                <input type="password" id="typePasswordX" class="form-control form-control-lg" placeholder="Password" />
+                                <input type="password" id="password" class="form-control form-control-lg" placeholder="Password" />
                             </div>
                             <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
                         </div>
