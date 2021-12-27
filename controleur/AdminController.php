@@ -2,6 +2,10 @@
 
 class AdminController
 {
+    private $rep;
+    private $vues;
+
+    private $admin_model;
     public function __construct($action)
     {
         global $rep, $vues; // nécessaire pour utiliser variables globales
@@ -9,8 +13,6 @@ class AdminController
         $this->vues = $vues;
 
         $this->admin_model= new AdminModel();
-
-        $this->dVueErreur = array();
 
         try {
             switch ($action) {
@@ -27,14 +29,9 @@ class AdminController
                     break;
             }
         } catch (PDOException $e) {
-            $this->dVueErreur[] = $e;
-            require($rep . $vues['erreur']);
+            FrontControlleur::$dVueErreur[] = $e;
         } catch (Exception $e2) {
-            $this->dVueErreur[] = $e2;
-            require($rep . $vues['erreur']);
+            FrontControlleur::$dVueErreur[] = $e2;
         }
-
-        exit(0);
-
     }
 }

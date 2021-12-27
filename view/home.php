@@ -1,6 +1,3 @@
-<!-- Head -->
-<?php require($this->rep . $this->vues['head']); ?>
-
 <!-- Page Header-->
 <header class="masthead" style="background-image: url('view/res/img/home-bg.jpg')">
     <div class="container position-relative">
@@ -16,10 +13,6 @@
             <form class="form-inline col-md-10 col-lg-8 col-xl-7" action="index.php?action=search&" method="POST">
                 <input class="form-control mr-2" type="text" name="query" placeholder="Search" aria-label="Search"/>
             </form>
-            <!--
-            <form class="form-inline col-md-10 col-lg-8 col-xl-7" method="get" action="index.php">
-                <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
-            </form> -->
         </div>
     </div>
 </header>
@@ -29,20 +22,23 @@
 
 <!-- Main Content-->
 <body>
-<?php
-if(isset($val)){
-    $nbArticle = $val;
-    $nbCommentaire=$valCom;
-    echo '<p>Nombre article en BD :' .$nbArticle.'</p>';
-    echo '<p>Nombre de commentaire par cookie : ' .$nbCommentaire.'</p>';
-}
-?>
-
 <div class="container px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-md-20 col-lg-16 col-xl-14">
             <?php
-            if(empty($valeur)){
+
+            if (isset($val)&&isset($valCom)) {
+                $nbArticle = $val;
+                $nbCommentaire = $valCom;
+                echo '
+                <p>
+                    Nombre article en BD :  '.$nbArticle.' <br>
+                    Nombre de commentaire par cookie : '.$nbCommentaire.'
+                </p>
+                ';
+            }
+
+            if(isset($valeur) && !empty($valeur)){
                 foreach($valeur as $p){
                     $id= $p->id;
                     $date= $p->date;
@@ -67,9 +63,5 @@ if(isset($val)){
         </div>
     </div>
 </div>
-
-
+<br>
 </body>
-
-<!-- Footer -->
-<?php require($this->rep . $this->vues['footer']); ?>

@@ -5,6 +5,8 @@ class FrontControlleur
     private $rep;
     private $vues;
 
+    public static $dVueErreur;
+
     public function __construct()
     {
         session_start();
@@ -12,15 +14,19 @@ class FrontControlleur
         $this->rep = $rep;
         $this->vues = $vues;
 
+        self::$dVueErreur=array();
+
+        require($this->rep . $this->vues['head']);
         $actionAdmin = array('supprimer', 'creer', 'deconnexion');
         try {
             $model = new AdminModel();
             $admin = $model->isadmin();
 
-            if (isset($_REQUEST['action']) && !empty($_REQUEST['action']))
+            if (isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
                 $action = $_REQUEST['action'];
-            else
+            } else {
                 $action = NULL;
+            }
 
             if (in_array($action, $actionAdmin)) {
                 if ($admin == false) {
@@ -29,10 +35,15 @@ class FrontControlleur
                     new AdminController($action);
                 }
             } else {
-                new UserControleur($action);
+                new UserControlleur($action);
             }
         } catch (PDOException $e) {
-            require($rep . $vues['erreur']);
+            self::$dVueErreur[] = $e;
+        } finally {
+            if(!empty(self::$dVueErreur)){
+                require($rep . $vues['erreur']);
+            }
+            require ($this->rep . $this->vues['footer']);
         }
     }
 }

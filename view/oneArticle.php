@@ -1,6 +1,3 @@
-<!-- Head -->
-<?php require($this->rep . $this->vues['head']); ?>
-
 <?php
 $date= "r";
 $title="r";
@@ -77,11 +74,11 @@ $content="r";
         <div class="container">
             <form class="form">
                 <div class="md-form mb-1">
-                    <input type="text" name="Nom" class="form-control" placeholder="Nom" required="">
+                    <input type="text" name="Nom" class="form-control" placeholder="Nom" required=""/>
                 </div>
                 <br>
                 <div class="md-form">
-                    <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea" placeholder="Message ..." required=""></textarea>
+                    <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea" placeholder="Message ..." required=""/>
                 </div>
             </form>
             <br>

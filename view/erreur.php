@@ -1,12 +1,10 @@
 <?php
-        if (isset($this->dVueErreur)) {
-            foreach ($this->dVueErreur as $value) {
-                $e=$value;
-    ?>
-    <div class="alert alert-danger">
-        <strong>Erreur :</strong> <?php echo $e ;?>
-    </div>
-    <?php
-            }
-        }
-    ?>
+if (isset(FrontControlleur::$dVueErreur)) {
+    foreach (FrontControlleur::$dVueErreur as $e) {
+        echo '
+                <div class="alert alert-danger">
+                    <strong>Erreur :</strong> '.$e.'
+                </div>
+                ';
+    }
+}

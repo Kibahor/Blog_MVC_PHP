@@ -22,20 +22,20 @@ class Validation {
         return $nb;
     }
 
-    public static function commentaire_form(string &$pseudo,string &$content, array &$dVueError){
+    public static function commentaire_form(string &$pseudo,string &$content){
 
         if(!isset($pseudo) || empty($pseudo)){
-            $dVueError[] = "Identifiant vide";
+            FrontControlleur::$dVueErreur[] = "Identifiant vide";
             $pseudo="";
         }
 
         if(!isset($content) || empty($content)){
-            $dVueError[] = "Contenue vide";
+            FrontControlleur::$dVueErreur[] = "Contenue vide";
             $content="";
         }
 
         if($pseudo!=self::cleanString($pseudo) || $content!=self::cleanString($content)){
-            $dVueError[] = "erreur sur la nature du commentaire";
+            FrontControlleur::$dVueErreur[] = "erreur sur la nature du commentaire";
             $pseudo="";
             $content="";
         }
