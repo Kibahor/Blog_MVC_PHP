@@ -34,23 +34,25 @@ class Validation {
         }
     }
 
+    static function connexion_form(string &$nom, string &$mdp) {
 
-
-    public static function getUrl(){
-        if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
-        {
-            $url = "https";
-        }
-        else
-        {
-            $url = "http";
+        if (!isset($nom)||$nom=="") {
+            FrontControlleur::$dVueErreur[] =	"Identifiant incorrect";
+            $nom="";
         }
 
-        $url .= "://";
-        $url .= $_SERVER['HTTP_HOST'];
-        $url .= $_SERVER['REQUEST_URI'];
+        if ($nom != filter_var($nom, FILTER_SANITIZE_STRING) || $mdp != filter_var($mdp, FILTER_SANITIZE_STRING))
+        {
+            FrontControlleur::$dVueErreur[] =	"tentative d'injection de code (attaque sécurité)";
+            $nom="";
+            $mdp="";
+        }
 
-        return $url;
+        if (!isset($mdp)||$mdp=="") {
+            FrontControlleur::$dVueErreur[] =	"Mot de passe invalide";
+            $mdp="";
+        }
     }
+
 }
 ?>

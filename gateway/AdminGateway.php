@@ -84,16 +84,16 @@ class AdminGateway extends Connection
     }
 
 
-    public function getId($login)
+    public function getLogin($login)
     {
-        $sql = 'SELECT id
+        $sql = 'SELECT id, login,pass
                 FROM admin
                 WHERE login = :login';
         $this->executeQuery($sql, array(
             ':login' => array($login, PDO::PARAM_INT)
         ));
 
-        return $this->getResults();
+        return $this->getResults()[0];
     }
 
     public function getPassword($login)

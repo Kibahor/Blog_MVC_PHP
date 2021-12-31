@@ -4,7 +4,7 @@
             <a class="navbar-brand" href="index.php">Accueil</a>
         </div>
         <div class="navbar-right">
-            <a class="btn btn-primary" href="view/login.php">Administration</a>
+            <a class="btn btn-primary" href="index.php?action=connection">Administration</a>
         </div>
     </div>
 </nav>

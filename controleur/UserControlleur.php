@@ -5,6 +5,7 @@ class UserControlleur
     private $rep;
     private $vues;
 
+    private $admin_model;
     private $article_model;
     private $commentaires_model;
 
@@ -16,8 +17,8 @@ class UserControlleur
 
         $this->article_model= new ArticleModel();
         $this->commentaires_model=new CommentaireModel();
+        $this->admin_model=new AdminModel();
 
-        //session_start();
 
         try {
             switch ($action) {
@@ -37,6 +38,9 @@ class UserControlleur
                     break;
                 case "addC":
                     $this->addCommentaire();
+                    break;
+                case "connection":
+                    $this->connexion();
                     break;
                 default:
                     FrontControlleur::$dVueErreur[]="Cette page n'existe pas !";
@@ -146,5 +150,26 @@ class UserControlleur
     function incrCookie(){
             $cpt=$this::getCompteur();
             setcookie("commentaires",$cpt+1,time()+365*24*3600);
+    }
+
+    function connexion() {
+        require ($this->rep.$this->vues['login']);
+
+        if(isset($_REQUEST['button'])){
+        $nom=$_REQUEST['login'];
+        $mdp=$_REQUEST['password'];
+
+        Validation::connexion_form($nom, $mdp);
+
+
+        if(empty(FrontControlleur::$dVueErreur)){
+            $utilisateur=$this->admin_model->authentification($nom,$mdp);
+            if(!isset($utilisateur)) {
+                FrontControlleur::$dVueErreur[] =	"Mot de passe ou identifiant incorrect";
+            }else{
+                $_SESSION['pseudo'] = $utilisateur;                                                 //connecté, tu peux faire la redirection ici
+            }
+        }
+    }
     }
 }

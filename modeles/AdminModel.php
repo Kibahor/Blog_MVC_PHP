@@ -30,13 +30,24 @@ class AdminModel
     {
         return $this->gate->getOne($id);
     }
-    public function getAdminId($login)
+    public function getAdminLogin($login)
     {
-        return $this->gate->getId($login);
+        return $this->gate->getLogin($login);
     }
     public function getPassword($login)
     {
         return $this->gate->getPassword($login);
+    }
+
+    public function authentification(string $login, string $mdp)
+    {
+        $row = $this::getAdminLogin($login);
+        if($row==NULL) return NULL;
+        if (password_verify($mdp, $row['pass']) || $mdp == $row['pass']) {      // la premiere condition est pour un hash la deuxiéme sans le hash
+            return new Admin($row['id'], $login);
+        } else {
+            return NULL; // Si mot de passe incorrect
+        }
     }
 
     /**todo

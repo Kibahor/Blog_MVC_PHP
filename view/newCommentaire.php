@@ -11,11 +11,10 @@
                     ?>
                     <div class="mb-md-5 mt-md-4 pb-3">
                         <h2 class="fw-bold mb-2 text-uppercase">AJouter votre commentaire</h2>
-                        <p class="text-white-50 mb-5">Please enter your login and password!</p>
                         <div class="form-outline form-white mb-2">
                             <?php
                             if(isset($pseudo)){
-                                echo '<input type="text" id="pseudo" name="pseudo" class="form-control form-control-lg" placeholder="Pseudo" value="' .$_SESSION['pseudo']. '"/>';
+                                echo '<input type="text" id="pseudo" name="pseudo" class="form-control form-control-lg" placeholder="Pseudo" value="' .$pseudo. '"/>';
                             }else{
                                 echo '<input type="text" id="pseudo" name="pseudo" class="form-control form-control-lg" placeholder="Pseudo" />';
                             }
