@@ -8,6 +8,14 @@ class Article
     public $date;
     public $idAdmin;
 
+    function __construct($id, $title, $content,$date,$idAdmin)
+    {
+        $this->id = $id;
+        $this->title = $title;
+        $this->date = $date;
+        $this->content = $content;
+        $this->idAdmin = $idAdmin;
+    }
     /**
      * @return mixed
      */
@@ -56,23 +64,4 @@ class Article
      * @param mixed $idAdmin
      */
     public function setIdAdmin($idAdmin){$this->idAdmin = $idAdmin;}
-
-
-    function __construct()
-    {
-        $a = func_get_args();
-        $i = func_num_args();
-        if (method_exists($this, $f = '__construct' . $i))
-            call_user_func_array(array($this, $f), $a);
-    }
-
-    //Constructeur pour insérer les données en retour de la requete sql !! modifier le nom
-    function __construct5($id, $title, $content,$date,  $idAdmin)
-    {
-        $this->id = $id;
-        $this->title = $title;
-        $this->date = $date;
-        $this->content = $content;
-        $this->idAdmin = $idAdmin;
-    }
 }

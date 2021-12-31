@@ -75,7 +75,7 @@ class ArticleGateway extends Connection
 
         $tabResult=[];
         foreach ($this->getResults() as $post) {
-            $tabResult[] = new Article($post['articleId'], $post['title'], $post['date']);
+            $tabResult[] = new Article($post['articleId'], $post['title'], $post['content'], $post['date'], $post['idAdmin']);
         }
         return $tabResult;
     }
@@ -93,18 +93,15 @@ class ArticleGateway extends Connection
 
         $tabResult=[];
         foreach ($this->getResults() as $post) {
-            $tabResult[] = new Article($post['id'], $post['title'], $post['content'], $post['date'], $post['idAdmin']);
+            $tabResult[] = new Article($post['articleId'], $post['title'], $post['content'], $post['date'], $post['idAdmin']);
         }
 
         return $tabResult;
     }
     public function Count()
     {
-        $sql = "SELECT COUNT(*) FROM article;";
-
+        $sql = "SELECT COUNT(*) FROM article";
         $this->executeQuery($sql);
-
-
         return $this->getResults() ;
     }
 }

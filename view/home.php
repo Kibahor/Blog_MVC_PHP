@@ -27,24 +27,22 @@
         <div class="col-md-20 col-lg-16 col-xl-14">
             <?php
 
-            if (isset($val)&&isset($valCom)) {
-                $nbArticle = $val;
-                $nbCommentaire = $valCom;
+            if (isset($nbArticle)&&isset($nbCom)) {
                 echo '
                 <p>
                     Nombre article en BD :  '.$nbArticle.' <br>
-                    Nombre de commentaire par cookie : '.$nbCommentaire.'
+                    Nombre de commentaire par cookie : '.$nbCom.'
                 </p>
                 ';
             }
 
-            if(isset($valeur) && !empty($valeur)){
-                foreach($valeur as $p){
-                    $id= $p->id;
-                    $date= $p->date;
-                    $title=$p->title;
-                    $content=$p->content;
-                    $idAdmin=$p->idAdmin;       // si on veut l'admin qui a crée l'article, il faut utiliser la gateway, a partir de cette id, ou modifier carrement le modele a voir si nécessaire
+            if(isset($tabArticle) && !empty($tabArticle)){
+                foreach($tabArticle as $article){
+                    $id= $article->id;
+                    $date= $article->date;
+                    $title=$article->title;
+                    $content=$article->content;
+                    $idAdmin=$article->idAdmin;       // si on veut l'admin qui a crée l'article, il faut utiliser la gateway, a partir de cette id, ou modifier carrement le modele a voir si nécessaire
 
                     echo '
                         <div class="post-preview">

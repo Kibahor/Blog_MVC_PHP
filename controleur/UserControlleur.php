@@ -26,11 +26,10 @@ class UserControlleur
                     $this->init();
                     break;
                 case "search":
-                    if(isset($_POST['query'])){
-                        echo $_POST['query'];
-                        var_dump($this::searchNews($_POST['query']));
+                    if(isset($_POST['query']) && !empty($_POST['query'])){
+                        $this::showHomeNews($this::searchNews($_POST['query']));
                     }else{
-                        $this::getHomeNews();
+                        $this::init();
                     }
                     break;
                 case "get":
@@ -55,33 +54,40 @@ class UserControlleur
 
     function init()
     {
-        $this::getHomeNews();
+        $numPage=$this::getNumPage();
+        $tabArticle=$this::getHomeNews($numPage);
+        $this::showHomeNews($tabArticle);
     }
-    public function getHomeNews()
+    public function getHomeNews($page) :array
     {
-        $nb_article_page=5;
-        $page=0;
-        if(isset($_GET['page'])) {
-            $page = Validation::cleanINT($_GET['page']);
-        }else{
-            $page=1;
-        }
-        $val =$this->article_model->Count();
-        $val=$val[0][0];
-        $valCom=$this->getCompteur();
+        return $this->article_model->getPageArticle($page);
+    }
 
-        if($val <= ($page-1)*$nb_article_page && $val!=0){
+    public function showHomeNews($tabArticle){
+        $page=$this->getNumPage();
+        $nb_article_page=5;
+        $nbArticle=$this->article_model->Count();
+        $nbArticle=$nbArticle[0][0];
+        $nbCom=$this->getCompteur();
+        if($nbArticle <= ($page-1)*$nb_article_page && $nbArticle!=0){
             FrontControlleur::$dVueErreur[]="Ce numéro de page n'existe pas";
         }
-
-        $valeur = $this->article_model->getPageArticle($page);
-        $valeur = $this->article_model->cutArticle($valeur);
+        $this->article_model->cutArticle($tabArticle);
         require($this->rep . $this->vues['home']);
 
         //Affiche les boutons de page si le nombre d'articles par page est dépassé
-        if($val > $nb_article_page){
+        if($nbArticle > $nb_article_page){
             require($this->rep . $this->vues['buttonPage']);
         }
+    }
+
+    public function getNumPage() :int
+    {
+        $page=1;
+        if(isset($_GET['page'])) {
+            $page = Validation::cleanINT($_GET['page']);
+        }
+        return $page;
     }
 
     public function searchNews(string $key) : array
