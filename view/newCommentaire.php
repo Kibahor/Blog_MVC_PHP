@@ -22,7 +22,7 @@
                             ?>
                         </div>
                         <div class="md-form">
-                            <textarea id="form7" class="md-textarea form-control" rows="3" placeholder="Laissez votre message"></textarea>
+                            <textarea id="form7" name="content" class="md-textarea form-control" rows="3" placeholder="Laissez votre message"></textarea>
                             <br>
                         </div>
                         <!--
