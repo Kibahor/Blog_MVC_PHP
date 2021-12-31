@@ -80,7 +80,7 @@ class ArticleGateway extends Connection
         return $tabResult;
     }
 
-    public function getOne($id) :array
+    public function getOne($id) :Article
     {
         $sql = "SELECT article.id AS id, title, content, DATE_FORMAT(created, '%D %b %Y') AS date, idAdmin
                 FROM article
@@ -91,12 +91,8 @@ class ArticleGateway extends Connection
             ':id' => array($id, PDO::PARAM_INT)
         ));
 
-        $tabResult=[];
-        foreach ($this->getResults() as $post) {
-            $tabResult[] = new Article($post['articleId'], $post['title'], $post['content'], $post['date'], $post['idAdmin']);
-        }
-
-        return $tabResult;
+        $post=$this->getResults()[0];
+        return new Article($post['id'], $post['title'], $post['content'], $post['date'], $post['idAdmin']);;
     }
     public function Count()
     {

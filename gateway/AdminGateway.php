@@ -93,7 +93,7 @@ class AdminGateway extends Connection
             ':login' => array($login, PDO::PARAM_INT)
         ));
 
-        return $this->getResults()[0];
+        return $this->getResults();
     }
 
     public function getPassword($login)

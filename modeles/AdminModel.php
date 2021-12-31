@@ -45,9 +45,8 @@ class AdminModel
         if($row==NULL) return NULL;
         if (password_verify($mdp, $row['pass']) || $mdp == $row['pass']) {      // la premiere condition est pour un hash la deuxiéme sans le hash
             return new Admin($row['id'], $login);
-        } else {
-            return NULL; // Si mot de passe incorrect
         }
+        return NULL; // Si mot de passe incorrect
     }
 
     /**todo

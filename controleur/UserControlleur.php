@@ -54,8 +54,7 @@ class UserControlleur
 
     function init()
     {
-        $numPage=$this::getNumPage();
-        $tabArticle=$this::getHomeNews($numPage);
+        $tabArticle=$this::getHomeNews($this::getNumPage());
         $this::showHomeNews($tabArticle);
     }
     public function getHomeNews($page) :array
@@ -65,14 +64,13 @@ class UserControlleur
 
     public function showHomeNews($tabArticle){
         $page=$this->getNumPage();
-        $nb_article_page=5;
+        $nb_article_page=2;
         $nbArticle=$this->article_model->Count();
-        $nbArticle=$nbArticle[0][0];
         $nbCom=$this->getCompteur();
         if($nbArticle <= ($page-1)*$nb_article_page && $nbArticle!=0){
             FrontControlleur::$dVueErreur[]="Ce numéro de page n'existe pas";
         }
-        $this->article_model->cutArticle($tabArticle);
+        $tabArticle=$this->article_model->cutArticle($tabArticle);
         require($this->rep . $this->vues['home']);
 
         //Affiche les boutons de page si le nombre d'articles par page est dépassé
@@ -98,19 +96,17 @@ class UserControlleur
 
     function getArticle()
     {
-        if(isset($_GET['id'])) {
-            $cleanIntID=Validation::cleanINT($_GET['id']);
-
-            $valeur=$this->article_model->getArticleId($cleanIntID);
-            $comm=$this->commentaires_model->getCommentaireId($cleanIntID);
-
-            //Il faut utiliser la vue qui été prévu pour à la base : oneArticle.php
-            require($this->rep . $this->vues['home']);
-            require($this->rep . $this->vues['commentaire']);           //soit on require ici, soit dans la vue, il faudrait faire un switch en fonction de l'action ou ajouter une condition en fonction d'une variable
-
-        }else{
+        if(!isset($_GET['id'])) {
             $this::init();
         }
+        $cleanIntID=Validation::cleanINT($_GET['id']);
+
+        $article=$this->article_model->getArticleId($cleanIntID);
+        $com=$this->commentaires_model->getCommentaireId($cleanIntID);
+
+        require($this->rep . $this->vues['one_article']);
+        require($this->rep . $this->vues['commentaire']);
+
     }
 
     function addCommentaire()
@@ -162,20 +158,17 @@ class UserControlleur
         require ($this->rep.$this->vues['login']);
 
         if(isset($_REQUEST['button'])){
-        $nom=$_REQUEST['login'];
-        $mdp=$_REQUEST['password'];
-
-        Validation::connexion_form($nom, $mdp);
-
-
-        if(empty(FrontControlleur::$dVueErreur)){
-            $utilisateur=$this->admin_model->authentification($nom,$mdp);
-            if(!isset($utilisateur)) {
-                FrontControlleur::$dVueErreur[] =	"Mot de passe ou identifiant incorrect";
-            }else{
-                $_SESSION['pseudo'] = $utilisateur;                                                 //connecté, tu peux faire la redirection ici
+            $nom=$_REQUEST['login'];
+            $mdp=$_REQUEST['password'];
+            Validation::connexion_form($nom, $mdp);
+            if(empty(FrontControlleur::$dVueErreur)){
+                $utilisateur=$this->admin_model->authentification($nom,$mdp);
+                if(!isset($utilisateur)) {
+                    FrontControlleur::$dVueErreur[] ="Mot de passe ou identifiant incorrect";
+                }else{
+                    $_SESSION['pseudo'] = $utilisateur;                                                 //connecté, tu peux faire la redirection ici
+                }
             }
         }
-    }
     }
 }

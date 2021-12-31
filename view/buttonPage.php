@@ -1,7 +1,7 @@
-<div class="justify-content-center">
+<div class="text-center">
 <?php
-if(isset($val) && isset($page)){
-    $maxPage = ceil(($val/5));
+if(isset($nbArticle) && isset($page)){
+    $maxPage = ceil(($nbArticle/5));
     if($maxPage != 1) {
         //First Button
         echo '<a class="btn btn-dark" href="index.php?page=1">First</a>';

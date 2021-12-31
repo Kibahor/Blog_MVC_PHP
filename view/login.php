@@ -8,18 +8,19 @@
                     <div class="card-body p-5 text-center">
                         <div class="mb-md-5 mt-md-4 pb-5">
                             <form method="post">
-                            <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-                            <p class="text-white-50 mb-5">Please enter your login and password!</p>
-                            <div class="form-outline form-white mb-4">
-                                <input type="text" name="login" class="form-control form-control-lg" placeholder="Login"/>
-                            </div>
-                            <div class="form-outline form-white mb-4">
-                                <input type="password" name="password" class="form-control form-control-lg" placeholder="Password" />
-                            </div>
-                                <button  type="submit" id="button" name="button">Login</button>
+                                <h2 class="fw-bold mb-2 text-uppercase">Page de Connexion</h2>
+                                <p class="text-white-50 mb-5">Veuillez vous identifier !</p>
+                                <div class="form-outline form-white mb-4">
+                                    <input type="text" name="login" class="form-control form-control-lg" placeholder="Identifiant"/>
+                                </div>
+                                <div class="form-outline form-white mb-4">
+                                    <input type="password" name="password" class="form-control form-control-lg" placeholder="Mot de passe" />
+                                </div>
+                                <div>
+                                    <a class="btn btn-outline-light" href="#!">Se Connecter</a>
+                                </div>
+                            </form>
                         </div>
-                        </form>
-
                     </div>
                 </div>
             </div>

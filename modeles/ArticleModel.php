@@ -33,9 +33,9 @@ class ArticleModel
 
         return $this->gate->getPage($start,$nb);
     }
-    public function count(): array
+    public function count(): int
     {
-        return $this->gate->Count();
+        return $this->gate->Count()[0][0];
     }
 
     public function searchArticle($key): array
@@ -43,7 +43,7 @@ class ArticleModel
         return $this->gate->getSearch($key, "date", "ASC");
     }
 
-    public function getArticleId($id): array
+    public function getArticleId($id): Article
     {
         return $this->gate->getOne($id);
     }
