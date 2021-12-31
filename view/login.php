@@ -17,7 +17,7 @@
                                     <input type="password" name="password" class="form-control form-control-lg" placeholder="Mot de passe" />
                                 </div>
                                 <div>
-                                    <a class="btn btn-outline-light" href="#!">Se Connecter</a>
+                                    <button class="btn btn-outline-light" type="submit" id="button" name="button">Login</button>
                                 </div>
                             </form>
                         </div>
