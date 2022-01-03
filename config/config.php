@@ -18,6 +18,7 @@ $vues['buttonPage']='view/buttonPage.php';
 $vues['commentaire']='view/commentaire.php';
 $vues['newCommentaire']='view/newCommentaire.php';
 $vues['login']='view/login.php';
+$vues['deconnection']='view/deconnection.php';
 $vues['posts']='view/post.php';
 $vues['one_article']='view/oneArticle.php';
 

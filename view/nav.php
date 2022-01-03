@@ -4,7 +4,15 @@
             <a class="navbar-brand" href="index.php">Accueil</a>
         </div>
         <div class="navbar-right">
-            <a class="btn btn-primary" href="index.php?action=connection">Administration</a>
+            <?php
+
+            if(isset($_SESSION['role'])){
+                echo '<a class="btn btn-primary" href="index.php?action=deconnection">Deconnection</a>';
+            }else{
+                echo '<a class="btn btn-primary" href="index.php?action=connection">Administration</a>';
+            }
+
+            ?>
         </div>
     </div>
 </nav>

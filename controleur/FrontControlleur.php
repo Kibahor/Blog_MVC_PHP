@@ -17,7 +17,7 @@ class FrontControlleur
         self::$dVueErreur=array();
 
         require($this->rep . $this->vues['head']);
-        $actionAdmin = array('supprimer', 'creer', 'deconnexion');
+        $actionAdmin = array('supprimer', 'creer', 'deconnection');
         try {
             $model = new AdminModel();
             $admin = $model->isadmin();
@@ -30,7 +30,7 @@ class FrontControlleur
 
             if (in_array($action, $actionAdmin)) {
                 if ($admin == false) {
-                    require($rep . $vues['login']);
+                    new UserControlleur(NULL);          // on peut mettre la vue login pour directement se connecter
                 } else {
                     new AdminController($action);
                 }
@@ -41,7 +41,7 @@ class FrontControlleur
             self::$dVueErreur[] = $e;
         } finally {
             if(!empty(self::$dVueErreur)){
-                require($rep . $vues['erreur']);
+                require($rep . $vues['erreur']);                    // on affiche les erreurs en fin de page
             }
             require ($this->rep . $this->vues['footer']);
         }

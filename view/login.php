@@ -7,7 +7,10 @@
                 <div class="card bg-dark text-white" style="border-radius: 1rem;">
                     <div class="card-body p-5 text-center">
                         <div class="mb-md-5 mt-md-4 pb-5">
-                            <form method="post">
+                            <?php
+                                if(!$admin){
+                                 ?>
+                            <form method="post" action="index.php?action=connection">
                                 <h2 class="fw-bold mb-2 text-uppercase">Page de Connexion</h2>
                                 <p class="text-white-50 mb-5">Veuillez vous identifier !</p>
                                 <div class="form-outline form-white mb-4">
@@ -20,6 +23,14 @@
                                     <button class="btn btn-outline-light" type="submit" id="button" name="button">Login</button>
                                 </div>
                             </form>
+                                    <?php
+                                }else{
+                                    echo '
+                                            <h2 class="fw-bold mb-2 text-uppercase">Vous êtes déjà connecté</h2>
+                                            </br>
+                                            <a class="btn btn-primary" href="index.php">Home</a>';
+                                }
+                            ?>
                         </div>
                     </div>
                 </div>

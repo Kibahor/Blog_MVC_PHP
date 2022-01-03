@@ -18,22 +18,27 @@ class AdminModel
     {
         $this->gate->update($id, $firstName, $lastName, $mail, $login, $pass);
     }
+
     public function deleteAdmin($id)
     {
         $this->gate->delete($id);
     }
+
     public function getAdmin()
     {
         return $this->gate->get();
     }
+
     public function getOneAdmin($id)
     {
         return $this->gate->getOne($id);
     }
+
     public function getAdminLogin($login)
     {
         return $this->gate->getLogin($login);
     }
+
     public function getPassword($login)
     {
         return $this->gate->getPassword($login);

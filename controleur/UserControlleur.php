@@ -155,20 +155,26 @@ class UserControlleur
     }
 
     function connexion() {
-        require ($this->rep.$this->vues['login']);
+        $admin = $this->admin_model->isadmin();
 
-        if(isset($_REQUEST['button'])){
+        if(isset($_REQUEST['button']) && !$admin){
             $nom=$_REQUEST['login'];
             $mdp=$_REQUEST['password'];
+
             Validation::connexion_form($nom, $mdp);
+
             if(empty(FrontControlleur::$dVueErreur)){
                 $utilisateur=$this->admin_model->authentification($nom,$mdp);
                 if(!isset($utilisateur)) {
                     FrontControlleur::$dVueErreur[] ="Mot de passe ou identifiant incorrect";
                 }else{
-                    $_SESSION['pseudo'] = $utilisateur;                                                 //connecté, tu peux faire la redirection ici
+                    $_SESSION['pseudo'] = $utilisateur;
+                    $_SESSION['role'] = "admin";
+                    new UserControlleur(NULL);
                 }
             }
+        }else{
+            require ($this->rep.$this->vues['login']);
         }
     }
 }

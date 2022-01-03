@@ -4,11 +4,11 @@ class AdminController
 {
     private $rep;
     private $vues;
-
     private $admin_model;
+
     public function __construct($action)
     {
-        global $rep, $vues; // nécessaire pour utiliser variables globales
+        global $rep, $vues;
         $this->rep = $rep;
         $this->vues = $vues;
 
@@ -19,11 +19,9 @@ class AdminController
                 case NULL:
                     //$this->init();
                     break;
-                case "supprimer":
-                    break;
-                case "ajouter":
-                    break;
-                case "deconnexion":
+                case "deconnection":
+                        session_destroy();
+                        require($this->rep . $this->vues['deconnection']);
                     break;
                 default:
                     break;
