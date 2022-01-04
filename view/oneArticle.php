@@ -7,7 +7,7 @@ if(isset($article)){
     $title="Title";
     $content="Content";
     $date="";
-    FrontControlleur::$dVueErreur[]="Une erreur est survenu lors de la récupération de l'article";
+    FrontControlleur::addError("Une erreur est survenu lors de la récupération de l'article");
 }
 ?>
 <!-- header -->

@@ -42,13 +42,13 @@ class UserControlleur
                     $this->connexion();
                     break;
                 default:
-                    FrontControlleur::$dVueErreur[]="Cette page n'existe pas !";
+                    FrontControlleur::addError("Cette page n'existe pas !");
                     break;
             }
         } catch (PDOException $e) {
-            FrontControlleur::$dVueErreur[] = $e;
+            FrontControlleur::addError( $e);
         } catch (Exception $e2) {
-            FrontControlleur::$dVueErreur[] = $e2;
+            FrontControlleur::addError( $e2);
         }
     }
 
@@ -71,7 +71,7 @@ class UserControlleur
         $nbArticle=$this->article_model->Count();
         $nbCom=$this->getCompteur();
         if($nbArticle <= ($page-1)*$nb_article_page && $nbArticle!=0){
-            FrontControlleur::$dVueErreur[]="Ce numéro de page n'existe pas";
+            FrontControlleur::addError("Ce numéro de page n'existe pas");
         }
         $tabArticle=$this->article_model->cutArticle($tabArticle);
         require($this->rep . $this->vues['home']);
@@ -130,7 +130,7 @@ class UserControlleur
 
             Validation::commentaire_form($pseudo, $content);
 
-            if (empty(FrontControlleur::$dVueErreur)) {
+            if (empty(FrontControlleur::getError())) {
                 try {
                     $this->commentaires_model->addCommentaire($pseudo, $content, $idArticle);
                     $this::incrCookie();
@@ -139,7 +139,7 @@ class UserControlleur
                     //TODO: Enlever cette horreur car elle va nous faire enlever des points !!!! Le Prof a dit:"Il ne faut pas mettre de header location car sa détruit l'instance actuelle et sa en créer une autre" => En Gros sa casse tout !!
                     header("Location: index.php?action=get&id=$idArticle");// ce header peut sans doute etre enlever, mais ca complique le boulot au niveau de la vue et ajoute des conditions.
                 } catch (Exception $e) {
-                    FrontControlleur::$dVueErreur[] = "Votre commentaire n'a pas été envoyé";
+                    FrontControlleur::addError( "Votre commentaire n'a pas été envoyé");
                 }
             }
         }
@@ -166,10 +166,10 @@ class UserControlleur
 
             Validation::connexion_form($nom, $mdp);
 
-            if(empty(FrontControlleur::$dVueErreur)){
+            if(empty(FrontControlleur::getError())){
                 $utilisateur=$this->admin_model->authentification($nom,$mdp);
                 if(!isset($utilisateur)) {
-                    FrontControlleur::$dVueErreur[] ="Mot de passe ou identifiant incorrect";
+                    FrontControlleur::addError("Mot de passe ou identifiant incorrect");
                 }else{
                     $_SESSION['pseudo'] = $utilisateur->login;
                     $_SESSION['role'] = "admin";

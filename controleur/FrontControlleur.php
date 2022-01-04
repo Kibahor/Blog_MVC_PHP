@@ -5,7 +5,7 @@ class FrontControlleur
     private $rep;
     private $vues;
 
-    public static $dVueErreur;
+    private static $dVueErreur;
 
     public function __construct()
     {
@@ -38,12 +38,19 @@ class FrontControlleur
                 new UserControlleur($action);
             }
         } catch (PDOException $e) {
-            self::$dVueErreur[] = $e;
+            $this::addError($e);
         } finally {
             if(!empty(self::$dVueErreur)){
                 require($rep . $vues['erreur']);                    // on affiche les erreurs en fin de page
             }
             require ($this->rep . $this->vues['footer']);
         }
+    }
+
+    public static function addError(string $error){
+        self::$dVueErreur[]=$error;
+    }
+    public static function getError(): array{
+        return self::$dVueErreur;
     }
 }

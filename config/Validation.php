@@ -18,17 +18,17 @@ class Validation {
     public static function commentaire_form(string &$pseudo,string &$content){
 
         if(!isset($pseudo) || empty($pseudo)){
-            FrontControlleur::$dVueErreur[] = "Identifiant vide";
+            FrontControlleur::addError( "Identifiant vide");
             $pseudo="";
         }
 
         if(!isset($content) || empty($content)){
-            FrontControlleur::$dVueErreur[] = "Contenue vide";
+            FrontControlleur::addError( "Contenue vide");
             $content="";
         }
 
         if($pseudo!=self::cleanString($pseudo) || $content!=self::cleanString($content)){
-            FrontControlleur::$dVueErreur[] = "erreur sur la nature du commentaire";
+            FrontControlleur::addError( "erreur sur la nature du commentaire");
             $pseudo="";
             $content="";
         }
@@ -51,19 +51,19 @@ class Validation {
     static function connexion_form(string &$nom, string &$mdp) {
 
         if (!isset($nom)||$nom=="") {
-            FrontControlleur::$dVueErreur[] =	"Identifiant incorrect";
+            FrontControlleur::addError(	"Identifiant incorrect");
             $nom="";
         }
 
         if ($nom != filter_var($nom, FILTER_SANITIZE_STRING) || $mdp != filter_var($mdp, FILTER_SANITIZE_STRING))
         {
-            FrontControlleur::$dVueErreur[] =	"tentative d'injection de code (attaque sécurité)";
+            FrontControlleur::addError(	"tentative d'injection de code (attaque sécurité)");
             $nom="";
             $mdp="";
         }
 
         if (!isset($mdp)||$mdp=="") {
-            FrontControlleur::$dVueErreur[] =	"Mot de passe invalide";
+            FrontControlleur::addError(	"Mot de passe invalide");
             $mdp="";
         }
     }

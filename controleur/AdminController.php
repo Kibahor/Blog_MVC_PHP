@@ -35,9 +35,9 @@ class AdminController
                     break;
             }
         } catch (PDOException $e) {
-            FrontControlleur::$dVueErreur[] = $e;
+            FrontControlleur::addError( $e);
         } catch (Exception $e2) {
-            FrontControlleur::$dVueErreur[] = $e2;
+            FrontControlleur::addError( $e2);
         }
     }
 
