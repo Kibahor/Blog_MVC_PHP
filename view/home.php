@@ -57,6 +57,9 @@
                         <!-- Divider-->
                         <hr class="my-4" /> 
                     ';
+                    if(isset($admin) && $admin) {
+                        echo '<a class="btn btn-primary" href="index.php?action=delete&id=' . $id . '">Delete Article</a>';
+                    }
                 }
             }else{
                 echo "<p>Il n'y a pas d'article !</p>";
