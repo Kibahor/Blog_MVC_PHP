@@ -2,7 +2,7 @@
 
 class CommentaireGateway extends Connection
 {
-    //ajouter un commentaires
+    //Ajouter un commentaire
     public function add($pseudo, $content, $idArticle)
     {
         $sql = 'INSERT INTO commentaires (pseudo, content, created, idArticle)
@@ -14,11 +14,10 @@ class CommentaireGateway extends Connection
         ));
     }
 
-    //supprimer un commentaires
+    //Supprimer un commentaire
     public function supp($pseudo, $content, $idArticle)
     {
-        $sql = 'INSERT INTO commentaires (pseudo, content, created, idArticle)
-                VALUES (:pseudo, :content, NOW(), :idArticle)';
+        $sql = 'DELETE FROM commentaires WHERE pseudo=:pseudo AND idArticle=:idArticle AND content=:content';
         $this->executeQuery($sql, array(
             ':pseudo' => array($pseudo, PDO::PARAM_STR),
             ':content' => array($content, PDO::PARAM_STR),
@@ -26,22 +25,21 @@ class CommentaireGateway extends Connection
         ));
     }
 
-    //Fonction pour obtenir les 5 premier commentaires
-    public function getPage($start, $stop)
+    //Obtenir les 5 premiers commentaires
+    public function getPage($start, $stop) :array
     {
         $sql = "SELECT id,pseudo, content, DATE_FORMAT(created, '%D %b %Y') AS date, idArticle
                 FROM commentaires
                 ORDER BY date DESC LIMIT {$start},{$stop}";
         $this->executeQuery($sql);
-
+        $tabResult=array();
         foreach ($this->getResults() as $post) {
-            // Si plus de données a insérer dans le article redefinir le 2eme constructeur
             $tabResult[] = new Commentaire($post['id'], $post['pseudo'], $post['content'], $post['date'], $post['idArticle']);
         }
         return $tabResult;
     }
 
-    public function getId($id)
+    public function getId($id) : array
     {
         $sql = 'SELECT *
                 FROM commentaires

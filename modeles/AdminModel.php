@@ -47,10 +47,11 @@ class AdminModel
     public function authentification(string $login, string $mdp)
     {
         $row = $this::getAdminLogin($login);
-        if (is_array($row)) {
+        if ( (is_array($row) && sizeof($row)>0)|| $row!=NULL) {
             $row = $row[0];
+        }else{
+            return NULL;
         }
-        if ($row == NULL) return NULL;
         if (password_verify($mdp, $row['pass']) || $mdp == $row['pass']) {      // la premiere condition est pour un hash la deuxiéme sans le hash
             return new Admin($row['id'], $login);
         }

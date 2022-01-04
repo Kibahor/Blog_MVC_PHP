@@ -78,17 +78,16 @@ class UserControlleur
         $admin = $this->admin_model->isadmin();
 
         $page = $this->getNumPage();
-        $nb_article_page = 2;
         $nbArticle = $this->article_model->Count();
         $nbCom = $this->getCompteur();
-        if ($nbArticle <= ($page - 1) * $nb_article_page && $nbArticle != 0) {
+        if ($nbArticle <= ($page - 1) * 2 && $nbArticle != 0) {
             FrontControlleur::addError("Ce numéro de page n'existe pas");
         }
         $tabArticle = $this->article_model->cutArticle($tabArticle);
         require($this->rep . $this->vues['home']);
 
         //Affiche les boutons de page si le nombre d'articles par page est dépassé
-        if ($nbArticle > $nb_article_page) {
+        if ($nbArticle > 2) {
             require($this->rep . $this->vues['buttonPage']);
         }
     }

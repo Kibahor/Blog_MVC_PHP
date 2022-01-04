@@ -9,18 +9,6 @@ class ArticleModel
         $this->gate = new ArticleGateway();
     }
 
-    /**
-     *  Premiére version de notre homme (sans les bouton de changement de page)
-     * @param $order
-     * @return array
-     */
-    public function get_articles($order): array
-    {
-        $cat = 'date';
-        $order = 'ASC';
-        return $this->gate->getArticle($cat, $order);
-    }
-
     public function ajoutArticle($title, $content, $idUser)
     {
         $this->gate->addArticle($title, $content, $idUser);
@@ -98,9 +86,12 @@ class ArticleModel
             '/(\[i\])(.*?)(\[\/i\])/',
             '/(\[u\])(.*?)(\[\/u\])/',
             '/(\[ul\])(.*?)(\[\/ul\])/',
-            '/(\[li\])(.*?)(\[\/li\])/',
+            '/(\[[*]-\])(.*?)/',
             '/(\[url=)(.*?)(\])(.*?)(\[\/url\])/',
-            '/(\[url\])(.*?)(\[\/url\])/'
+            '/(\[url\])(.*?)(\[\/url\])/',
+            '/(\[img\])(.*?)(\[\/img\])/',
+            '/(\[video\])(.*?)(\[\/video\])/',
+            '/(\[p\])(.*?)(\[\/p\])/',
         );
 
         $replace = array(
@@ -110,7 +101,10 @@ class ArticleModel
             '<ul>$2</ul>',
             '<li>$2</li>',
             '<a href="$2" target="_blank">$4</a>',
-            '<a href="$2" target="_blank">$2</a>'
+            '<a href="$2" target="_blank">$2</a>',
+            '<img src="$2">',
+            '<iframe width="560" height="315" src="$2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+            '<p>$2</p>'
         );
 
         return preg_replace($search, $replace, $content);

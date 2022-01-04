@@ -22,6 +22,7 @@
                                                placeholder="Mot de passe"/>
                                     </div>
                                     <div>
+                                        <a class="btn btn-outline-danger" href="index.php">Retour</a>
                                         <button class="btn btn-outline-light" type="submit" id="button" name="button">
                                             Login
                                         </button>
