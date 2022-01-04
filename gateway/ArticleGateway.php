@@ -45,11 +45,11 @@ class ArticleGateway extends Connection
     }
 
     //Fonction pour obtenir les 5 premier Articles
-    public function getPage($start, $stop) :array
+    public function getPage($start, $stop,$order) :array
     {
         $sql = "SELECT id,title, content, DATE_FORMAT(created, '%D %b %Y') AS date, idAdmin
                 FROM article
-                ORDER BY date DESC LIMIT {$start},{$stop}";
+                ORDER BY date {$order} LIMIT {$start},{$stop}";
         $this->executeQuery($sql);
 
         $tabResult=[];

@@ -17,8 +17,6 @@
                             <span>' .$content. '</span>
                             <div>
                                 <small class="fst-italic">Posté le : ' .$date. '</small><br>
-                                <button type="button" class="btn btn-warning btn-sm">Edit</button>
-                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
                             </div>
                         </div>
                         <br>

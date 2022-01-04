@@ -9,7 +9,12 @@ class ArticleModel
         $this->gate = new ArticleGateway();
     }
 
-    public function get_articles($order): array
+    /**
+     *  Premiére version de notre homme (sans les bouton de changement de page)
+     * @param $order
+     * @return array
+     */
+     public function get_articles($order): array
     {
         $cat = 'date';
         $order = 'ASC';
@@ -35,8 +40,8 @@ class ArticleModel
     {
         $start = ($start-1) * 5 ;
         $nb = 5;
-
-        return $this->gate->getPage($start,$nb);
+        $order = 'DESC';
+        return $this->gate->getPage($start,$nb,$order);
     }
     public function count(): int
     {
