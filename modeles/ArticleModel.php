@@ -26,6 +26,11 @@ class ArticleModel
         $this->gate->modifArticle($title, $content, $idUser);
     }
 
+    public function deleteArticle($id)
+    {
+        $this->gate->delete($id);
+    }
+
     public function getPageArticle($start): array
     {
         $start = ($start-1) * 5 ;

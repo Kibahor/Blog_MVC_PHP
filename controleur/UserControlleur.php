@@ -63,6 +63,9 @@ class UserControlleur
     }
 
     public function showHomeNews($tabArticle){
+
+        $admin = $this->admin_model->isadmin();
+
         $page=$this->getNumPage();
         $nb_article_page=2;
         $nbArticle=$this->article_model->Count();

@@ -100,4 +100,16 @@ class ArticleGateway extends Connection
         $this->executeQuery($sql);
         return $this->getResults() ;
     }
+
+    public function delete($id)
+    {
+        $sql = 'DELETE FROM article
+                WHERE id = :id';
+        $this->executeQuery($sql, array(
+            ':id' => array($id, PDO::PARAM_INT)
+        ));
+        /*
+         *      Suppression d'un utilisateur
+         */
+    }
 }

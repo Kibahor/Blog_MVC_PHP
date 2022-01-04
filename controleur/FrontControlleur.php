@@ -17,7 +17,7 @@ class FrontControlleur
         self::$dVueErreur=array();
 
         require($this->rep . $this->vues['head']);
-        $actionAdmin = array('supprimer', 'creer', 'deconnection');
+        $actionAdmin = array('delete', 'add', 'deconnection');
         try {
             $model = new AdminModel();
             $admin = $model->isadmin();

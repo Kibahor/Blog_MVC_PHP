@@ -27,6 +27,10 @@
         <div class="col-md-20 col-lg-16 col-xl-14">
             <?php
 
+            if($admin){
+                echo '<a class="btn btn-primary" href="index.php?action=add">ADD Article</a>';
+            }
+
             if (isset($nbArticle)&&isset($nbCom)) {
                 echo '
                 <p>
@@ -44,6 +48,10 @@
                     $content=$article->content;
                     $idAdmin=$article->idAdmin;       // si on veut l'admin qui a crée l'article, il faut utiliser la gateway, a partir de cette id, ou modifier carrement le modele a voir si nécessaire
 
+
+                    if($admin){
+                        echo '<a class="btn btn-primary" href="index.php?action=delete&id='.$id.'">Delete Article</a>';
+                    }
                     echo '
                         <div class="post-preview">
                             <h2 class="post-title" ><a href="index.php?action=get&id='.$id.'">' .$title. '</a></h2>

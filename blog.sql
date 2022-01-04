@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `article` (
   `created` date NOT NULL,
   `idAdmin` int(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `idAdmin` (`idAdmin`)
+  FOREIGN KEY (`idAdmin`) REFERENCES `admin` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
@@ -95,24 +95,10 @@ CREATE TABLE IF NOT EXISTS `commentaires` (
   `created` date NOT NULL,
   `idArticle` int(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `commentaires_ibfk_1` (`idArticle`)
+  FOREIGN KEY (`idArticle`) REFERENCES `article` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
---
--- Contraintes pour les tables déchargées
---
 
---
--- Contraintes pour la table `article`
---
-ALTER TABLE `article`
-  ADD CONSTRAINT `article_ibfk_2` FOREIGN KEY (`idAdmin`) REFERENCES `admin` (`id`);
-
---
--- Contraintes pour la table `commentaires`
---
-ALTER TABLE `commentaires`
-  ADD CONSTRAINT `commentaires_ibfk_1` FOREIGN KEY (`idArticle`) REFERENCES `article` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

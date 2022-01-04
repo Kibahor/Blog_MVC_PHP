@@ -14,11 +14,12 @@
                         <br>
                         <div class="form-outline mb-1 col-md-6">
                             <?php
-                            $placeHolder="Pseudo";
                             if(isset($pseudo)){
-                               $placeHolder=$pseudo;
+                                echo '<input type="text" id="pseudo" name="pseudo" class="form-control form-control-lg" placeholder="Pseudo" value="'.$pseudo.'" />';
+                            }else{
+                                echo '<input type="text" id="pseudo" name="pseudo" class="form-control form-control-lg" placeholder="Pseudo" />';
                             }
-                            echo '<input type="text" id="pseudo" name="pseudo" class="form-control form-control-lg" placeholder="Pseudo" />';
+
                             ?>
                         </div>
                         <div class="md-form">
