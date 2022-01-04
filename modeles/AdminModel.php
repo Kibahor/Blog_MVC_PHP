@@ -9,8 +9,17 @@ class AdminModel
         $this->gate = new AdminGateway();
     }
 
+    /**
+     * Fonction d'inscription ATTENTION ne pas créer plusieurs fois le méme admin (meme login)
+     * @param $firstName
+     * @param $lastName
+     * @param $mail
+     * @param $login
+     * @param $pass
+     */
     public function addAdmin($firstName, $lastName, $mail, $login, $pass)
     {
+
         $this->gate->add($firstName, $lastName, $mail, $login, $pass);
     }
 
@@ -43,6 +52,9 @@ class AdminModel
     public function authentification(string $login, string $mdp)
     {
         $row = $this::getAdminLogin($login);
+        if(is_array($row)){
+            $row=$row[0];
+        }
         if($row==NULL) return NULL;
         if (password_verify($mdp, $row['pass']) || $mdp == $row['pass']) {      // la premiere condition est pour un hash la deuxiéme sans le hash
             return new Admin($row['id'], $login);
