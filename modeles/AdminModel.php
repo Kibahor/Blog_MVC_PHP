@@ -63,16 +63,8 @@ class AdminModel
         return NULL; // Si mot de passe incorrect
     }
 
-    /**todo
-     *  aucune securité, a rectifier
-     */
     public function isadmin() : bool
     {
-            if(isset($_SESSION['role']) && $_SESSION['role']== "admin")
-                return true;
-            else{
-                return false;
-                echo "SORRY";
-            }
+        return (isset($_SESSION['role']) && Validation::cleanString($_SESSION['role']== "admin"));
     }
 }
