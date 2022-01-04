@@ -41,6 +41,10 @@ class Validation {
             $pseudo="";
         }
 
+        if(!isset($titre) && strlen($titre) < 120){
+            FrontControlleur::addError( "Titre de l'article trop long (maximum 120 caractères)");
+        }
+
         if(!isset($content) || empty($content)){
             FrontControlleur::addError( "Contenue vide");
             $content="";
