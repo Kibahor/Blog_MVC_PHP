@@ -40,7 +40,7 @@ class FrontControlleur
         } catch (PDOException $e) {
             $this::addError($e);
         } finally {
-            if(!empty(self::$dVueErreur)){
+            if(!empty($this::getError())){
                 require($rep . $vues['erreur']);                    // on affiche les erreurs en fin de page
             }
             require ($this->rep . $this->vues['footer']);

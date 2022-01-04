@@ -37,12 +37,12 @@ class Validation {
     public static function article_form(string &$titre,string &$content){
 
         if(!isset($titre) || empty($titre)){
-            FrontControlleur::$dVueErreur[] = "Titre de l'article vide";
+            FrontControlleur::addError( "Titre de l'article vide");
             $pseudo="";
         }
 
         if(!isset($content) || empty($content)){
-            FrontControlleur::$dVueErreur[] = "Contenue vide";
+            FrontControlleur::addError( "Contenue vide");
             $content="";
         }
 

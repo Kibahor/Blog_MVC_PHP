@@ -57,7 +57,7 @@ class AdminController
 
             Validation::article_form($titre, $content);
 
-            if (empty(FrontControlleur::$dVueErreur)) {
+            if (empty(FrontControlleur::getError())) {
                 try {
                     $pseudo = Validation::cleanString($_SESSION['pseudo']);
                     $idAdmin = $this->admin_model->getIdAdmin($pseudo)[0];
@@ -67,7 +67,7 @@ class AdminController
                     //TODO: Enlever cette horreur car elle va nous faire enlever des points !!!! Le Prof a dit:"Il ne faut pas mettre de header location car sa détruit l'instance actuelle et sa en créer une autre" => En Gros sa casse tout !!
                     header("Location: index.php");// ce header peut sans doute etre enlever, mais ca complique le boulot au niveau de la vue et ajoute des conditions.
                 } catch (Exception $e) {
-                    FrontControlleur::$dVueErreur[] = $e;
+                    FrontControlleur::addError( $e);
                 }
             }
         }
