@@ -26,7 +26,7 @@
                                     <?php
                                 }else{
                                     echo '
-                                            <h2 class="fw-bold mb-2 text-uppercase">Vous êtes déjà connecté</h2>
+                                            <h2 class="fw-bold mb-2 text-uppercase">Vous êtes connecté</h2>
                                             </br>
                                             <a class="btn btn-primary" href="index.php">Home</a>';
                                 }

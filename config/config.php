@@ -17,6 +17,7 @@ $vues['home']='view/home.php';
 $vues['buttonPage']='view/buttonPage.php';
 $vues['commentaire']='view/commentaire.php';
 $vues['newCommentaire']='view/newCommentaire.php';
+$vues['newArticle']='view/newArticle.php';
 $vues['login']='view/login.php';
 $vues['deconnection']='view/deconnection.php';
 $vues['posts']='view/post.php';

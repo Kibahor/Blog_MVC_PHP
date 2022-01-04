@@ -24,14 +24,10 @@ class AdminModel
         $this->gate->delete($id);
     }
 
-    public function getAdmin()
-    {
-        return $this->gate->get();
-    }
 
-    public function getOneAdmin($id)
+    public function getIdAdmin($login)
     {
-        return $this->gate->getOne($id);
+        return $this->gate->getOne($login);
     }
 
     public function getAdminLogin($login)

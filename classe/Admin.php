@@ -7,7 +7,6 @@ class Admin
     public $lastName;
     public $mail;
     public $login;
-    public $pass;
 
 
     /**
@@ -81,15 +80,19 @@ class Admin
             call_user_func_array(array($this, $f), $a);
     }
 
+    function __construct2($id,$login)
+    {
+        $this->id = $id;
+        $this->login = $login;
+    }
 
     //Constructeur pour insérer les données en retour de la requete sql !! modifier le nom
-    function __construct6($id, $firstName, $lastName, $mail, $login, $pass)
+    function __construct5($id, $firstName, $lastName, $mail, $login)
     {
         $this->id = $id;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->mail = $mail;
         $this->login = $login;
-        $this->pass = $pass;
     }
 }

@@ -71,16 +71,16 @@ class AdminGateway extends Connection
          */
     }
 
-    public function getOne($id)
+    public function getOne($login)
     {
-        $sql = 'SELECT *
+        $sql = 'SELECT id, login
                 FROM admin
-                WHERE id = :id';
+                WHERE login = :login';
         $this->executeQuery($sql, array(
-            ':id' => array($id, PDO::PARAM_INT)
+            ':login' => array($login, PDO::PARAM_STR)
         ));
 
-        return $this->getResults();
+        return $this->getResults()[0];
     }
 
 
@@ -90,10 +90,10 @@ class AdminGateway extends Connection
                 FROM admin
                 WHERE login = :login';
         $this->executeQuery($sql, array(
-            ':login' => array($login, PDO::PARAM_INT)
+            ':login' => array($login, PDO::PARAM_STR)
         ));
 
-        return $this->getResults()[0];
+        return $this->getResults();
     }
 
     public function getPassword($login)

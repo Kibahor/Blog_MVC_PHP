@@ -34,6 +34,20 @@ class Validation {
         }
     }
 
+    public static function article_form(string &$titre,string &$content){
+
+        if(!isset($titre) || empty($titre)){
+            FrontControlleur::$dVueErreur[] = "Titre de l'article vide";
+            $pseudo="";
+        }
+
+        if(!isset($content) || empty($content)){
+            FrontControlleur::$dVueErreur[] = "Contenue vide";
+            $content="";
+        }
+
+    }
+
     static function connexion_form(string &$nom, string &$mdp) {
 
         if (!isset($nom)||$nom=="") {

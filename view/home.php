@@ -28,7 +28,7 @@
             <?php
 
             if($admin){
-                echo '<a class="btn btn-primary" href="index.php?action=add">ADD Article</a>';
+                echo '<a class="btn btn-primary" href="index.php?action=addA">ADD Article</a>';
             }
 
             if (isset($nbArticle)&&isset($nbCom)) {

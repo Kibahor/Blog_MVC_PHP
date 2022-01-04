@@ -18,14 +18,15 @@ class ArticleGateway extends Connection
     }
 
     //ajouter un Article
-    public function addArticle($title, $content, $idAdmin) //TODO Return bool en cas de success
+    public function addArticle($title, $content, $idAdmin)
     {
-        $sql = 'INSERT INTO article (title, content, created, idAdmin) :bool
+        $sql = 'INSERT INTO article (title, content, created, idAdmin)
                 VALUES (:title, :content, NOW(), :idAdmin)';
-        return $this->executeQuery($sql, array(
+
+        $this->executeQuery($sql, array(
             ':title' => array($title, PDO::PARAM_STR),
             ':content' => array($content, PDO::PARAM_STR),
-            ':idAdmin' => array($idAdmin, PDO::PARAM_STR)
+            ':idAdmin' => array($idAdmin, PDO::PARAM_INT)
         ));
 
     }
