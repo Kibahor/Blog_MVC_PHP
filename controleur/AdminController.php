@@ -54,7 +54,7 @@ class AdminController
         if(isset($_REQUEST['button'])) {
             $titre = Validation::cleanString($_REQUEST['titre']);
             $content = Validation::cleanString($_REQUEST['content']);
-
+            $content=$this->article_model->bbc2html($content);
             Validation::article_form($titre, $content);
 
             if (empty(FrontControlleur::getError())) {
@@ -70,6 +70,7 @@ class AdminController
                     FrontControlleur::addError( $e);
                 }
             }
-        }
+
+            }
     }
 }
