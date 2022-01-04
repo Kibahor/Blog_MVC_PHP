@@ -1,9 +1,9 @@
 <?php
-    foreach (FrontControlleur::getError() as $e) {
-        echo '
+foreach (FrontControlleur::getError() as $e) {
+    echo '
                 <div class="alert alert-danger">
-                    <strong>Erreur :</strong> '.$e.'
+                    <strong>Erreur :</strong> ' . $e . '
                 </div>
                 ';
-    }
+}
 

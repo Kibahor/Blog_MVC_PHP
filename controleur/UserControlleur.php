@@ -15,9 +15,9 @@ class UserControlleur
         $this->rep = $rep;
         $this->vues = $vues;
 
-        $this->article_model= new ArticleModel();
-        $this->commentaires_model=new CommentaireModel();
-        $this->admin_model=new AdminModel();
+        $this->article_model = new ArticleModel();
+        $this->commentaires_model = new CommentaireModel();
+        $this->admin_model = new AdminModel();
 
 
         try {
@@ -26,9 +26,9 @@ class UserControlleur
                     $this->init();
                     break;
                 case "search":
-                    if(isset($_POST['query']) && !empty($_POST['query'])){
+                    if (isset($_POST['query']) && !empty($_POST['query'])) {
                         $this::showHomeNews($this::searchNews(Validation::cleanString($_POST['query'])));
-                    }else{
+                    } else {
                         $this::init();
                     }
                     break;
@@ -46,66 +46,76 @@ class UserControlleur
                     break;
             }
         } catch (PDOException $e) {
-            FrontControlleur::addError( $e);
+            FrontControlleur::addError($e);
         } catch (Exception $e2) {
-            FrontControlleur::addError( $e2);
+            FrontControlleur::addError($e2);
         }
     }
 
     function init()
     {
-        $tabArticle=$this::getHomeNews($this::getNumPage());
+        $tabArticle = $this::getHomeNews($this::getNumPage());
         $this::showHomeNews($tabArticle);
     }
-    public function getHomeNews($page) :array
+
+    public function getHomeNews($page): array
     {
         return $this->article_model->getPageArticle($page);
     }
 
-    public function showHomeNews($tabArticle){
-
-        $admin = $this->admin_model->isadmin();
-
-        $page=$this->getNumPage();
-        $nb_article_page=2;
-        $nbArticle=$this->article_model->Count();
-        $nbCom=$this->getCompteur();
-        if($nbArticle <= ($page-1)*$nb_article_page && $nbArticle!=0){
-            FrontControlleur::addError("Ce numéro de page n'existe pas");
-        }
-        $tabArticle=$this->article_model->cutArticle($tabArticle);
-        require($this->rep . $this->vues['home']);
-
-        //Affiche les boutons de page si le nombre d'articles par page est dépassé
-        if($nbArticle > $nb_article_page){
-            require($this->rep . $this->vues['buttonPage']);
-        }
-    }
-
-    public function getNumPage() :int
+    public function getNumPage(): int
     {
-        $page=1;
-        if(isset($_GET['page'])) {
+        $page = 1;
+        if (isset($_GET['page'])) {
             $page = Validation::cleanINT($_GET['page']);
         }
         return $page;
     }
 
-    public function searchNews(string $key) : array
+    public function showHomeNews($tabArticle)
     {
-        $key=Validation::cleanString($key);
+
+        $admin = $this->admin_model->isadmin();
+
+        $page = $this->getNumPage();
+        $nb_article_page = 2;
+        $nbArticle = $this->article_model->Count();
+        $nbCom = $this->getCompteur();
+        if ($nbArticle <= ($page - 1) * $nb_article_page && $nbArticle != 0) {
+            FrontControlleur::addError("Ce numéro de page n'existe pas");
+        }
+        $tabArticle = $this->article_model->cutArticle($tabArticle);
+        require($this->rep . $this->vues['home']);
+
+        //Affiche les boutons de page si le nombre d'articles par page est dépassé
+        if ($nbArticle > $nb_article_page) {
+            require($this->rep . $this->vues['buttonPage']);
+        }
+    }
+
+    public function getCompteur()
+    {
+        if (isset($_COOKIE['commentaires'])) {
+            return Validation::cleanINT($_COOKIE['commentaires']);
+        }
+        return 0;
+    }
+
+    public function searchNews(string $key): array
+    {
+        $key = Validation::cleanString($key);
         return $this->article_model->searchArticle($key);
     }
 
     function getArticle()
     {
-        if(!isset($_GET['id'])) {
+        if (!isset($_GET['id'])) {
             $this::init();
         }
-        $cleanIntID=Validation::cleanINT($_GET['id']);
+        $cleanIntID = Validation::cleanINT($_GET['id']);
 
-        $article=$this->article_model->getArticleId($cleanIntID);
-        $com=$this->commentaires_model->getCommentaireId($cleanIntID);
+        $article = $this->article_model->getArticleId($cleanIntID);
+        $com = $this->commentaires_model->getCommentaireId($cleanIntID);
 
         require($this->rep . $this->vues['one_article']);
         require($this->rep . $this->vues['commentaire']);
@@ -114,7 +124,7 @@ class UserControlleur
 
     function addCommentaire()
     {
-        $idArticle =Validation::cleanINT($_REQUEST['id']);
+        $idArticle = Validation::cleanINT($_REQUEST['id']);
 
         if (isset($_SESSION['pseudo']) && !empty($_SESSION['pseudo']))
             $pseudo = Validation::cleanString($_SESSION['pseudo']);
@@ -138,38 +148,33 @@ class UserControlleur
 
                     header("Location: index.php?action=get&id=$idArticle");// ce header peut sans doute etre enlever, mais ca complique le boulot au niveau de la vue et ajoute des conditions.
                 } catch (Exception $e) {
-                    FrontControlleur::addError( "Votre commentaire n'a pas été envoyé");
+                    FrontControlleur::addError("Votre commentaire n'a pas été envoyé");
                 }
             }
         }
     }
-    public function getCompteur()
+
+    function incrCookie()
     {
-        if (isset($_COOKIE['commentaires'])) {
-            return Validation::cleanINT($_COOKIE['commentaires']);
-        }
-        return 0;
+        $cpt = $this::getCompteur();
+        setcookie("commentaires", $cpt + 1, time() + 365 * 24 * 3600);
     }
 
-    function incrCookie(){
-            $cpt=$this::getCompteur();
-            setcookie("commentaires",$cpt+1,time()+365*24*3600);
-    }
-
-    function connexion() {
+    function connexion()
+    {
         $admin = $this->admin_model->isadmin();
 
-        if(isset($_REQUEST['button']) && !$admin){
-            $nom=Validation::cleanString($_REQUEST['login']);
-            $mdp=Validation::cleanString($_REQUEST['password']);
+        if (isset($_REQUEST['button']) && !$admin) {
+            $nom = Validation::cleanString($_REQUEST['login']);
+            $mdp = Validation::cleanString($_REQUEST['password']);
 
             Validation::connexion_form($nom, $mdp);
 
-            if(empty(FrontControlleur::getError())){
-                $utilisateur=$this->admin_model->authentification($nom,$mdp);
-                if(!isset($utilisateur)) {
+            if (empty(FrontControlleur::getError())) {
+                $utilisateur = $this->admin_model->authentification($nom, $mdp);
+                if (!isset($utilisateur)) {
                     FrontControlleur::addError("Mot de passe ou identifiant incorrect");
-                }else{
+                } else {
                     $_SESSION['pseudo'] = $utilisateur->login;
                     $_SESSION['role'] = "admin";
                     header("Location: index.php");
@@ -177,8 +182,7 @@ class UserControlleur
             }
         }
 
-            require ($this->rep.$this->vues['login']);
-
+        require($this->rep . $this->vues['login']);
 
 
     }

@@ -6,9 +6,9 @@
         <div class="navbar-right">
             <?php
 
-            if(isset($_SESSION['role'])){
+            if (isset($_SESSION['role'])) {
                 echo '<a class="btn btn-primary" href="index.php?action=deconnection">Se Déconnecter</a>';
-            }else{
+            } else {
                 echo '<a class="btn btn-primary" href="index.php?action=connection">Administration</a>';
             }
 

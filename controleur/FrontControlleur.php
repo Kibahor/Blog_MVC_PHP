@@ -2,10 +2,9 @@
 
 class FrontControlleur
 {
+    private static $dVueErreur;
     private $rep;
     private $vues;
-
-    private static $dVueErreur;
 
     public function __construct()
     {
@@ -14,7 +13,7 @@ class FrontControlleur
         $this->rep = $rep;
         $this->vues = $vues;
 
-        self::$dVueErreur=array();
+        self::$dVueErreur = array();
 
         require($this->rep . $this->vues['head']);
         $actionAdmin = array('delete', 'addA', 'deconnection');
@@ -22,7 +21,7 @@ class FrontControlleur
             $model = new AdminModel();
             $admin = $model->isadmin();
 
-            if (isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
+            if (isset($_REQUEST['action']) && !empty($_REQUEST['action'])) {
                 $action = Validation::cleanString($_REQUEST['action']);
             } else {
                 $action = NULL;
@@ -40,17 +39,20 @@ class FrontControlleur
         } catch (PDOException $e) {
             $this::addError($e);
         } finally {
-            if(!empty($this::getError())){
+            if (!empty($this::getError())) {
                 require($rep . $vues['erreur']);                    // on affiche les erreurs en fin de page
             }
-            require ($this->rep . $this->vues['footer']);
+            require($this->rep . $this->vues['footer']);
         }
     }
 
-    public static function addError(string $error){
-        self::$dVueErreur[]=$error;
+    public static function addError(string $error)
+    {
+        self::$dVueErreur[] = $error;
     }
-    public static function getError(): array{
+
+    public static function getError(): array
+    {
         return self::$dVueErreur;
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 class ArticleGateway extends Connection
 {
 
@@ -10,7 +11,7 @@ class ArticleGateway extends Connection
                 ORDER BY {$cat} {$order}";
         $this->executeQuery($sql);
 
-        $tabResult=[];
+        $tabResult = [];
         foreach ($this->getResults() as $post) {
             $tabResult[] = new Article($post['articleId'], $post['title'], $post['date'], $post['content'], $post['idAdmin']);
         }
@@ -31,7 +32,7 @@ class ArticleGateway extends Connection
 
     }
 
-    public function modifArticle($id, $title, $content) :bool
+    public function modifArticle($id, $title, $content): bool
     {
         $sql = 'UPDATE posts
                 SET title = :title,
@@ -45,23 +46,23 @@ class ArticleGateway extends Connection
     }
 
     //Fonction pour obtenir les 5 premier Articles
-    public function getPage($start, $stop,$order) :array
+    public function getPage($start, $stop, $order): array
     {
         $sql = "SELECT id,title, content, DATE_FORMAT(created, '%D %b %Y') AS date, idAdmin
                 FROM article
                 ORDER BY date {$order} LIMIT {$start},{$stop}";
         $this->executeQuery($sql);
 
-        $tabResult=[];
+        $tabResult = [];
         foreach ($this->getResults() as $post) {
             $tabResult[] = new Article($post['id'], $post['title'], $post['content'], $post['date'], $post['idAdmin']);
-            
+
         }
         return $tabResult;
     }
 
 
-    public function getSearch($search, $cat, $order) : array
+    public function getSearch($search, $cat, $order): array
     {
         //$search='*'.$search.'*'; //Le REGEX de MYSQL ne marche pas très bien malheureusement ... Il faudrait utiliser PostGres
         $sql = "SELECT article.id AS articleId, title,content, DATE_FORMAT(created, '%D %b %Y') AS date, idAdmin
@@ -74,14 +75,14 @@ class ArticleGateway extends Connection
             ':search' => array($search, PDO::PARAM_STR)
         ));
 
-        $tabResult=[];
+        $tabResult = [];
         foreach ($this->getResults() as $post) {
             $tabResult[] = new Article($post['articleId'], $post['title'], $post['content'], $post['date'], $post['idAdmin']);
         }
         return $tabResult;
     }
 
-    public function getOne($id) :Article
+    public function getOne($id): Article
     {
         $sql = "SELECT article.id AS id, title, content, DATE_FORMAT(created, '%D %b %Y') AS date, idAdmin
                 FROM article
@@ -92,14 +93,15 @@ class ArticleGateway extends Connection
             ':id' => array($id, PDO::PARAM_INT)
         ));
 
-        $post=$this->getResults()[0];
-        return new Article($post['id'], $post['title'], $post['content'], $post['date'], $post['idAdmin']);;
+        $post = $this->getResults()[0];
+        return new Article($post['id'], $post['title'], $post['content'], $post['date'], $post['idAdmin']);
     }
+
     public function Count()
     {
         $sql = "SELECT COUNT(*) FROM article";
         $this->executeQuery($sql);
-        return $this->getResults() ;
+        return $this->getResults();
     }
 
     public function delete($id)

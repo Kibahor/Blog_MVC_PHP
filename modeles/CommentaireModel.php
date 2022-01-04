@@ -16,20 +16,24 @@ class CommentaireModel
         return $this->gate->getArticle($cat, $order);
     }
 
-    public function suppCommentaire($pseudo, $content, $idArticle){
+    public function suppCommentaire($pseudo, $content, $idArticle)
+    {
         return $this->gate->supp($pseudo, $content, $idArticle);
     }
 
-    public function getPageCommentaire($start){
-        $stop=$start+5;
+    public function getPageCommentaire($start)
+    {
+        $stop = $start + 5;
         return $this->gate->getPage($start, $stop);
     }
 
-    public function getCommentaireId($id){
+    public function getCommentaireId($id)
+    {
         return $this->gate->getId($id);
     }
 
-    public function addCommentaire($pseudo,$content,$idArticle){
-        return $this->gate->add($pseudo,$content,$idArticle);
+    public function addCommentaire($pseudo, $content, $idArticle)
+    {
+        return $this->gate->add($pseudo, $content, $idArticle);
     }
 }

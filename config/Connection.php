@@ -1,4 +1,5 @@
 <?php
+
 class Connection extends PDO
 {
 
@@ -12,9 +13,9 @@ class Connection extends PDO
     }
 
 
-    /** * @param string $query 
-     * @param array $parameters * 
-     * @return bool Returns `true` on success, `false` otherwise 
+    /** * @param string $query
+     * @param array $parameters *
+     * @return bool Returns `true` on success, `false` otherwise
      */
 
     public function executeQuery(string $query, array $parameters = []): bool

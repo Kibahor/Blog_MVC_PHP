@@ -1,4 +1,5 @@
 <?php
+
 class AdminGateway extends Connection
 {
 

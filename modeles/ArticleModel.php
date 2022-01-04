@@ -14,7 +14,7 @@ class ArticleModel
      * @param $order
      * @return array
      */
-     public function get_articles($order): array
+    public function get_articles($order): array
     {
         $cat = 'date';
         $order = 'ASC';
@@ -38,11 +38,12 @@ class ArticleModel
 
     public function getPageArticle($start): array
     {
-        $start = ($start-1) * 5 ;
+        $start = ($start - 1) * 5;
         $nb = 5;
         $order = 'DESC';
-        return $this->gate->getPage($start,$nb,$order);
+        return $this->gate->getPage($start, $nb, $order);
     }
+
     public function count(): int
     {
         return $this->gate->Count()[0][0];
@@ -58,41 +59,41 @@ class ArticleModel
         return $this->gate->getOne($id);
     }
 
-    private function substrwords($text, $maxchar, $end='...') {
+    public function cutArticle($tab): array
+    {
+        $tab2 = array();
+        foreach ($tab as $article) {
+            $article->content = $this::substrwords($article->content, 300);
+            array_push($tab2, $article);
+        }
+        return $tab2;
+    }
+
+    private function substrwords($text, $maxchar, $end = '...')
+    {
         if (strlen($text) > $maxchar || $text == '') {
             $words = preg_split('/\s/', $text);
             $output = '';
-            $i      = 0;
+            $i = 0;
             while (1) {
-                $length = strlen($output)+strlen($words[$i]);
+                $length = strlen($output) + strlen($words[$i]);
                 if ($length > $maxchar) {
                     break;
-                }
-                else {
+                } else {
                     $output .= " " . $words[$i];
                     ++$i;
                 }
             }
             $output .= $end;
-        }
-        else {
+        } else {
             $output = $text;
         }
         return $output;
     }
 
-    public function cutArticle($tab): array
+    function bbc2html($content)
     {
-        $tab2=array();
-        foreach($tab as $article){
-            $article->content=$this::substrwords($article->content,300);
-            array_push($tab2,$article);
-        }
-        return $tab2;
-    }
-
-    function bbc2html($content) {
-        $search = array (
+        $search = array(
             '/(\[b\])(.*?)(\[\/b\])/',
             '/(\[i\])(.*?)(\[\/i\])/',
             '/(\[u\])(.*?)(\[\/u\])/',
@@ -102,7 +103,7 @@ class ArticleModel
             '/(\[url\])(.*?)(\[\/url\])/'
         );
 
-        $replace = array (
+        $replace = array(
             '<strong>$2</strong>',
             '<em>$2</em>',
             '<u>$2</u>',

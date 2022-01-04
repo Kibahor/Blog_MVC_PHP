@@ -13,16 +13,16 @@ class AdminController
         $this->rep = $rep;
         $this->vues = $vues;
 
-        $this->admin_model= new AdminModel();
-        $this->article_model= new ArticleModel();
+        $this->admin_model = new AdminModel();
+        $this->article_model = new ArticleModel();
 
         try {
             switch ($action) {
                 case NULL:
-                    //$this->init();
+                    FrontControlleur::addError("Une erreur est survenue");
                     break;
                 case "delete":
-                        $this::delete();
+                    $this::delete();
                     break;
                 case "addA":
                     $this::add();
@@ -35,26 +35,28 @@ class AdminController
                     break;
             }
         } catch (PDOException $e) {
-            FrontControlleur::addError( $e);
+            FrontControlleur::addError($e);
         } catch (Exception $e2) {
-            FrontControlleur::addError( $e2);
+            FrontControlleur::addError($e2);
         }
     }
 
-    public function delete(){
-        $cleanIntID=Validation::cleanINT(Validation::cleanINT($_GET['id']));
+    public function delete()
+    {
+        $cleanIntID = Validation::cleanINT(Validation::cleanINT($_GET['id']));
         $this->article_model->deleteArticle($cleanIntID);               //pas besoin de faire de message d'erreur pour article non trouvé
         new UserControlleur(NULL);
     }
 
-    public function add(){
+    public function add()
+    {
 
         require($this->rep . $this->vues['newArticle']);
 
-        if(isset($_REQUEST['button'])) {
+        if (isset($_REQUEST['button'])) {
             $titre = Validation::cleanString($_REQUEST['titre']);
             $content = Validation::cleanString($_REQUEST['content']);
-            $content=$this->article_model->bbc2html($content);
+            $content = $this->article_model->bbc2html($content);
             Validation::article_form($titre, $content);
 
             if (empty(FrontControlleur::getError())) {
@@ -66,10 +68,10 @@ class AdminController
 
                     header("Location: index.php");// ce header peut sans doute etre enlever, mais ca complique le boulot au niveau de la vue et ajoute des conditions.
                 } catch (Exception $e) {
-                    FrontControlleur::addError( $e);
+                    FrontControlleur::addError($e);
                 }
             }
 
-            }
+        }
     }
 }

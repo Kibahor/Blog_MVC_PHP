@@ -1,4 +1,5 @@
 <?php
+
 class CommentaireGateway extends Connection
 {
     //ajouter un commentaires
@@ -49,7 +50,7 @@ class CommentaireGateway extends Connection
             ':id' => array($id, PDO::PARAM_INT)
         ));
 
-        $tabResult=[];
+        $tabResult = [];
         foreach ($this->getResults() as $post) {
             $tabResult[] = new Commentaire($post['id'], $post['pseudo'], $post['content'], $post['created'], $post['idArticle']);
         }
