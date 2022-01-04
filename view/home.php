@@ -28,7 +28,7 @@
             <?php
 
             if(isset($admin) && $admin){
-                echo '<a class="btn btn-primary" href="index.php?action=add">Ajouter un article</a>';
+                echo '<a class="btn btn-primary" href="index.php?action=addA">Ajouter un article</a>';
             }
 
             if (isset($nbArticle)&&isset($nbCom)) {
@@ -53,13 +53,15 @@
                             <h2 class="post-title" ><a href="index.php?action=get&id='.$id.'">' .$title. '</a></h2>
                             <p>' .$content. '</p>                                    
                             <p class="post-meta">Posté le ' .$date. '</p>
-                        </div>
+                        </div>';
+                    if(isset($admin) && $admin) {
+                        echo '<a class="btn btn-danger" href="index.php?action=delete&id=' . $id . '"><img src="view/res/img/trash.png" width="25" height="25" alt="Supprimer Article"></a>';
+                    }
+                    echo '
                         <!-- Divider-->
                         <hr class="my-4" /> 
                     ';
-                    if(isset($admin) && $admin) {
-                        echo '<a class="btn btn-primary" href="index.php?action=delete&id=' . $id . '">Delete Article</a>';
-                    }
+
                 }
             }else{
                 echo "<p>Il n'y a pas d'article !</p>";
