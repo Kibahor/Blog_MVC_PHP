@@ -11,7 +11,7 @@ class UserControlleur
 
     public function __construct($action)
     {
-        global $rep, $vues;// nécessaire pour utiliser variables globales
+        global $rep, $vues;
         $this->rep = $rep;
         $this->vues = $vues;
 
@@ -27,7 +27,7 @@ class UserControlleur
                     break;
                 case "search":
                     if(isset($_POST['query']) && !empty($_POST['query'])){
-                        $this::showHomeNews($this::searchNews($_POST['query']));
+                        $this::showHomeNews($this::searchNews(Validation::cleanString($_POST['query'])));
                     }else{
                         $this::init();
                     }
@@ -117,7 +117,7 @@ class UserControlleur
         $idArticle =Validation::cleanINT($_REQUEST['id']);
 
         if (isset($_SESSION['pseudo']) && !empty($_SESSION['pseudo']))
-            $pseudo = $_SESSION['pseudo'];
+            $pseudo = Validation::cleanString($_SESSION['pseudo']);
         else
             $pseudo = NULL;
 
@@ -125,8 +125,8 @@ class UserControlleur
 
         if (isset($_REQUEST['button'])) {
 
-            $pseudo = $_REQUEST['pseudo'];
-            $content = $_REQUEST['content'];
+            $pseudo = Validation::cleanString($_REQUEST['pseudo']);
+            $content = Validation::cleanString($_REQUEST['content']);
 
             Validation::commentaire_form($pseudo, $content);
 
@@ -161,8 +161,8 @@ class UserControlleur
         $admin = $this->admin_model->isadmin();
 
         if(isset($_REQUEST['button']) && !$admin){
-            $nom=$_REQUEST['login'];
-            $mdp=$_REQUEST['password'];
+            $nom=Validation::cleanString($_REQUEST['login']);
+            $mdp=Validation::cleanString($_REQUEST['password']);
 
             Validation::connexion_form($nom, $mdp);
 

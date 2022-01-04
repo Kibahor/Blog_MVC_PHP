@@ -16,10 +16,11 @@ class AdminModel
      * @param $mail
      * @param $login
      * @param $pass
+     * //$this->admin_model->addAdmin("Matteo","Broquet","matteobroquete@gmail.com","admin","admin");
      */
     public function addAdmin($firstName, $lastName, $mail, $login, $pass)
     {
-
+        $pass=password_hash($pass, PASSWORD_ARGON2ID);
         $this->gate->add($firstName, $lastName, $mail, $login, $pass);
     }
 

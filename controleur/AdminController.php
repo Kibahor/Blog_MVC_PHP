@@ -52,8 +52,8 @@ class AdminController
         require($this->rep . $this->vues['newArticle']);
 
         if(isset($_REQUEST['button'])) {
-            $titre = $_REQUEST['titre'];
-            $content = $_REQUEST['content'];
+            $titre = Validation::cleanString($_REQUEST['titre']);
+            $content = Validation::cleanString($_REQUEST['content']);
 
             Validation::article_form($titre, $content);
 
