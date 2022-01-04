@@ -1,0 +1,51 @@
+=====[2]=======
+Titre : Final Fantasy 7 Remake Intergrade en 8K avec Reshade Ray Tracing et quelques Mods, ça claque fort
+
+Content :
+[p]Envie d'en prendre plein les mirettes ? Installez-vous confortablement et profitez de cette courte vidéo à propos de [b]Final Fantasy 7 Remake Intergrade[/b] en 8K avec plusieurs Mods, mais aussi du Reshade Ray Tracing. Et... C'est beau, très beau même. Il est d'ailleurs incroyable de voir à quel point certains amateurs travaillent dur pour nous proposer des améliorations impressionnantes.[/p]
+
+[p]La liste des Mods utilisés est disponible dans la description de la vidéo, pour ceux qui veulent tenter l'aventure.[/p]
+
+[img]https://www.cowcotland.com/images.php?url=images/news/2022/01/ff7.jpg&t=660[/img]
+[video]https://www.youtube.com/embed/J7Dswoaozvg[/video]
+
+[p][b][i]Source :[/b][/i] [url=https://www.dsogaming.com/videotrailer-news/here-is-final-fantasy-7-remake-in-8k-with-reshade-ray-tracing/]DSOGaming[/url][/p]
+
+======[3]=======
+Titre : HEA500 Mini, un Amiga 500 avec une souris et une manette pour revenir dans le passé
+
+Content:
+
+[p]Nouveau bond dans le passé avec cette fois [b]Koch Media[/b] qui annoncé, pour 2022, la console [b]THEA500 Mini[/b]. Un système de jeu qui va ravir les plus anciens puisqu'il s'agit tout simplement d'un ordinateur [b]Amiga 500[/b] avec vingt-cinq jeux préinstallés, mais il sera possible d'y ajouter d'autres jeux si besoin via un port USB. De l'émulation donc, avec la possibilité d'y brancher un clavier, le tout avec une sortie HDMI pour un affichage moderne.[/p]
+[p]Un affichage qui semble être centre de l'attention de [b]Retro Games[/b], derrière la console, avec notamment un calibrage et une gestion de filtre CRT. Un peu comme à l'époque ?[/p]
+
+[img]https://www.cowcotland.com/images.php?url=images/news/2022/01/thea500mini.jpg&t=660[/img]
+
+[p]La manette est composée de quatre boutons qui forment une croix directionnelle, plus quatre boutons à droite avec deux boutons L et R, plus les classiques Menu et Home. La prise en main rebutera peut-être les plus jeunes, mais il faudra juste prendre le temps pour profiter des grands classiques fournis par défaut : [b]Alien Breed 3D[/b], [b]Another World[/b], [b]Simon the Sorcerer[/b], [b]Speedball 2[/b], etc.[/p]
+
+
+[p]Le tarif évoqué est de [b]129.99 €[/b]. Partant ?[/p]
+
+[i]Mise à jour de la [url=https://www.cowcotland.com/news/77558/thea500-mini-un-amiga-500-avec-une-souris-et-une-manette-pour-revenir-dans-le-passe.html]news[/url] du 11 août 2021.[/i]
+
+
+[p]Les précommandes sont désormais ouvertes chez [url=https://www.amazon.fr/Retro-Games-Limited-RGLA09-UK-61ST-Console/dp/B09BW8N7JZ]Amazon[/url], avec une date de sortie donnée pour le 31 mars 2022.[/p]
+
+[i]Mise à jour de la [url=https://www.cowcotland.com/news/77683/maj-thea500-mini-un-amiga-500-avec-une-souris-et-une-manette-pour-revenir-dans-le-passe.html]news[/url] du 25 août 2021.[/i]
+
+[p]C'est avec un peu de retard que nous apportons quelques informations supplémentaires à propos de cette machine, dont la sortie a été officialisée au 25 mars.[/p]
+[video]https://www.youtube.com/embed/uve927mm8-8[/video]
+
+======[4]=======
+Titre : Apple va-t-il rendre votre Mac M1 obsolète avec sa future puce M2 ?
+[p]Apple devrait dévoiler sa gamme de processeurs M2 dans la deuxième moitié de 2022. La mise à jour sera vraisemblablement timide sur les modèles entrée de gamme comme le MacBook Air. Mais un vrai bond dans les performances devrait arriver en 2023, avec les puces M2 Pro et M2 Max. [/p]
+[img]https://www.presse-citron.net/app/uploads/2022/01/apple-silicon-m2.jpg[/img]
+[p]Vous avez craqué en 2021 pour l’un des derniers MacBook Air, ou Pro avec puce M1, M1 Pro voire M1 Max ? A chaque nouvelle sortie d’un ordinateur équipé de silicium Apple, une impression se dégage : chaque nouveau modèle semble ringardiser le précédent – tandis que dans le même temps, la frontière entre les gammes comme les MacBook Air et Pro n’a jamais été aussi ténue.[/p]
+
+[p]Il y a donc de quoi légitimement se demander ce que Apple nous réserve avec sa prochaine salve d’ordinateurs équipés d’une puce M2. Les premières infos sur le sujet commencent à filtrer sur le web. On apprend d’abord que Apple ne lancera de nouvelle génération de puces que tous les 18 mois. Ce qui laisse au moins un peu de temps aux clients Apple pour qu’ils aient l’impression de détenir le nec plus ultra en matière de performances et d’autonomie.[/p]
+
+<h2>Pourquoi Apple ne va pas vous donner envie de remplacer votre Mac M1 par un M2 cette année</h2>
+
+[p]Ainsi les premières puces M2 devraient être dévoilées dans la seconde moitié de 2022. Apple ne dévoilera cette année que le tiers le moins performant avec une mise à jour du MacBook Air. Or, il semble d’emblée que cette nouvelle puce ne devrait pas rendre jaloux les propriétaires de MacBook Air et Pro actuels. En effet, à en croire Mark Gurman, on est sur une mise à jour très incrémentale, avec des améliorations qui ne seraient que “marginales” du côté des performances.[/p]
+[p]A priori Apple ne parlera cette année pas des variantes M2 Pro et Max – il faudra attendre pour cela 2023. Au-delà, on sait déjà que la génération M3 sera gravée selon le procédé TSMC 3 nm ce qui devrait rendre les appareils qui l’embarquent encore plus performants et endurants. Par ailleurs, il se murmure qu’Apple pourrait restructurer sa gamme d’ordinateurs, pour plus de clarté dans les prochains mois. Jusqu’à 6 modèles différents seraient proposés, chacun embarquant une puce différente.[/p]
+[i]Que pensez-vous de ces premières infos sur les prochaines puces Apple ? Vous avez acheté un Mac M1 cette année ? Partagez votre retour dans les commentaires ![/i]

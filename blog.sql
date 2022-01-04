@@ -1,17 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
--- https://www.phpmyadmin.net/
+-- version 4.5.4.1
+-- http://www.phpmyadmin.net
 --
--- Hôte : 127.0.0.1:3306
--- Généré le : lun. 29 nov. 2021 à 11:27
--- Version du serveur :  5.7.31
--- Version de PHP : 7.3.21
+-- Client :  localhost
+-- Généré le :  Mar 04 Janvier 2022 à 20:59
+-- Version du serveur :  5.7.11
+-- Version de PHP :  7.0.3
 
-SET
-SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET
-time_zone = "+00:00";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -20,55 +17,31 @@ time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `blog`
+-- Base de données :  `blog`
 --
 
--- --------------------------------------------------------rror or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '-5' at line 3 in /var/www/html/projet-php-blog/config/Connect
+-- --------------------------------------------------------
 
 --
 -- Structure de la table `admin`
 --
 
-DROP TABLE IF EXISTS `admin`;
-CREATE TABLE IF NOT EXISTS `admin`
-(
-    `id` int
-(
-    10
-) UNSIGNED NOT NULL AUTO_INCREMENT,
-    `firstName` varchar
-(
-    60
-) NOT NULL,
-    `lastName` varchar
-(
-    60
-) NOT NULL,
-    `mail` varchar
-(
-    120
-) NOT NULL,
-    `login` varchar
-(
-    60
-) NOT NULL,
-    `pass` varchar
-(
-    255
-) NOT NULL,
-    PRIMARY KEY
-(
-    `id`
-)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `admin` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `firstName` varchar(60) NOT NULL,
+  `lastName` varchar(60) NOT NULL,
+  `mail` varchar(120) NOT NULL,
+  `login` varchar(60) NOT NULL,
+  `pass` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `admin`
+-- Contenu de la table `admin`
 --
 
-INSERT INTO `admin` (`id`, `firstName`, `lastName`, `mail`, `login`, `pass`)
-VALUES (1, 'Patrick', 'Marthus', 'Patrick@marthus.be', 'admin', 'aaa'),
-       (2, 'Patrick', 'Marthus', 'Patrick@marthus.be', 'admin', 'aaa');
+INSERT INTO `admin` (`id`, `firstName`, `lastName`, `mail`, `login`, `pass`) VALUES
+(1, 'Lukas', 'Blouin', 'lukas.blouin@etu.uca.fr', 'Lukas', 'azerty'),
+(3, 'Matthéo', 'Broquet', 'bidon@gmail.com', 'Matthéo', '123456789');
 
 -- --------------------------------------------------------
 
@@ -76,55 +49,35 @@ VALUES (1, 'Patrick', 'Marthus', 'Patrick@marthus.be', 'admin', 'aaa'),
 -- Structure de la table `article`
 --
 
-DROP TABLE IF EXISTS `article`;
-CREATE TABLE IF NOT EXISTS `article`
-(
-    `id` int
-(
-    10
-) UNSIGNED NOT NULL AUTO_INCREMENT,
-    `title` varchar
-(
-    120
-) NOT NULL,
-    `content` text NOT NULL,
-    `created` date NOT NULL,
-    `idAdmin` int
-(
-    10
-) UNSIGNED NOT NULL,
-    PRIMARY KEY
-(
-    `id`
-),
-    FOREIGN KEY
-(
-    `idAdmin`
-) REFERENCES `admin`
-(
-    `id`
-) ON DELETE CASCADE
-    ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+CREATE TABLE `article` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(120) NOT NULL,
+  `content` text NOT NULL,
+  `created` date NOT NULL,
+  `idAdmin` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `article`
+-- Contenu de la table `article`
 --
 
-INSERT INTO `article` (`id`, `title`, `content`, `created`, `idAdmin`)
-VALUES (1, 'Blockchain: the revolution we’re not ready for',
-        'This is precisely the promise of blockchains.\r\nCryptocurrencies, which are built on blockchains, are all over the press these days, mostly because of the high prices, volatility, and sensational narratives surrounding debacles like Mt. Gox and The Silk Road.\r\nBut there’s something much bigger going on than just digital currencies.\r\nWhile the mainstream media has been busy speculating about prices and black market intrigues, they’ve missed the fact that beneath it all, cryptographers had quietly invented an entirely new set of technological primitives.\r\nBlockchains (and the consensus protocols that support them) were invented as a result of developers trying to solve a bold problem: how to create digital, untraceable money. By combining cryptography, game theory, economics, and computer science, they managed to create an entirely new set of tools for building decentralized systems.\r\nBut what they created will change much more than just how we exchange money. It’s going to change the entire world. And hardly anyone seems to notice.\r\nEdward Witten, the famous physicist, once said of string theory that it was “a part of 21st century physics that fell by chance into the 20th century.” In other words, the physics community was not ready for string theory.\"\"\r\n\r\nWESH',
-        '2017-08-09', 2),
-       (2, 'titre', 'content', '2021-11-28', 2),
-       (3, 'titre', 'content', '2021-11-28', 2),
-       (4, 'titre', 'content', '2021-11-28', 2),
-       (5, 'titre', 'content', '2021-11-28', 2),
-       (6, 'titre', 'content', '2021-11-28', 2),
-       (7, 'titre', 'content', '2021-11-28', 2),
-       (8, 'titre', 'content', '2021-11-28', 2),
-       (9, 'titre', 'content', '2021-11-28', 2),
-       (10, 'titre', 'content', '2021-11-28', 2),
-       (11, 'titre', 'content', '2021-11-28', 2),
-       (12, 'titre', 'content', '2021-11-28', 2);
+INSERT INTO `article` (`id`, `title`, `content`, `created`, `idAdmin`) VALUES
+(25, 'CES 2022 : NVIDIA nous montre l&#39;Ã©norme GeForce RTX 3090 Ti et c&#39;est tout', 'Bon et bien pas plus d&#39;information sur la monstrueuse <strong>GeForce RTX 3090 Ti</strong>, du moins pour le moment. La carte a juste Ã©tÃ© montrÃ©e et rien d&#39;autre, grosse dÃ©ception pour le moment donc.\r\n\r\nVoilÃ  ce que l&#39;on attend. La future <strong>GeForce RTX 3090 Ti</strong> de <strong>NVIDIA</strong>, dans sa version <strong>Founders Edition</strong>, embarquera un GA102-250, 10752 Cuda Cores, 336 Tensor Cores et 84 RT Cores, contre 10496 Cuda Cores, 328 Tensor Cores et 82 RT Cores pour la 3090.\r\n\r\nDu cÃ´tÃ© des frÃ©quences la carte tournerait Ã  1560/1860 MHz, contre 1395/1695 MHz pour la 3090, donc 10 % de mieux que la 3090.\r\n\r\n\r\n\r\n<img src="https://www.cowcotland.com/images.php?url=images/news/2022/01/nvidia-geforce-rtx-3090-ti-imgaes-cowcotland.jpg&t=660"><img src="https://www.cowcotland.com/images.php?url=images/news/2022/01/nvidia-geforce-rtx-3090-ti-imgaes-cowcotland-1.jpg&t=660">\r\n\r\nPour la mÃ©moire, nous aurons 24 Go de GDDR6X 384 bits Ã  21 Gbps, contre 19.5 Gbps pour la 3090, donc 7 % de mieux.\r\n\r\nLe TDP passe Ã  450 watts contre 350 watts et le prix est inconnu. On peut attendre un gain de performances de 10 % avec ce modÃ¨le.', '2022-01-04', 1),
+(31, 'Final Fantasy 7 Remake Intergrade en 8K avec Reshade Ray Tracing et quelques Mods, Ã§a claque fort', '<p>Envie d&#39;en prendre plein les mirettes ? Installez-vous confortablement et profitez de cette courte vidÃ©o Ã  propos de <strong>Final Fantasy 7 Remake Intergrade</strong> en 8K avec plusieurs Mods, mais aussi du Reshade Ray Tracing. Et... C&#39;est beau, trÃ¨s beau mÃªme. Il est d&#39;ailleurs incroyable de voir Ã  quel point certains amateurs travaillent dur pour nous proposer des amÃ©liorations impressionnantes.</p>\r\n\r\n<p>La liste des Mods utilisÃ©s est disponible dans la description de la vidÃ©o, pour ceux qui veulent tenter l&#39;aventure.</p>\r\n\r\n<img src="https://www.cowcotland.com/images.php?url=images/news/2022/01/ff7.jpg&t=660">\r\n<iframe width="560" height="315" src="https://www.youtube.com/embed/J7Dswoaozvg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>\r\n\r\n<p><strong><em>Source :</strong></em> <a href="https://www.dsogaming.com/videotrailer-news/here-is-final-fantasy-7-remake-in-8k-with-reshade-ray-tracing/" target="_blank">DSOGaming</a></p>', '2022-01-04', 1),
+(35, 'HEA500 Mini, un Amiga 500 avec une souris et une manette pour revenir dans le passÃ©', '<p>Nouveau bond dans le passÃ© avec cette fois <strong>Koch Media</strong> qui annoncÃ©, pour 2022, la console <strong>THEA500 Mini</strong>. Un systÃ¨me de jeu qui va ravir les plus anciens puisqu&#39;il s&#39;agit tout simplement d&#39;un ordinateur <strong>Amiga 500</strong> avec vingt-cinq jeux prÃ©installÃ©s, mais il sera possible d&#39;y ajouter d&#39;autres jeux si besoin via un port USB. De l&#39;Ã©mulation donc, avec la possibilitÃ© d&#39;y brancher un clavier, le tout avec une sortie HDMI pour un affichage moderne.</p>\r\n<p>Un affichage qui semble Ãªtre centre de l&#39;attention de <strong>Retro Games</strong>, derriÃ¨re la console, avec notamment un calibrage et une gestion de filtre CRT. Un peu comme Ã  l&#39;Ã©poque ?</p>\r\n\r\n<img src="https://www.cowcotland.com/images.php?url=images/news/2022/01/thea500mini.jpg&t=660">\r\n\r\n<p>La manette est composÃ©e de quatre boutons qui forment une croix directionnelle, plus quatre boutons Ã  droite avec deux boutons L et R, plus les classiques Menu et Home. La prise en main rebutera peut-Ãªtre les plus jeunes, mais il faudra juste prendre le temps pour profiter des grands classiques fournis par dÃ©faut : <strong>Alien Breed 3D</strong>, <strong>Another World</strong>, <strong>Simon the Sorcerer</strong>, <strong>Speedball 2</strong>, etc.</p>\r\n\r\n\r\n<p>Le tarif Ã©voquÃ© est de <strong>129.99 â‚¬</strong>. Partant ?</p>\r\n\r\n<em>Mise Ã  jour de la <a href="https://www.cowcotland.com/news/77558/thea500-mini-un-amiga-500-avec-une-souris-et-une-manette-pour-revenir-dans-le-passe.html" target="_blank">news</a> du 11 aoÃ»t 2021.</em>\r\n\r\n\r\n<p>Les prÃ©commandes sont dÃ©sormais ouvertes chez <a href="https://www.amazon.fr/Retro-Games-Limited-RGLA09-UK-61ST-Console/dp/B09BW8N7JZ" target="_blank">Amazon</a>, avec une date de sortie donnÃ©e pour le 31 mars 2022.</p>\r\n\r\n<em>Mise Ã  jour de la <a href="https://www.cowcotland.com/news/77683/maj-thea500-mini-un-amiga-500-avec-une-souris-et-une-manette-pour-revenir-dans-le-passe.html" target="_blank">news</a> du 25 aoÃ»t 2021.</em>\r\n\r\n<p>C&#39;est avec un peu de retard que nous apportons quelques informations supplÃ©mentaires Ã  propos de cette machine, dont la sortie a Ã©tÃ© officialisÃ©e au 25 mars.</p>\r\n<iframe width="560" height="315" src="https://www.youtube.com/embed/uve927mm8-8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>', '2022-01-04', 1),
+(37, 'Apple va-t-il rendre votre Mac M1 obsolÃ¨te avec sa future puce M2 ?', '<p>Apple devrait dÃ©voiler sa gamme de processeurs M2 dans la deuxiÃ¨me moitiÃ© de 2022. La mise Ã  jour sera vraisemblablement timide sur les modÃ¨les entrÃ©e de gamme comme le MacBook Air. Mais un vrai bond dans les performances devrait arriver en 2023, avec les puces M2 Pro et M2 Max. </p>\r\n<img src="https://www.presse-citron.net/app/uploads/2022/01/apple-silicon-m2.jpg">\r\n<p>Vous avez craquÃ© en 2021 pour lâ€™un des derniers MacBook Air, ou Pro avec puce M1, M1 Pro voire M1 Max ? A chaque nouvelle sortie dâ€™un ordinateur Ã©quipÃ© de silicium Apple, une impression se dÃ©gage : chaque nouveau modÃ¨le semble ringardiser le prÃ©cÃ©dent â€“ tandis que dans le mÃªme temps, la frontiÃ¨re entre les gammes comme les MacBook Air et Pro nâ€™a jamais Ã©tÃ© aussi tÃ©nue.</p>\r\n\r\n<p>Il y a donc de quoi lÃ©gitimement se demander ce que Apple nous rÃ©serve avec sa prochaine salve dâ€™ordinateurs Ã©quipÃ©s dâ€™une puce M2. Les premiÃ¨res infos sur le sujet commencent Ã  filtrer sur le web. On apprend dâ€™abord que Apple ne lancera de nouvelle gÃ©nÃ©ration de puces que tous les 18 mois. Ce qui laisse au moins un peu de temps aux clients Apple pour quâ€™ils aient lâ€™impression de dÃ©tenir le nec plus ultra en matiÃ¨re de performances et dâ€™autonomie.</p>\r\n\r\nPourquoi Apple ne va pas vous donner envie de remplacer votre Mac M1 par un M2 cette annÃ©e\r\n\r\n<p>Ainsi les premiÃ¨res puces M2 devraient Ãªtre dÃ©voilÃ©es dans la seconde moitiÃ© de 2022. Apple ne dÃ©voilera cette annÃ©e que le tiers le moins performant avec une mise Ã  jour du MacBook Air. Or, il semble dâ€™emblÃ©e que cette nouvelle puce ne devrait pas rendre jaloux les propriÃ©taires de MacBook Air et Pro actuels. En effet, Ã  en croire Mark Gurman, on est sur une mise Ã  jour trÃ¨s incrÃ©mentale, avec des amÃ©liorations qui ne seraient que â€œmarginalesâ€ du cÃ´tÃ© des performances.</p>\r\n<p>A priori Apple ne parlera cette annÃ©e pas des variantes M2 Pro et Max â€“ il faudra attendre pour cela 2023. Au-delÃ , on sait dÃ©jÃ  que la gÃ©nÃ©ration M3 sera gravÃ©e selon le procÃ©dÃ© TSMC 3 nm ce qui devrait rendre les appareils qui lâ€™embarquent encore plus performants et endurants. Par ailleurs, il se murmure quâ€™Apple pourrait restructurer sa gamme dâ€™ordinateurs, pour plus de clartÃ© dans les prochains mois. Jusquâ€™Ã  6 modÃ¨les diffÃ©rents seraient proposÃ©s, chacun embarquant une puce diffÃ©rente.</p>\r\n<em>Que pensez-vous de ces premiÃ¨res infos sur les prochaines puces Apple ? Vous avez achetÃ© un Mac M1 cette annÃ©e ? Partagez votre retour dans les commentaires !</em>', '2022-01-04', 1),
+(38, 'CES 2022 : NVIDIA nous montre l&#39;Ã©norme GeForce RTX 3090 Ti et c&#39;est tout', 'Bon et bien pas plus d&#39;information sur la monstrueuse <strong>GeForce RTX 3090 Ti</strong>, du moins pour le moment. La carte a juste Ã©tÃ© montrÃ©e et rien d&#39;autre, grosse dÃ©ception pour le moment donc.\r\n\r\nVoilÃ  ce que l&#39;on attend. La future <strong>GeForce RTX 3090 Ti</strong> de <strong>NVIDIA</strong>, dans sa version <strong>Founders Edition</strong>, embarquera un GA102-250, 10752 Cuda Cores, 336 Tensor Cores et 84 RT Cores, contre 10496 Cuda Cores, 328 Tensor Cores et 82 RT Cores pour la 3090.\r\n\r\nDu cÃ´tÃ© des frÃ©quences la carte tournerait Ã  1560/1860 MHz, contre 1395/1695 MHz pour la 3090, donc 10 % de mieux que la 3090.\r\n\r\n\r\n\r\n<img src="https://www.cowcotland.com/images.php?url=images/news/2022/01/nvidia-geforce-rtx-3090-ti-imgaes-cowcotland.jpg&t=660"><img src="https://www.cowcotland.com/images.php?url=images/news/2022/01/nvidia-geforce-rtx-3090-ti-imgaes-cowcotland-1.jpg&t=660">\r\n\r\nPour la mÃ©moire, nous aurons 24 Go de GDDR6X 384 bits Ã  21 Gbps, contre 19.5 Gbps pour la 3090, donc 7 % de mieux.\r\n\r\nLe TDP passe Ã  450 watts contre 350 watts et le prix est inconnu. On peut attendre un gain de performances de 10 % avec ce modÃ¨le.', '2022-01-04', 1),
+(39, 'Final Fantasy 7 Remake Intergrade en 8K avec Reshade Ray Tracing et quelques Mods, Ã§a claque fort', '<p>Envie d&#39;en prendre plein les mirettes ? Installez-vous confortablement et profitez de cette courte vidÃ©o Ã  propos de <strong>Final Fantasy 7 Remake Intergrade</strong> en 8K avec plusieurs Mods, mais aussi du Reshade Ray Tracing. Et... C&#39;est beau, trÃ¨s beau mÃªme. Il est d&#39;ailleurs incroyable de voir Ã  quel point certains amateurs travaillent dur pour nous proposer des amÃ©liorations impressionnantes.</p>\r\n\r\n<p>La liste des Mods utilisÃ©s est disponible dans la description de la vidÃ©o, pour ceux qui veulent tenter l&#39;aventure.</p>\r\n\r\n<img src="https://www.cowcotland.com/images.php?url=images/news/2022/01/ff7.jpg&t=660">\r\n<iframe width="560" height="315" src="https://www.youtube.com/embed/J7Dswoaozvg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>\r\n\r\n<p><strong><em>Source :</strong></em> <a href="https://www.dsogaming.com/videotrailer-news/here-is-final-fantasy-7-remake-in-8k-with-reshade-ray-tracing/" target="_blank">DSOGaming</a></p>', '2022-01-04', 1),
+(40, 'HEA500 Mini, un Amiga 500 avec une souris et une manette pour revenir dans le passÃ©', '<p>Nouveau bond dans le passÃ© avec cette fois <strong>Koch Media</strong> qui annoncÃ©, pour 2022, la console <strong>THEA500 Mini</strong>. Un systÃ¨me de jeu qui va ravir les plus anciens puisqu&#39;il s&#39;agit tout simplement d&#39;un ordinateur <strong>Amiga 500</strong> avec vingt-cinq jeux prÃ©installÃ©s, mais il sera possible d&#39;y ajouter d&#39;autres jeux si besoin via un port USB. De l&#39;Ã©mulation donc, avec la possibilitÃ© d&#39;y brancher un clavier, le tout avec une sortie HDMI pour un affichage moderne.</p>\r\n<p>Un affichage qui semble Ãªtre centre de l&#39;attention de <strong>Retro Games</strong>, derriÃ¨re la console, avec notamment un calibrage et une gestion de filtre CRT. Un peu comme Ã  l&#39;Ã©poque ?</p>\r\n\r\n<img src="https://www.cowcotland.com/images.php?url=images/news/2022/01/thea500mini.jpg&t=660">\r\n\r\n<p>La manette est composÃ©e de quatre boutons qui forment une croix directionnelle, plus quatre boutons Ã  droite avec deux boutons L et R, plus les classiques Menu et Home. La prise en main rebutera peut-Ãªtre les plus jeunes, mais il faudra juste prendre le temps pour profiter des grands classiques fournis par dÃ©faut : <strong>Alien Breed 3D</strong>, <strong>Another World</strong>, <strong>Simon the Sorcerer</strong>, <strong>Speedball 2</strong>, etc.</p>\r\n\r\n\r\n<p>Le tarif Ã©voquÃ© est de <strong>129.99 â‚¬</strong>. Partant ?</p>\r\n\r\n<em>Mise Ã  jour de la <a href="https://www.cowcotland.com/news/77558/thea500-mini-un-amiga-500-avec-une-souris-et-une-manette-pour-revenir-dans-le-passe.html" target="_blank">news</a> du 11 aoÃ»t 2021.</em>\r\n\r\n\r\n<p>Les prÃ©commandes sont dÃ©sormais ouvertes chez <a href="https://www.amazon.fr/Retro-Games-Limited-RGLA09-UK-61ST-Console/dp/B09BW8N7JZ" target="_blank">Amazon</a>, avec une date de sortie donnÃ©e pour le 31 mars 2022.</p>\r\n\r\n<em>Mise Ã  jour de la <a href="https://www.cowcotland.com/news/77683/maj-thea500-mini-un-amiga-500-avec-une-souris-et-une-manette-pour-revenir-dans-le-passe.html" target="_blank">news</a> du 25 aoÃ»t 2021.</em>\r\n\r\n<p>C&#39;est avec un peu de retard que nous apportons quelques informations supplÃ©mentaires Ã  propos de cette machine, dont la sortie a Ã©tÃ© officialisÃ©e au 25 mars.</p>\r\n<iframe width="560" height="315" src="https://www.youtube.com/embed/uve927mm8-8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>', '2022-01-04', 1),
+(41, 'Apple va-t-il rendre votre Mac M1 obsolÃ¨te avec sa future puce M2 ?', '<p>Apple devrait dÃ©voiler sa gamme de processeurs M2 dans la deuxiÃ¨me moitiÃ© de 2022. La mise Ã  jour sera vraisemblablement timide sur les modÃ¨les entrÃ©e de gamme comme le MacBook Air. Mais un vrai bond dans les performances devrait arriver en 2023, avec les puces M2 Pro et M2 Max. </p>\r\n<img src="https://www.presse-citron.net/app/uploads/2022/01/apple-silicon-m2.jpg">\r\n<p>Vous avez craquÃ© en 2021 pour lâ€™un des derniers MacBook Air, ou Pro avec puce M1, M1 Pro voire M1 Max ? A chaque nouvelle sortie dâ€™un ordinateur Ã©quipÃ© de silicium Apple, une impression se dÃ©gage : chaque nouveau modÃ¨le semble ringardiser le prÃ©cÃ©dent â€“ tandis que dans le mÃªme temps, la frontiÃ¨re entre les gammes comme les MacBook Air et Pro nâ€™a jamais Ã©tÃ© aussi tÃ©nue.</p>\r\n\r\n<p>Il y a donc de quoi lÃ©gitimement se demander ce que Apple nous rÃ©serve avec sa prochaine salve dâ€™ordinateurs Ã©quipÃ©s dâ€™une puce M2. Les premiÃ¨res infos sur le sujet commencent Ã  filtrer sur le web. On apprend dâ€™abord que Apple ne lancera de nouvelle gÃ©nÃ©ration de puces que tous les 18 mois. Ce qui laisse au moins un peu de temps aux clients Apple pour quâ€™ils aient lâ€™impression de dÃ©tenir le nec plus ultra en matiÃ¨re de performances et dâ€™autonomie.</p>\r\n\r\nPourquoi Apple ne va pas vous donner envie de remplacer votre Mac M1 par un M2 cette annÃ©e\r\n\r\n<p>Ainsi les premiÃ¨res puces M2 devraient Ãªtre dÃ©voilÃ©es dans la seconde moitiÃ© de 2022. Apple ne dÃ©voilera cette annÃ©e que le tiers le moins performant avec une mise Ã  jour du MacBook Air. Or, il semble dâ€™emblÃ©e que cette nouvelle puce ne devrait pas rendre jaloux les propriÃ©taires de MacBook Air et Pro actuels. En effet, Ã  en croire Mark Gurman, on est sur une mise Ã  jour trÃ¨s incrÃ©mentale, avec des amÃ©liorations qui ne seraient que â€œmarginalesâ€ du cÃ´tÃ© des performances.</p>\r\n<p>A priori Apple ne parlera cette annÃ©e pas des variantes M2 Pro et Max â€“ il faudra attendre pour cela 2023. Au-delÃ , on sait dÃ©jÃ  que la gÃ©nÃ©ration M3 sera gravÃ©e selon le procÃ©dÃ© TSMC 3 nm ce qui devrait rendre les appareils qui lâ€™embarquent encore plus performants et endurants. Par ailleurs, il se murmure quâ€™Apple pourrait restructurer sa gamme dâ€™ordinateurs, pour plus de clartÃ© dans les prochains mois. Jusquâ€™Ã  6 modÃ¨les diffÃ©rents seraient proposÃ©s, chacun embarquant une puce diffÃ©rente.</p>\r\n<em>Que pensez-vous de ces premiÃ¨res infos sur les prochaines puces Apple ? Vous avez achetÃ© un Mac M1 cette annÃ©e ? Partagez votre retour dans les commentaires !</em>', '2022-01-04', 1),
+(42, 'CES 2022 : NVIDIA nous montre l&#39;Ã©norme GeForce RTX 3090 Ti et c&#39;est tout', 'Bon et bien pas plus d&#39;information sur la monstrueuse <strong>GeForce RTX 3090 Ti</strong>, du moins pour le moment. La carte a juste Ã©tÃ© montrÃ©e et rien d&#39;autre, grosse dÃ©ception pour le moment donc.\r\n\r\nVoilÃ  ce que l&#39;on attend. La future <strong>GeForce RTX 3090 Ti</strong> de <strong>NVIDIA</strong>, dans sa version <strong>Founders Edition</strong>, embarquera un GA102-250, 10752 Cuda Cores, 336 Tensor Cores et 84 RT Cores, contre 10496 Cuda Cores, 328 Tensor Cores et 82 RT Cores pour la 3090.\r\n\r\nDu cÃ´tÃ© des frÃ©quences la carte tournerait Ã  1560/1860 MHz, contre 1395/1695 MHz pour la 3090, donc 10 % de mieux que la 3090.\r\n\r\n\r\n\r\n<img src="https://www.cowcotland.com/images.php?url=images/news/2022/01/nvidia-geforce-rtx-3090-ti-imgaes-cowcotland.jpg&t=660"><img src="https://www.cowcotland.com/images.php?url=images/news/2022/01/nvidia-geforce-rtx-3090-ti-imgaes-cowcotland-1.jpg&t=660">\r\n\r\nPour la mÃ©moire, nous aurons 24 Go de GDDR6X 384 bits Ã  21 Gbps, contre 19.5 Gbps pour la 3090, donc 7 % de mieux.\r\n\r\nLe TDP passe Ã  450 watts contre 350 watts et le prix est inconnu. On peut attendre un gain de performances de 10 % avec ce modÃ¨le.', '2022-01-04', 1),
+(43, 'Final Fantasy 7 Remake Intergrade en 8K avec Reshade Ray Tracing et quelques Mods, Ã§a claque fort', '<p>Envie d&#39;en prendre plein les mirettes ? Installez-vous confortablement et profitez de cette courte vidÃ©o Ã  propos de <strong>Final Fantasy 7 Remake Intergrade</strong> en 8K avec plusieurs Mods, mais aussi du Reshade Ray Tracing. Et... C&#39;est beau, trÃ¨s beau mÃªme. Il est d&#39;ailleurs incroyable de voir Ã  quel point certains amateurs travaillent dur pour nous proposer des amÃ©liorations impressionnantes.</p>\r\n\r\n<p>La liste des Mods utilisÃ©s est disponible dans la description de la vidÃ©o, pour ceux qui veulent tenter l&#39;aventure.</p>\r\n\r\n<img src="https://www.cowcotland.com/images.php?url=images/news/2022/01/ff7.jpg&t=660">\r\n<iframe width="560" height="315" src="https://www.youtube.com/embed/J7Dswoaozvg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>\r\n\r\n<p><strong><em>Source :</strong></em> <a href="https://www.dsogaming.com/videotrailer-news/here-is-final-fantasy-7-remake-in-8k-with-reshade-ray-tracing/" target="_blank">DSOGaming</a></p>', '2022-01-04', 1),
+(44, 'HEA500 Mini, un Amiga 500 avec une souris et une manette pour revenir dans le passÃ©', '<p>Nouveau bond dans le passÃ© avec cette fois <strong>Koch Media</strong> qui annoncÃ©, pour 2022, la console <strong>THEA500 Mini</strong>. Un systÃ¨me de jeu qui va ravir les plus anciens puisqu&#39;il s&#39;agit tout simplement d&#39;un ordinateur <strong>Amiga 500</strong> avec vingt-cinq jeux prÃ©installÃ©s, mais il sera possible d&#39;y ajouter d&#39;autres jeux si besoin via un port USB. De l&#39;Ã©mulation donc, avec la possibilitÃ© d&#39;y brancher un clavier, le tout avec une sortie HDMI pour un affichage moderne.</p>\r\n<p>Un affichage qui semble Ãªtre centre de l&#39;attention de <strong>Retro Games</strong>, derriÃ¨re la console, avec notamment un calibrage et une gestion de filtre CRT. Un peu comme Ã  l&#39;Ã©poque ?</p>\r\n\r\n<img src="https://www.cowcotland.com/images.php?url=images/news/2022/01/thea500mini.jpg&t=660">\r\n\r\n<p>La manette est composÃ©e de quatre boutons qui forment une croix directionnelle, plus quatre boutons Ã  droite avec deux boutons L et R, plus les classiques Menu et Home. La prise en main rebutera peut-Ãªtre les plus jeunes, mais il faudra juste prendre le temps pour profiter des grands classiques fournis par dÃ©faut : <strong>Alien Breed 3D</strong>, <strong>Another World</strong>, <strong>Simon the Sorcerer</strong>, <strong>Speedball 2</strong>, etc.</p>\r\n\r\n\r\n<p>Le tarif Ã©voquÃ© est de <strong>129.99 â‚¬</strong>. Partant ?</p>\r\n\r\n<em>Mise Ã  jour de la <a href="https://www.cowcotland.com/news/77558/thea500-mini-un-amiga-500-avec-une-souris-et-une-manette-pour-revenir-dans-le-passe.html" target="_blank">news</a> du 11 aoÃ»t 2021.</em>\r\n\r\n\r\n<p>Les prÃ©commandes sont dÃ©sormais ouvertes chez <a href="https://www.amazon.fr/Retro-Games-Limited-RGLA09-UK-61ST-Console/dp/B09BW8N7JZ" target="_blank">Amazon</a>, avec une date de sortie donnÃ©e pour le 31 mars 2022.</p>\r\n\r\n<em>Mise Ã  jour de la <a href="https://www.cowcotland.com/news/77683/maj-thea500-mini-un-amiga-500-avec-une-souris-et-une-manette-pour-revenir-dans-le-passe.html" target="_blank">news</a> du 25 aoÃ»t 2021.</em>\r\n\r\n<p>C&#39;est avec un peu de retard que nous apportons quelques informations supplÃ©mentaires Ã  propos de cette machine, dont la sortie a Ã©tÃ© officialisÃ©e au 25 mars.</p>\r\n<iframe width="560" height="315" src="https://www.youtube.com/embed/uve927mm8-8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>', '2022-01-04', 1),
+(45, 'Apple va-t-il rendre votre Mac M1 obsolÃ¨te avec sa future puce M2 ?', '<p>Apple devrait dÃ©voiler sa gamme de processeurs M2 dans la deuxiÃ¨me moitiÃ© de 2022. La mise Ã  jour sera vraisemblablement timide sur les modÃ¨les entrÃ©e de gamme comme le MacBook Air. Mais un vrai bond dans les performances devrait arriver en 2023, avec les puces M2 Pro et M2 Max. </p>\r\n<img src="https://www.presse-citron.net/app/uploads/2022/01/apple-silicon-m2.jpg">\r\n<p>Vous avez craquÃ© en 2021 pour lâ€™un des derniers MacBook Air, ou Pro avec puce M1, M1 Pro voire M1 Max ? A chaque nouvelle sortie dâ€™un ordinateur Ã©quipÃ© de silicium Apple, une impression se dÃ©gage : chaque nouveau modÃ¨le semble ringardiser le prÃ©cÃ©dent â€“ tandis que dans le mÃªme temps, la frontiÃ¨re entre les gammes comme les MacBook Air et Pro nâ€™a jamais Ã©tÃ© aussi tÃ©nue.</p>\r\n\r\n<p>Il y a donc de quoi lÃ©gitimement se demander ce que Apple nous rÃ©serve avec sa prochaine salve dâ€™ordinateurs Ã©quipÃ©s dâ€™une puce M2. Les premiÃ¨res infos sur le sujet commencent Ã  filtrer sur le web. On apprend dâ€™abord que Apple ne lancera de nouvelle gÃ©nÃ©ration de puces que tous les 18 mois. Ce qui laisse au moins un peu de temps aux clients Apple pour quâ€™ils aient lâ€™impression de dÃ©tenir le nec plus ultra en matiÃ¨re de performances et dâ€™autonomie.</p>\r\n\r\nPourquoi Apple ne va pas vous donner envie de remplacer votre Mac M1 par un M2 cette annÃ©e\r\n\r\n<p>Ainsi les premiÃ¨res puces M2 devraient Ãªtre dÃ©voilÃ©es dans la seconde moitiÃ© de 2022. Apple ne dÃ©voilera cette annÃ©e que le tiers le moins performant avec une mise Ã  jour du MacBook Air. Or, il semble dâ€™emblÃ©e que cette nouvelle puce ne devrait pas rendre jaloux les propriÃ©taires de MacBook Air et Pro actuels. En effet, Ã  en croire Mark Gurman, on est sur une mise Ã  jour trÃ¨s incrÃ©mentale, avec des amÃ©liorations qui ne seraient que â€œmarginalesâ€ du cÃ´tÃ© des performances.</p>\r\n<p>A priori Apple ne parlera cette annÃ©e pas des variantes M2 Pro et Max â€“ il faudra attendre pour cela 2023. Au-delÃ , on sait dÃ©jÃ  que la gÃ©nÃ©ration M3 sera gravÃ©e selon le procÃ©dÃ© TSMC 3 nm ce qui devrait rendre les appareils qui lâ€™embarquent encore plus performants et endurants. Par ailleurs, il se murmure quâ€™Apple pourrait restructurer sa gamme dâ€™ordinateurs, pour plus de clartÃ© dans les prochains mois. Jusquâ€™Ã  6 modÃ¨les diffÃ©rents seraient proposÃ©s, chacun embarquant une puce diffÃ©rente.</p>\r\n<em>Que pensez-vous de ces premiÃ¨res infos sur les prochaines puces Apple ? Vous avez achetÃ© un Mac M1 cette annÃ©e ? Partagez votre retour dans les commentaires !</em>', '2022-01-04', 1),
+(46, 'CES 2022 : NVIDIA nous montre l&#39;Ã©norme GeForce RTX 3090 Ti et c&#39;est tout', 'Bon et bien pas plus d&#39;information sur la monstrueuse <strong>GeForce RTX 3090 Ti</strong>, du moins pour le moment. La carte a juste Ã©tÃ© montrÃ©e et rien d&#39;autre, grosse dÃ©ception pour le moment donc.\r\n\r\nVoilÃ  ce que l&#39;on attend. La future <strong>GeForce RTX 3090 Ti</strong> de <strong>NVIDIA</strong>, dans sa version <strong>Founders Edition</strong>, embarquera un GA102-250, 10752 Cuda Cores, 336 Tensor Cores et 84 RT Cores, contre 10496 Cuda Cores, 328 Tensor Cores et 82 RT Cores pour la 3090.\r\n\r\nDu cÃ´tÃ© des frÃ©quences la carte tournerait Ã  1560/1860 MHz, contre 1395/1695 MHz pour la 3090, donc 10 % de mieux que la 3090.\r\n\r\n\r\n\r\n<img src="https://www.cowcotland.com/images.php?url=images/news/2022/01/nvidia-geforce-rtx-3090-ti-imgaes-cowcotland.jpg&t=660"><img src="https://www.cowcotland.com/images.php?url=images/news/2022/01/nvidia-geforce-rtx-3090-ti-imgaes-cowcotland-1.jpg&t=660">\r\n\r\nPour la mÃ©moire, nous aurons 24 Go de GDDR6X 384 bits Ã  21 Gbps, contre 19.5 Gbps pour la 3090, donc 7 % de mieux.\r\n\r\nLe TDP passe Ã  450 watts contre 350 watts et le prix est inconnu. On peut attendre un gain de performances de 10 % avec ce modÃ¨le.', '2022-01-04', 1),
+(47, 'Final Fantasy 7 Remake Intergrade en 8K avec Reshade Ray Tracing et quelques Mods, Ã§a claque fort', '<p>Envie d&#39;en prendre plein les mirettes ? Installez-vous confortablement et profitez de cette courte vidÃ©o Ã  propos de <strong>Final Fantasy 7 Remake Intergrade</strong> en 8K avec plusieurs Mods, mais aussi du Reshade Ray Tracing. Et... C&#39;est beau, trÃ¨s beau mÃªme. Il est d&#39;ailleurs incroyable de voir Ã  quel point certains amateurs travaillent dur pour nous proposer des amÃ©liorations impressionnantes.</p>\r\n\r\n<p>La liste des Mods utilisÃ©s est disponible dans la description de la vidÃ©o, pour ceux qui veulent tenter l&#39;aventure.</p>\r\n\r\n<img src="https://www.cowcotland.com/images.php?url=images/news/2022/01/ff7.jpg&t=660">\r\n<iframe width="560" height="315" src="https://www.youtube.com/embed/J7Dswoaozvg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>\r\n\r\n<p><strong><em>Source :</strong></em> <a href="https://www.dsogaming.com/videotrailer-news/here-is-final-fantasy-7-remake-in-8k-with-reshade-ray-tracing/" target="_blank">DSOGaming</a></p>', '2022-01-04', 1),
+(48, 'HEA500 Mini, un Amiga 500 avec une souris et une manette pour revenir dans le passÃ©', '<p>Nouveau bond dans le passÃ© avec cette fois <strong>Koch Media</strong> qui annoncÃ©, pour 2022, la console <strong>THEA500 Mini</strong>. Un systÃ¨me de jeu qui va ravir les plus anciens puisqu&#39;il s&#39;agit tout simplement d&#39;un ordinateur <strong>Amiga 500</strong> avec vingt-cinq jeux prÃ©installÃ©s, mais il sera possible d&#39;y ajouter d&#39;autres jeux si besoin via un port USB. De l&#39;Ã©mulation donc, avec la possibilitÃ© d&#39;y brancher un clavier, le tout avec une sortie HDMI pour un affichage moderne.</p>\r\n<p>Un affichage qui semble Ãªtre centre de l&#39;attention de <strong>Retro Games</strong>, derriÃ¨re la console, avec notamment un calibrage et une gestion de filtre CRT. Un peu comme Ã  l&#39;Ã©poque ?</p>\r\n\r\n<img src="https://www.cowcotland.com/images.php?url=images/news/2022/01/thea500mini.jpg&t=660">\r\n\r\n<p>La manette est composÃ©e de quatre boutons qui forment une croix directionnelle, plus quatre boutons Ã  droite avec deux boutons L et R, plus les classiques Menu et Home. La prise en main rebutera peut-Ãªtre les plus jeunes, mais il faudra juste prendre le temps pour profiter des grands classiques fournis par dÃ©faut : <strong>Alien Breed 3D</strong>, <strong>Another World</strong>, <strong>Simon the Sorcerer</strong>, <strong>Speedball 2</strong>, etc.</p>\r\n\r\n\r\n<p>Le tarif Ã©voquÃ© est de <strong>129.99 â‚¬</strong>. Partant ?</p>\r\n\r\n<em>Mise Ã  jour de la <a href="https://www.cowcotland.com/news/77558/thea500-mini-un-amiga-500-avec-une-souris-et-une-manette-pour-revenir-dans-le-passe.html" target="_blank">news</a> du 11 aoÃ»t 2021.</em>\r\n\r\n\r\n<p>Les prÃ©commandes sont dÃ©sormais ouvertes chez <a href="https://www.amazon.fr/Retro-Games-Limited-RGLA09-UK-61ST-Console/dp/B09BW8N7JZ" target="_blank">Amazon</a>, avec une date de sortie donnÃ©e pour le 31 mars 2022.</p>\r\n\r\n<em>Mise Ã  jour de la <a href="https://www.cowcotland.com/news/77683/maj-thea500-mini-un-amiga-500-avec-une-souris-et-une-manette-pour-revenir-dans-le-passe.html" target="_blank">news</a> du 25 aoÃ»t 2021.</em>\r\n\r\n<p>C&#39;est avec un peu de retard que nous apportons quelques informations supplÃ©mentaires Ã  propos de cette machine, dont la sortie a Ã©tÃ© officialisÃ©e au 25 mars.</p>\r\n<iframe width="560" height="315" src="https://www.youtube.com/embed/uve927mm8-8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>', '2022-01-04', 1),
+(49, 'Apple va-t-il rendre votre Mac M1 obsolÃ¨te avec sa future puce M2 ?', '<p>Apple devrait dÃ©voiler sa gamme de processeurs M2 dans la deuxiÃ¨me moitiÃ© de 2022. La mise Ã  jour sera vraisemblablement timide sur les modÃ¨les entrÃ©e de gamme comme le MacBook Air. Mais un vrai bond dans les performances devrait arriver en 2023, avec les puces M2 Pro et M2 Max. </p>\r\n<img src="https://www.presse-citron.net/app/uploads/2022/01/apple-silicon-m2.jpg">\r\n<p>Vous avez craquÃ© en 2021 pour lâ€™un des derniers MacBook Air, ou Pro avec puce M1, M1 Pro voire M1 Max ? A chaque nouvelle sortie dâ€™un ordinateur Ã©quipÃ© de silicium Apple, une impression se dÃ©gage : chaque nouveau modÃ¨le semble ringardiser le prÃ©cÃ©dent â€“ tandis que dans le mÃªme temps, la frontiÃ¨re entre les gammes comme les MacBook Air et Pro nâ€™a jamais Ã©tÃ© aussi tÃ©nue.</p>\r\n\r\n<p>Il y a donc de quoi lÃ©gitimement se demander ce que Apple nous rÃ©serve avec sa prochaine salve dâ€™ordinateurs Ã©quipÃ©s dâ€™une puce M2. Les premiÃ¨res infos sur le sujet commencent Ã  filtrer sur le web. On apprend dâ€™abord que Apple ne lancera de nouvelle gÃ©nÃ©ration de puces que tous les 18 mois. Ce qui laisse au moins un peu de temps aux clients Apple pour quâ€™ils aient lâ€™impression de dÃ©tenir le nec plus ultra en matiÃ¨re de performances et dâ€™autonomie.</p>\r\n\r\nPourquoi Apple ne va pas vous donner envie de remplacer votre Mac M1 par un M2 cette annÃ©e\r\n\r\n<p>Ainsi les premiÃ¨res puces M2 devraient Ãªtre dÃ©voilÃ©es dans la seconde moitiÃ© de 2022. Apple ne dÃ©voilera cette annÃ©e que le tiers le moins performant avec une mise Ã  jour du MacBook Air. Or, il semble dâ€™emblÃ©e que cette nouvelle puce ne devrait pas rendre jaloux les propriÃ©taires de MacBook Air et Pro actuels. En effet, Ã  en croire Mark Gurman, on est sur une mise Ã  jour trÃ¨s incrÃ©mentale, avec des amÃ©liorations qui ne seraient que â€œmarginalesâ€ du cÃ´tÃ© des performances.</p>\r\n<p>A priori Apple ne parlera cette annÃ©e pas des variantes M2 Pro et Max â€“ il faudra attendre pour cela 2023. Au-delÃ , on sait dÃ©jÃ  que la gÃ©nÃ©ration M3 sera gravÃ©e selon le procÃ©dÃ© TSMC 3 nm ce qui devrait rendre les appareils qui lâ€™embarquent encore plus performants et endurants. Par ailleurs, il se murmure quâ€™Apple pourrait restructurer sa gamme dâ€™ordinateurs, pour plus de clartÃ© dans les prochains mois. Jusquâ€™Ã  6 modÃ¨les diffÃ©rents seraient proposÃ©s, chacun embarquant une puce diffÃ©rente.</p>\r\n<em>Que pensez-vous de ces premiÃ¨res infos sur les prochaines puces Apple ? Vous avez achetÃ© un Mac M1 cette annÃ©e ? Partagez votre retour dans les commentaires !</em>', '2022-01-04', 1);
 
 -- --------------------------------------------------------
 
@@ -132,38 +85,85 @@ VALUES (1, 'Blockchain: the revolution we’re not ready for',
 -- Structure de la table `commentaires`
 --
 
-DROP TABLE IF EXISTS `commentaires`;
-CREATE TABLE IF NOT EXISTS `commentaires`
-(
-    `id` int
-(
-    10
-) UNSIGNED NOT NULL AUTO_INCREMENT,
-    `pseudo` varchar
-(
-    60
-) NOT NULL,
-    `content` text NOT NULL,
-    `created` date NOT NULL,
-    `idArticle` int
-(
-    10
-) UNSIGNED NOT NULL,
-    PRIMARY KEY
-(
-    `id`
-),
-    FOREIGN KEY
-(
-    `idArticle`
-) REFERENCES `article`
-(
-    `id`
-) ON DELETE CASCADE
-    ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+CREATE TABLE `commentaires` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `pseudo` varchar(60) NOT NULL,
+  `content` text NOT NULL,
+  `created` date NOT NULL,
+  `idArticle` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Contenu de la table `commentaires`
+--
 
-COMMIT;
+INSERT INTO `commentaires` (`id`, `pseudo`, `content`, `created`, `idArticle`) VALUES
+(10, 'Titouan', 'C&#39;est trop cool !', '2022-01-04', 25),
+(11, 'Jean-claude', 'Il ne savent plus quoi inventer ....', '2022-01-04', 25),
+(12, 'Michel', 'C&#39;est trop beau ! ', '2022-01-04', 31),
+(13, 'Pedro', 'J&#39;ai toujours aimer ces jeux, je les aient tous fait !', '2022-01-04', 31),
+(14, 'Gertrude', 'Sa me rappelle mon enfance.', '2022-01-04', 35),
+(15, 'Kevin', 'First !', '2022-01-04', 35),
+(16, 'Adrien', 'Je ne fait plus confiance a apple, il nous prennent vraiment pour des pigeon', '2022-01-04', 37);
+
+--
+-- Index pour les tables exportées
+--
+
+--
+-- Index pour la table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `article`
+--
+ALTER TABLE `article`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idAdmin` (`idAdmin`);
+
+--
+-- Index pour la table `commentaires`
+--
+ALTER TABLE `commentaires`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idArticle` (`idArticle`);
+
+--
+-- AUTO_INCREMENT pour les tables exportées
+--
+
+--
+-- AUTO_INCREMENT pour la table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT pour la table `article`
+--
+ALTER TABLE `article`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+--
+-- AUTO_INCREMENT pour la table `commentaires`
+--
+ALTER TABLE `commentaires`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+--
+-- Contraintes pour les tables exportées
+--
+
+--
+-- Contraintes pour la table `article`
+--
+ALTER TABLE `article`
+  ADD CONSTRAINT `article_ibfk_1` FOREIGN KEY (`idAdmin`) REFERENCES `admin` (`id`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `commentaires`
+--
+ALTER TABLE `commentaires`
+  ADD CONSTRAINT `commentaires_ibfk_1` FOREIGN KEY (`idArticle`) REFERENCES `article` (`id`) ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
