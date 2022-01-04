@@ -28,7 +28,7 @@
             <?php
 
             if(isset($admin) && $admin){
-                echo '<a class="btn btn-primary" href="index.php?action=add">Ajouter un article</a>';
+                echo '<a class="btn btn-primary" href="index.php?action=addA">Ajouter un article</a>';
             }
 
             if (isset($nbArticle)&&isset($nbCom)) {
@@ -55,11 +55,12 @@
                             <p class="post-meta">Posté le ' .$date. '</p>
                         </div>
                         <!-- Divider-->
-                        <hr class="my-4" /> 
+                        
                     ';
                     if(isset($admin) && $admin) {
                         echo '<a class="btn btn-primary" href="index.php?action=delete&id=' . $id . '">Delete Article</a>';
                     }
+                    echo '<hr class="my-4" /> ';
                 }
             }else{
                 echo "<p>Il n'y a pas d'article !</p>";

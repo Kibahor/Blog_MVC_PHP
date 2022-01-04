@@ -5,7 +5,7 @@ $rep=__DIR__.'/../';
 //BD
 $base="mysql:dbname=blog;host=localhost";
 $login="root";
-$mdp="root";
+$mdp="";
 
 //Elements
 $vues['head']='view/head.php';
