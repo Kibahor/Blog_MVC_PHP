@@ -136,7 +136,6 @@ class UserControlleur
                     $this::incrCookie();
                     $_SESSION['pseudo'] = $pseudo;
 
-                    //TODO: Enlever cette horreur car elle va nous faire enlever des points !!!! Le Prof a dit:"Il ne faut pas mettre de header location car sa détruit l'instance actuelle et sa en créer une autre" => En Gros sa casse tout !!
                     header("Location: index.php?action=get&id=$idArticle");// ce header peut sans doute etre enlever, mais ca complique le boulot au niveau de la vue et ajoute des conditions.
                 } catch (Exception $e) {
                     FrontControlleur::addError( "Votre commentaire n'a pas été envoyé");
@@ -173,7 +172,6 @@ class UserControlleur
                 }else{
                     $_SESSION['pseudo'] = $utilisateur->login;
                     $_SESSION['role'] = "admin";
-                    //TODO: Enlever cette horreur car elle va nous faire enlever des points !!!! Le Prof a dit:"Il ne faut pas mettre de header location car sa détruit l'instance actuelle et sa en créer une autre" => En Gros sa casse tout !!
                     header("Location: index.php");
                 }
             }

@@ -34,7 +34,6 @@ class AdminModel
         $this->gate->delete($id);
     }
 
-
     public function getIdAdmin($login)
     {
         return $this->gate->getOne($login);
