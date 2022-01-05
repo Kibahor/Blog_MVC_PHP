@@ -172,7 +172,10 @@ class UserControlleur
                     $this::incrCookie();
                     $_SESSION['pseudo'] = $pseudo;
 
-                    header("Location: index.php?action=get&id=$idArticle");// ce header peut sans doute etre enlever, mais ca complique le boulot au niveau de la vue et ajoute des conditions.
+                    /**
+                     * On peut utiliser la meme methode que lors de la connection, mais le header location permet de reecricre l'URL
+                     */
+                    header("Location: index.php?action=get&id=$idArticle");
                 } catch (Exception $e) {
                     FrontControlleur::addError("Votre commentaire n'a pas été envoyé");
                 }
@@ -208,7 +211,13 @@ class UserControlleur
                 } else {
                     $_SESSION['pseudo'] = $utilisateur->login;
                     $_SESSION['role'] = "admin";
-                    header("Location: index.php");
+
+                    /**
+                     * A la place de utiliser le header location, on utilise cette methode qui NE reecrit pas L'URL !!
+                     * header("Location: index.php");
+                     */
+                    $_GET['action']=null;
+                    new UserControlleur(null);
                 }
             }
         }
