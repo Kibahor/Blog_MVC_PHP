@@ -18,23 +18,23 @@ class AdminModel
      * @param $pass
      * //$this->admin_model->addAdmin("Matteo","Broquet","matteobroquete@gmail.com","admin","admin");
      */
-    public function addAdmin($firstName, $lastName, $mail, $login, $pass)
+    public function addAdmin(string $firstName, string $lastName, string $mail, string $login, string $pass)
     {
         $pass = password_hash($pass, PASSWORD_ARGON2ID);
         $this->gate->add($firstName, $lastName, $mail, $login, $pass);
     }
 
-    public function updateAdmin($id, $firstName, $lastName, $mail, $login, $pass)
+    public function updateAdmin(int $id, string $firstName, string $lastName, string $mail, string $login, string $pass)
     {
         $this->gate->update($id, $firstName, $lastName, $mail, $login, $pass);
     }
 
-    public function deleteAdmin($id)
+    public function deleteAdmin(int $id)
     {
         $this->gate->delete($id);
     }
 
-    public function getIdAdmin($login)
+    public function getIdAdmin(string $login)
     {
         return $this->gate->getOne($login);
     }
@@ -43,12 +43,12 @@ class AdminModel
      * @param $login
      * @return array
      */
-    public function getPassword($login)
+    public function getPassword(string $login)
     {
         return $this->gate->getPassword($login);
     }
 
-    public function getAdminLogin($login)
+    public function getAdminLogin(string $login)
     {
         return $this->gate->getLogin($login);
     }

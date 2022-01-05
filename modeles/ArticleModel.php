@@ -9,22 +9,22 @@ class ArticleModel
         $this->gate = new ArticleGateway();
     }
 
-    public function ajoutArticle($title, $content, $idUser)
+    public function ajoutArticle(string $title, string $content, int $idUser)
     {
         $this->gate->addArticle($title, $content, $idUser);
     }
 
-    public function updateArticle($title, $content, $idUser)
+    public function updateArticle(string $title, string $content, int $idUser)
     {
         $this->gate->modifArticle($title, $content, $idUser);
     }
 
-    public function deleteArticle($id)
+    public function deleteArticle(int $id)
     {
         $this->gate->delete($id);
     }
 
-    public function getPageArticle($start): array
+    public function getPageArticle(int $start): array
     {
         $start = ($start - 1) * 5;
         $nb = 5;
@@ -37,17 +37,17 @@ class ArticleModel
         return $this->gate->Count()[0][0];
     }
 
-    public function searchArticle($key): array
+    public function searchArticle(string $key): array
     {
         return $this->gate->getSearch($key, "date", "ASC");
     }
 
-    public function getArticleId($id): Article
+    public function getArticleId(int $id): Article
     {
         return $this->gate->getOne($id);
     }
 
-    public function cutArticle($tab): array
+    public function cutArticle(array $tab): array
     {
         $tab2 = array();
         foreach ($tab as $article) {
@@ -57,7 +57,7 @@ class ArticleModel
         return $tab2;
     }
 
-    private function substrwords($text, $maxchar, $end = '...')
+    private function substrwords(string $text, int $maxchar, string $end = '...')
     {
         if (strlen($text) > $maxchar || $text == '') {
             $words = preg_split('/\s/', $text);
@@ -83,7 +83,7 @@ class ArticleModel
      * @param $content
      * @return array|string|string[]|null
      */
-    function bbc2html($content)
+    function bbc2html(string $content)
     {
         $search = array(
             '/(\[b\])(.*?)(\[\/b\])/',
