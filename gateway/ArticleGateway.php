@@ -97,7 +97,7 @@ class ArticleGateway extends Connection
         return new Article($post['id'], $post['title'], $post['content'], $post['date'], $post['idAdmin']);
     }
 
-    public function Count():int
+    public function Count():array
     {
         $sql = "SELECT COUNT(*) FROM article";
         $this->executeQuery($sql);
