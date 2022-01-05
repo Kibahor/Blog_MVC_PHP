@@ -79,6 +79,10 @@ class ArticleModel
         return $output;
     }
 
+    /** Parser simplifié BBcode
+     * @param $content
+     * @return array|string|string[]|null
+     */
     function bbc2html($content)
     {
         $search = array(

@@ -3,7 +3,7 @@
 class ArticleGateway extends Connection
 {
 
-    public function getArticle($cat, $order): array
+    public function getArticle(string $cat, string $order): array
     {
         $sql = "SELECT article.id AS articleId,created, title,content, DATE_FORMAT(created, '%d/%m/%Y') AS date, u.id AS idAdmin
                 FROM article
@@ -19,7 +19,7 @@ class ArticleGateway extends Connection
     }
 
 
-    public function addArticle($title, $content, $idAdmin)
+    public function addArticle(string $title, string $content, int $idAdmin)
     {
         $sql = 'INSERT INTO article (title, content, created, idAdmin)
                 VALUES (:title, :content, NOW(), :idAdmin)';
@@ -32,7 +32,7 @@ class ArticleGateway extends Connection
 
     }
 
-    public function modifArticle($id, $title, $content): bool
+    public function modifArticle(int $id, string $title, string $content)
     {
         $sql = 'UPDATE posts
                 SET title = :title,
@@ -46,7 +46,7 @@ class ArticleGateway extends Connection
     }
 
 
-    public function getPage($start, $stop, $order): array
+    public function getPage(int $start, int $stop, string $order): array
     {
         $sql = "SELECT id,title, content, DATE_FORMAT(created, '%D %b %Y') AS date, idAdmin
                 FROM article
@@ -62,7 +62,7 @@ class ArticleGateway extends Connection
     }
 
 
-    public function getSearch($search, $cat, $order): array
+    public function getSearch(string $search, string $cat, string $order): array
     {
         //$search='*'.$search.'*'; //Le REGEX de MYSQL ne marche pas très bien malheureusement ... Il faudrait utiliser PostGres
         $sql = "SELECT article.id AS articleId, title,content, DATE_FORMAT(created, '%D %b %Y') AS date, idAdmin
@@ -82,7 +82,7 @@ class ArticleGateway extends Connection
         return $tabResult;
     }
 
-    public function getOne($id): Article
+    public function getOne(int $id): Article
     {
         $sql = "SELECT article.id AS id, title, content, DATE_FORMAT(created, '%D %b %Y') AS date, idAdmin
                 FROM article
@@ -97,14 +97,14 @@ class ArticleGateway extends Connection
         return new Article($post['id'], $post['title'], $post['content'], $post['date'], $post['idAdmin']);
     }
 
-    public function Count()
+    public function Count():int
     {
         $sql = "SELECT COUNT(*) FROM article";
         $this->executeQuery($sql);
         return $this->getResults();
     }
 
-    public function delete($id)
+    public function delete(int $id)
     {
         $sql = 'DELETE FROM article
                 WHERE id = :id';

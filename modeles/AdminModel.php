@@ -39,6 +39,10 @@ class AdminModel
         return $this->gate->getOne($login);
     }
 
+    /** Fonction pour obtenir seulement le mdp
+     * @param $login
+     * @return array
+     */
     public function getPassword($login)
     {
         return $this->gate->getPassword($login);

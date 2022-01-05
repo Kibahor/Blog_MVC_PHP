@@ -3,7 +3,7 @@
 class CommentaireGateway extends Connection
 {
     //Ajouter un commentaire
-    public function add($pseudo, $content, $idArticle)
+    public function add(string $pseudo, string $content, int $idArticle)
     {
         $sql = 'INSERT INTO commentaires (pseudo, content, created, idArticle)
                 VALUES (:pseudo, :content, NOW(), :idArticle)';
@@ -14,8 +14,7 @@ class CommentaireGateway extends Connection
         ));
     }
 
-    //Supprimer un commentaire
-    public function supp($pseudo, $content, $idArticle)
+    public function supp(string $pseudo, string $content, int $idArticle)
     {
         $sql = 'DELETE FROM commentaires WHERE pseudo=:pseudo AND idArticle=:idArticle AND content=:content';
         $this->executeQuery($sql, array(
@@ -26,7 +25,7 @@ class CommentaireGateway extends Connection
     }
 
     //Obtenir les 5 premiers commentaires
-    public function getPage($start, $stop) :array
+    public function getPage(int $start, int $stop) :array
     {
         $sql = "SELECT id,pseudo, content, DATE_FORMAT(created, '%D %b %Y') AS date, idArticle
                 FROM commentaires
@@ -39,7 +38,7 @@ class CommentaireGateway extends Connection
         return $tabResult;
     }
 
-    public function getId($id) : array
+    public function getId(int $id) : array
     {
         $sql = 'SELECT *
                 FROM commentaires
