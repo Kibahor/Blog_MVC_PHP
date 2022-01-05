@@ -3,9 +3,9 @@
 $rep = __DIR__ . '/../';
 
 //BD
-$base = "mysql:dbname=blog;host=localhost";
-$login = "root";
-$mdp = "";
+$base = "mysql:dbname=dblublouin1;host=berlin.iut.local";
+$login = "lublouin1";
+$mdp = "achanger";
 
 //Elements
 $vues['head'] = 'view/head.php';
