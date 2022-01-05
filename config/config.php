@@ -4,8 +4,8 @@ $rep = __DIR__ . '/../';
 
 //BD
 $base = "mysql:dbname=blog;host=localhost";
-$login = "user";
-$mdp = "mdp";
+$login = "root";
+$mdp = "";
 
 //Elements
 $vues['head'] = 'view/head.php';

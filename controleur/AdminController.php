@@ -41,6 +41,9 @@ class AdminController
         }
     }
 
+    /**
+     * Suppression d'article
+     */
     public function delete()
     {
         $cleanIntID = Validation::cleanINT(Validation::cleanINT($_GET['id']));
@@ -48,6 +51,9 @@ class AdminController
         new UserControlleur(NULL);
     }
 
+    /**
+     * Ajout d'article
+     */
     public function add()
     {
 

@@ -52,17 +52,28 @@ class UserControlleur
         }
     }
 
+    /**
+     * Fonction qu'on appelle sans action
+     * (pratique pour faire des tests)
+     */
     function init()
     {
         $tabArticle = $this::getHomeNews($this::getNumPage());
         $this::showHomeNews($tabArticle);
     }
 
+    /** a partir du id page de l'url on retourne les articles
+     * @param $page
+     * @return array
+     */
     public function getHomeNews($page): array
     {
         return $this->article_model->getPageArticle($page);
     }
 
+    /**Recupere et retourne un clean int de l'url (n° page)
+     * @return int
+     */
     public function getNumPage(): int
     {
         $page = 1;
@@ -72,7 +83,10 @@ class UserControlleur
         return $page;
     }
 
-    public function showHomeNews($tabArticle)
+    /** Affichage de la page principale
+     * @param array $tabArticle
+     */
+    public function showHomeNews(array $tabArticle)
     {
 
         $admin = $this->admin_model->isadmin();
@@ -92,7 +106,10 @@ class UserControlleur
         }
     }
 
-    public function getCompteur()
+    /**Recupere compteur cookie
+     * @return int
+     */
+    public function getCompteur():int
     {
         if (isset($_COOKIE['commentaires'])) {
             return Validation::cleanINT($_COOKIE['commentaires']);
@@ -100,12 +117,19 @@ class UserControlleur
         return 0;
     }
 
+    /** Recherche Article BDD
+     * @param string $key
+     * @return array
+     */
     public function searchNews(string $key): array
     {
         $key = Validation::cleanString($key);
         return $this->article_model->searchArticle($key);
     }
 
+    /**
+     * Affichage et recherche d'un article particulier
+     */
     function getArticle()
     {
         if (!isset($_GET['id'])) {
@@ -121,6 +145,9 @@ class UserControlleur
 
     }
 
+    /**
+     * Affichage et ajout d'un nouveau commentaire + incrementation cookie
+     */
     function addCommentaire()
     {
         $idArticle = Validation::cleanINT($_REQUEST['id']);
@@ -153,16 +180,21 @@ class UserControlleur
         }
     }
 
+    /**
+     * Incrementation cookie
+     */
     function incrCookie()
     {
         $cpt = $this::getCompteur();
         setcookie("commentaires", $cpt + 1, time() + 365 * 24 * 3600);
     }
 
+    /**
+     * Affichage formulaire et traitement de la connexion
+     */
     function connexion()
     {
         $admin = $this->admin_model->isadmin();
-
         if (isset($_REQUEST['button']) && !$admin) {
             $nom = Validation::cleanString($_REQUEST['login']);
             $mdp = Validation::cleanString($_REQUEST['password']);
@@ -180,9 +212,6 @@ class UserControlleur
                 }
             }
         }
-
         require($this->rep . $this->vues['login']);
-
-
     }
 }

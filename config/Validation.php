@@ -3,7 +3,7 @@
 class Validation
 {
 
-    public static function cleanINT($nb)
+    public static function cleanINT(int $nb):int
     {
         if (!filter_var($nb, FILTER_VALIDATE_INT)) {
             $nb = 0;
@@ -11,6 +11,15 @@ class Validation
         return $nb;
     }
 
+    public static function cleanString(string $str): string
+    {
+        return filter_var($str, FILTER_SANITIZE_STRING);
+    }
+
+    /** Verification du formulaire commentaire
+     * @param string $pseudo
+     * @param string $content
+     */
     public static function commentaire_form(string &$pseudo, string &$content)
     {
 
@@ -31,11 +40,10 @@ class Validation
         }
     }
 
-    public static function cleanString(string $str): string
-    {
-        return filter_var($str, FILTER_SANITIZE_STRING);
-    }
-
+    /** Verification du formulaire Article
+     * @param string $titre
+     * @param string $content
+     */
     public static function article_form(string &$titre, string &$content)
     {
 
@@ -55,6 +63,10 @@ class Validation
 
     }
 
+    /**Verification du formulaire connection
+     * @param string $nom
+     * @param string $mdp
+     */
     static function connexion_form(string &$nom, string &$mdp)
     {
 

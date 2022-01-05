@@ -18,7 +18,7 @@ class ArticleGateway extends Connection
         return $tabResult;
     }
 
-    //ajouter un Article
+
     public function addArticle($title, $content, $idAdmin)
     {
         $sql = 'INSERT INTO article (title, content, created, idAdmin)
@@ -38,14 +38,14 @@ class ArticleGateway extends Connection
                 SET title = :title,
                 content = :content
                 WHERE id = :id';
-        return $this->executeQuery($sql, array(
+        $this->executeQuery($sql, array(
             ':title' => array($title, PDO::PARAM_STR),
             ':content' => array($content, PDO::PARAM_STR),
             ':id' => array($id, PDO::PARAM_INT)
         ));
     }
 
-    //Fonction pour obtenir les 5 premier Articles
+
     public function getPage($start, $stop, $order): array
     {
         $sql = "SELECT id,title, content, DATE_FORMAT(created, '%D %b %Y') AS date, idAdmin
@@ -111,8 +111,5 @@ class ArticleGateway extends Connection
         $this->executeQuery($sql, array(
             ':id' => array($id, PDO::PARAM_INT)
         ));
-        /*
-         *      Suppression d'un utilisateur
-         */
     }
 }

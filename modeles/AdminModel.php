@@ -44,6 +44,16 @@ class AdminModel
         return $this->gate->getPassword($login);
     }
 
+    public function getAdminLogin($login)
+    {
+        return $this->gate->getLogin($login);
+    }
+
+    /** Connexion (utlisation du getAdminLogin) pour éviter plusiers requête sql (en impliquant qu'il n'existe pas de doublon d'Admin)
+     * @param string $login
+     * @param string $mdp
+     * @return Admin|null
+     */
     public function authentification(string $login, string $mdp)
     {
         $row = $this::getAdminLogin($login);
@@ -58,11 +68,9 @@ class AdminModel
         return NULL; // Si mot de passe incorrect
     }
 
-    public function getAdminLogin($login)
-    {
-        return $this->gate->getLogin($login);
-    }
-
+    /**Verification si admin
+     * @return bool
+     */
     public function isadmin(): bool
     {
         return (isset($_SESSION['role']) && Validation::cleanString($_SESSION['role'] == "admin"));
