@@ -1,5 +1,11 @@
 # Projet PHP (Blog en MVC)
 
+![Home](https://github.com/Kibahor/Blog_MVC_PHP/blob/main/Screenshot.png "Home")
+
+## Introduction
+Ce projet a été réalisé durant la deuxième année de DUT Informatique, afin d'apprendre le PHP et l'architecture MVC (Model View Controller)
+
+## Sujet
 Le but du projet est de proposer la gestion complète d'un blog (journal de "news" ajoutées par date) en PHP. La page
 principale du blog est composée d'une première partie supérieure (ou d'un menu), permettant d'adminiproutr son blog, et
 d'une seconde partie composée des news affichées de la sorte: date : news. Cette page principale doit être découpée en
@@ -26,5 +32,5 @@ en HTML. La partie supérieure (ou le menu) est composée au moins:
   peut être écrite en BBcode (bbcode) qui doit être traduit en HTML(ex: <b> </b>doit afficher du texte en gras) et
   optionnellement des smileys
 
-**La gestion d'erreurs doit être complète. (champs vérifiés, connection à la BD,etc.) **
+**La gestion d'erreurs doit être complète. (champs vérifiés, connection à la BD,etc.)**
 
